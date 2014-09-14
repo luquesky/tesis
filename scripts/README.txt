@@ -1,4 +1,4 @@
-extractStandardAcoustics.praat y voice-analysis.praat extraen atributos
+'extractStandardAcoustics.praat y voice-analysis.praat extraen atributos
 acústicos de un intervalo de un archivo wav.
 
 Modo de uso:
@@ -37,3 +37,8 @@ noise_to_harmonics_ratio:0.056981    --> relación armónico-ruido
 sound_voiced_local_jitter:0.009913   --> jitter computado sobre los voiced frames del intervalo
 sound_voiced_local_shimmer:0.053497  --> shimmer computado sobre los voiced frames del intervalo
 
+
+
+Ejemplo:
+
+ praat extractStandardAcoustics.praat ../data/s10.objects.1.A.wav 0 10 75 500
