@@ -1,6 +1,5 @@
 #! coding:utf-8
 from sympy import Interval
-from mock import patch, mock_open, MagicMock
 from unittest import TestCase
 from .. import Speech, SpeechInterval
 
@@ -15,3 +14,11 @@ class SpeechTest(TestCase):
             SpeechInterval(14, 14.5, "hi")
         ])
         self.assertEqual(speech.length(), 14.5)
+
+    def test_intervals_overlapping_for_included_interval(self):
+        speech = Speech(speech_intervals=[
+            SpeechInterval(0, 14, "#"),
+        ])
+        self.assertItemsEqual(speech.intervals_overlapping(Interval(0, 14)),
+            [Interval(0, 14, True, False)]
+        )

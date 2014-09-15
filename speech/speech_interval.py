@@ -2,6 +2,6 @@
 from sympy import Interval
 
 class SpeechInterval(Interval):
-    def __init__(self, inf, sup, word, *args, **kwargs):
+    def __init__(self, inf, sup, word):
         self.word = word
-        super(SpeechInterval, self).__init__(inf, sup, *args, **kwargs)
+        super(SpeechInterval, self).__init__(inf, sup)
