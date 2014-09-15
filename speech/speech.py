@@ -1,12 +1,10 @@
 #! coding:utf-8
-import csv
-
 class Speech(object):
-    def __init__(self, intervals):
-        self.intervals = intervals
+    def __init__(self, speech_intervals):
+        self.speech_intervals = speech_intervals
 
     def length(self):
-        length = 0
-        for interval in self.intervals:
-            length = interval[1]
-        return length
+        return self.speech_intervals[-1][0].sup
+
+    def intervals_overlapping(self, frame):
+        pass
