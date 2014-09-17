@@ -1,4 +1,5 @@
 #! coding:utf-8
+from mock import MagicMock
 from sympy import Interval
 from unittest import TestCase
 from .. import Speech, SpeechInterval
@@ -21,3 +22,16 @@ class SpeechTest(TestCase):
         ])
 
         self.assertEqual(speech.intervals_overlapping(Interval(0, 14)), [Interval(0, 14)])
+
+    def test_getting_f0_for_an_interval_should_ask_feature_extractor_for_it(self):
+        mock_extractor = MagicMock(spec=["get_feature"])
+        
+        speech = Speech(speech_intervals=[
+            SpeechInterval(0, 14, "#"),
+            SpeechInterval(14, 14.5, "hi")
+        ], feature_extractor= mock_extractor)
+        interval = Interval(14, 14.5)
+
+        speech.get_feature("f0", interval)
+
+        mock_extractor.get_feature.assert_called_with("f0", interval)
