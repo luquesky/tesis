@@ -19,6 +19,5 @@ class SpeechTest(TestCase):
         speech = Speech(speech_intervals=[
             SpeechInterval(0, 14, "#"),
         ])
-        self.assertItemsEqual(speech.intervals_overlapping(Interval(0, 14)),
-            [Interval(0, 14, True, False)]
-        )
+
+        self.assertEqual(speech.intervals_overlapping(Interval(0, 14)), [Interval(0, 14)])
