@@ -24,4 +24,4 @@ class FeatureExtractor(object):
 
     # FIXME: Change min & max pitch
     def __get_command_to_execute(self, interval):
-        return (self.path_to_praat, self.path_to_script, self.path_to_wav, interval.inf, interval.sup, 75, 500)
+        return (self.path_to_praat, self.path_to_script, self.path_to_wav, str(interval.inf), str(interval.sup), "75", "500")
