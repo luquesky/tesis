@@ -1,4 +1,4 @@
-# 
+#
 data/*
 papers/*
 
@@ -6,3 +6,7 @@ papers/*
 .tags*
 # Python extensions
 *.pyc
+
+# SublimeText
+*sublime-project
+*sublime-workspace
