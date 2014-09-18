@@ -20,7 +20,14 @@ class FeatureExtractor(object):
 
     def __convert_to_dict(self, command_output):
         ret = [line.split(':') for line in command_output.splitlines()]
-        return dict([(k, float(v)) for (k,v) in ret])
+
+        return dict([(k, self.__convert_to_float(v)) for (k,v) in ret])
+
+    def __convert_to_float(self, value):
+        try:
+            return float(value)
+        except ValueError:
+            return float('nan')
 
     # FIXME: Change min & max pitch
     def __get_command_to_execute(self, interval):
