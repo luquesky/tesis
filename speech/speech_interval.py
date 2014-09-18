@@ -12,3 +12,9 @@ class SpeechInterval(object):
 
     def __eq__(self, other):
         return (self.interval == other.interval) and (self.word == other.word)
+
+    def __str__(self):
+        return "%s -> %s" % (self.interval, self.word)
+
+    def __repr__(self):
+        return self.__str__()
