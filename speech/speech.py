@@ -15,5 +15,5 @@ class Speech(object):
                 intervals.append(intersection)
         return intervals
 
-    def get_feature(self, feature_name, interval):
-        self.feature_extractor.get_feature(feature_name, interval)
+    def get_features(self, interval):
+        self.feature_extractor.extract_features(interval)

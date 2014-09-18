@@ -15,7 +15,7 @@ class FeatureExtractorTest(TestCase):
 
         extractor.extract_features(Interval(0, 10))
 
-        subprocess_mock.check_output.assert_called_with(("/bin/praat", "foo.praat", "test.wav", 0, 10, 75, 500))
+        subprocess_mock.check_output.assert_called_with(("/bin/praat", "foo.praat", "test.wav", "0", "10", "75", "500"))
 
     @patch('speech.feature_extractor.subprocess')
     def test_feature_extractor_converts_to_dict(self, subprocess_mock):
