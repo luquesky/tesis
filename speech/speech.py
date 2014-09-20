@@ -1,5 +1,8 @@
 #! coding:utf-8
 from sympy import Interval
+
+SPEECH_INTERVAL_THRESHOLD = 0.5
+
 class Speech(object):
     def __init__(self, word_intervals, feature_extractor=None):
         self.word_intervals = word_intervals
@@ -14,7 +17,7 @@ class Speech(object):
         for interval in self.speech_intervals:
             intersection = interval.intersect(frame)
             # Not an empty set' nor a singleton
-            if intersection.measure > 0:
+            if intersection.measure > SPEECH_INTERVAL_THRESHOLD:
                 intervals.append(intersection)
         return intervals
 
@@ -46,4 +49,3 @@ def build_speech_intervals(word_intervals):
         speech_intervals.append(current_interval)
 
     return speech_intervals
-        

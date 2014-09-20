@@ -14,16 +14,18 @@ def tama(speech, feature, frame_step=10, frame_length=20):
 
         # Now, for each matching interval, let's calculate the f0 mean
         # Remember that is an weighted average, where the weight of each interval is their ratio of length (against frame)
-        frame_length = float(frame.measure)
+        # OBS: There might be some intervals chopped off the frame, as they might be very tiny
+        frame_length = .0
         average = 0
 
         for interval in matching_intervals:
             features = speech.get_features(interval)
-            print "Features for %s \n %s" % (interval, features[feature])
-            interval_ratio = float(interval.measure) / frame_length
-            average += features[feature] * interval_ratio
+            print "Features for %s \n %s" % (interval, features)
+            frame_length += interval.measure
+            average += features[feature] * interval.measure
 
-        averages.append(average)
+        average = average / frame_length
+        averages.append(average )
         current_step+= frame_step
 
     return averages
