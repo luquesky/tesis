@@ -1,9 +1,10 @@
 #! coding: utf-8
+from __future__ import division
 from sympy import Interval
 
 # Tama
 # Returns an array of the time series moving average
-def tama(speech, frame_step=10, frame_length=20):
+def tama(speech, feature, frame_step=10, frame_length=20):
     current_step = frame_step
     averages = []
 
@@ -12,10 +13,17 @@ def tama(speech, frame_step=10, frame_length=20):
         matching_intervals = __intervals_overlapping(speech, frame)
 
         # Now, for each matching interval, let's calculate the f0 mean
+        # Remember that is an weighted average, where the weight of each interval is their ratio of length (against frame)
+        frame_length = float(frame.measure)
+        average = 0
+
         for interval in matching_intervals:
             features = speech.get_features(interval)
+            print "Features for %s \n %s" % (interval, features[feature])
+            interval_ratio = float(interval.measure) / frame_length
+            average += features[feature] * interval_ratio
 
-
+        averages.append(average)
         current_step+= frame_step
 
     return averages

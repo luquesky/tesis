@@ -16,4 +16,4 @@ class Speech(object):
         return intervals
 
     def get_features(self, interval):
-        self.feature_extractor.extract_features(interval)
+        return self.feature_extractor.extract_features(interval)

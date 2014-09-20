@@ -1,4 +1,5 @@
 #! coding:utf-8
+import math
 import csv
 import os
 from sympy import Interval
@@ -13,7 +14,8 @@ class TamaTest(TestCase):
         intervals = get_word_intervals()
 
         speech = Speech(speech_intervals=get_word_intervals(), feature_extractor= build_feature_extractor())
-        tama(speech, frame_step=2, frame_length=4)
+        tama(speech, "F0_MEAN", frame_step=2, frame_length=4)
+
 
     # The wav we use here has 20.87 seconds =>
     # Using frame_step = 2, and frame_length = 4 => there should be 10 frames! (the last one should be chopped)
@@ -22,9 +24,20 @@ class TamaTest(TestCase):
         intervals = get_word_intervals()
 
         speech = Speech(speech_intervals=get_word_intervals(), feature_extractor= build_feature_extractor())
-        moving_average = tama(speech, frame_step=2, frame_length=4)
+
+        moving_average = tama(speech, "F0_MEAN", frame_step=2, frame_length=4)
 
         self.assertEqual(len(moving_average), 10)
+
+    def test_tama_return_not_nan_values(self):
+        intervals = get_word_intervals()
+
+        speech = Speech(speech_intervals=get_word_intervals(), feature_extractor= build_feature_extractor())
+
+        moving_average = tama(speech, "F0_MEAN", frame_step=2, frame_length=4)
+
+
+        self.assertTrue(all(not math.isnan(x) for x in moving_average ))
 
 
 def get_word_intervals():
