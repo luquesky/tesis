@@ -2,15 +2,17 @@
 from sympy import Interval
 # This class represents a word interval, which is simply an interval with a word.
 # Special case to be mentioned, SILENCE_WORD string means silence in that interval 
-SILENCE_WORD = '#'
 
 class WordInterval(object):
+    SILENCE_WORD = '#'
+
     def __init__(self, inf, sup, word):
         self.word = word
         self.interval = Interval(inf, sup)
 
+    @property
     def is_silent(self):
-        return self.word == SILENCE_WORD
+        return self.word == WordInterval.SILENCE_WORD
 
     # Delegate missing attributes to interval
     def __getattr__(self, name):

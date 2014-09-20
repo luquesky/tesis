@@ -1,19 +1,49 @@
 #! coding:utf-8
+from sympy import Interval
 class Speech(object):
-    def __init__(self, speech_intervals, feature_extractor=None):
-        self.speech_intervals = speech_intervals
+    def __init__(self, word_intervals, feature_extractor=None):
+        self.word_intervals = word_intervals
+        self.speech_intervals = build_speech_intervals(word_intervals)
         self.feature_extractor = feature_extractor
 
     def length(self):
-        return self.speech_intervals[-1].sup
+        return self.word_intervals[-1].sup
 
     def intervals_overlapping(self, frame):
         intervals = []
         for interval in self.speech_intervals:
             intersection = interval.intersect(frame)
-            if not intersection.is_EmptySet:
+            # Not an empty set' nor a singleton
+            if intersection.measure > 0:
                 intervals.append(intersection)
         return intervals
 
     def get_features(self, interval):
         return self.feature_extractor.extract_features(interval)
+
+
+
+def build_speech_intervals(word_intervals):
+    current_interval = None
+    is_current_interval_silent = None
+    speech_intervals = []
+
+    for word_interval in word_intervals:
+        if not current_interval:
+            current_interval = Interval(word_interval.inf, word_interval.sup)
+            is_current_interval_silent = word_interval.is_silent
+        else:
+            # If they are both silent, or both nonsilent => merge
+            if bool(word_interval.is_silent) == bool(is_current_interval_silent):
+                current_interval = Interval(current_interval.inf, word_interval.sup)
+            # If not, push current
+            else:
+                speech_intervals.append(current_interval)
+                current_interval = Interval(word_interval.inf, word_interval.sup)
+                is_current_interval_silent = word_interval.is_silent
+
+    if current_interval:
+        speech_intervals.append(current_interval)
+
+    return speech_intervals
+        

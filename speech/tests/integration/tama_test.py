@@ -13,7 +13,7 @@ class TamaTest(TestCase):
     def test_tama_can_be_run(self):
         intervals = get_word_intervals()
 
-        speech = Speech(speech_intervals=get_word_intervals(), feature_extractor= build_feature_extractor())
+        speech = Speech(word_intervals=get_word_intervals(), feature_extractor= build_feature_extractor())
         tama(speech, "F0_MEAN", frame_step=2, frame_length=4)
 
 
@@ -23,7 +23,7 @@ class TamaTest(TestCase):
     def test_tama_returns_the_right_number_of_frames(self):
         intervals = get_word_intervals()
 
-        speech = Speech(speech_intervals=get_word_intervals(), feature_extractor= build_feature_extractor())
+        speech = Speech(word_intervals=get_word_intervals(), feature_extractor= build_feature_extractor())
 
         moving_average = tama(speech, "F0_MEAN", frame_step=2, frame_length=4)
 
@@ -32,7 +32,7 @@ class TamaTest(TestCase):
     def test_tama_return_not_nan_values(self):
         intervals = get_word_intervals()
 
-        speech = Speech(speech_intervals=get_word_intervals(), feature_extractor= build_feature_extractor())
+        speech = Speech(word_intervals=get_word_intervals(), feature_extractor= build_feature_extractor())
 
         moving_average = tama(speech, "F0_MEAN", frame_step=2, frame_length=4)
 
