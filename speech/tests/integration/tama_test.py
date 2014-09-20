@@ -4,7 +4,7 @@ import csv
 import os
 from sympy import Interval
 from unittest import TestCase
-from ... import Speech, tama, SpeechInterval, FeatureExtractor
+from ... import Speech, tama, WordInterval, FeatureExtractor
 
 DATA_DIR = os.getcwd() + "/speech/tests/integration/data"
 
@@ -36,7 +36,6 @@ class TamaTest(TestCase):
 
         moving_average = tama(speech, "F0_MEAN", frame_step=2, frame_length=4)
 
-
         self.assertTrue(all(not math.isnan(x) for x in moving_average ))
 
 
@@ -45,7 +44,7 @@ def get_word_intervals():
     with open("speech/tests/integration/data/test.words") as test_words:
         rows = csv.reader(test_words, delimiter=" ")
         for row in rows:
-            intervals.append(SpeechInterval(float(row[0]), float(row[1]),row[2]))
+            intervals.append(WordInterval(float(row[0]), float(row[1]),row[2]))
     return intervals
 
 # This is quite ad hoc
