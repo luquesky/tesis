@@ -2,7 +2,7 @@
 from sympy import Interval
 from unittest import TestCase
 from .. import Speech, WordInterval
-from ..helpers import build_utterances, intervals_overlapping
+from ..helpers import build_utterances, intersecting_utterances, hybrid_intersecting_utterances
 
 class BuildUtterancesTest(TestCase):
     def test_it_merges_silence(self):
@@ -31,7 +31,7 @@ class IntervalsOverlappingTest(TestCase):
             WordInterval(0, 14, "#"),
         ])
 
-        self.assertEqual(intervals_overlapping(speech, Interval(0, 14)), [Interval(0, 14)])
+        self.assertEqual(intersecting_utterances(speech, Interval(0, 14)), [Interval(0, 14)])
 
     def test_intervals_overlapping_for_merged_non_silent_intervals(self):
         speech = Speech(word_intervals=[
@@ -42,4 +42,22 @@ class IntervalsOverlappingTest(TestCase):
 
         interval = Interval(14, 15.5)
 
-        self.assertItemsEqual(intervals_overlapping(speech, Interval(13.0, 16.0)), [Interval(13.0, 14.0), Interval(14.0, 15.5)])
+        self.assertItemsEqual(intersecting_utterances(speech, Interval(13.0, 16.0)), [Interval(13.0, 14.0), Interval(14.0, 15.5)])
+
+class HybridIntersectingUtterancesTest(TestCase):
+    def test_intervals_overlapping_for_included_interval(self):
+        speech = Speech(word_intervals=[
+            WordInterval(0, 14, "#"),
+        ])
+
+        self.assertEqual(hybrid_intersecting_utterances(speech, Interval(0, 14)), [Interval(0, 14)])
+
+    def test_intervals_overlapping_for_merged_non_silent_intervals(self):
+        speech = Speech(word_intervals=[
+            WordInterval(0.0, 14.0, "#"),
+            WordInterval(14.0, 14.5, "hi"),
+            WordInterval(14.5, 15.5, "#")
+        ])
+
+        self.assertItemsEqual(hybrid_intersecting_utterances(speech, Interval(13.0, 16.0)),
+            [Interval(0.0, 14.0), Interval(14.0, 14.5), Interval(14.5, 15.5)])

@@ -1,7 +1,7 @@
 #! coding: utf-8
 from __future__ import division
 from sympy import Interval
-from helpers import intervals_overlapping
+from helpers import intersecting_utterances, hybrid_intersecting_utterances
 
 
 def tama(speech, feature, frame_step=10, frame_length=20):
@@ -24,7 +24,7 @@ def tama(speech, feature, frame_step=10, frame_length=20):
 
     while current_step <= speech.length():
         frame = __get_frame_for(speech, length=frame_length, middle=current_step)
-        matching_intervals = intervals_overlapping(speech, frame)
+        matching_intervals = intersecting_utterances(speech, frame)
 
         # Now, for each matching interval, let's calculate the f0 mean
         # Remember that is an weighted average, where the weight of each interval is their ratio of length (against frame)

@@ -28,9 +28,11 @@ def build_utterances(word_intervals):
 
     return speech_intervals
 
-def intervals_overlapping(speech, frame):
+def intersecting_utterances(speech, frame):
     """
     Find all the utterances that have intersection for the frame. For utterances in the boundaries, it chops them
+
+    This is the method used in classic tama
 
     Let's suppose my frame is (10s, 20s) and I have speech intervals:
     9s    10.5s 'hi'
@@ -47,3 +49,16 @@ def intervals_overlapping(speech, frame):
         if intersection.measure > 0:
             intervals.append(intersection)
     return intervals
+
+def hybrid_intersecting_utterances(speech, frame):
+    """
+    Find all the utterances that have intersection for the frame. For utterances in the boundaries, it adds them completely (thus expanding the frame boundaries)
+    """
+    intervals = []
+    for utterance in speech.utterances:
+        intersection = utterance.intersect(frame)
+        # Not an empty set' nor a singleton
+        if intersection.measure > 0:
+            intervals.append(utterance)
+    return intervals
+
