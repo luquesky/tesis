@@ -11,18 +11,5 @@ class Speech(object):
     def length(self):
         return self.word_intervals[-1].sup
 
-    def intervals_overlapping(self, frame):
-        intervals = []
-        for utterance in self.utterances:
-            intersection = utterance.intersect(frame)
-            # Not an empty set' nor a singleton
-            if intersection.measure > 0:
-                intervals.append(intersection)
-        return intervals
-
     def get_features(self, interval):
         return self.feature_extractor.extract_features(interval)
-
-
-
-

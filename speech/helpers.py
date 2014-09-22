@@ -2,6 +2,9 @@
 from sympy import Interval
 
 def build_utterances(word_intervals):
+    """
+    Given a set of word intervals, it returns a list of intervals that results from repeatedly merging adjacent intervals which are both silent or nonsilent.
+    """
     current_interval = None
     is_current_interval_silent = None
     speech_intervals = []
@@ -24,3 +27,23 @@ def build_utterances(word_intervals):
         speech_intervals.append(current_interval)
 
     return speech_intervals
+
+def intervals_overlapping(speech, frame):
+    """
+    Find all the utterances that have intersection for the frame. For utterances in the boundaries, it chops them
+
+    Let's suppose my frame is (10s, 20s) and I have speech intervals:
+    9s    10.5s 'hi'
+    10.5s 19s   #
+    19.5s   20.5s 'how'
+
+    Then, the frame's matching intervals should be
+    (10, 10.5), (10.5, 19) and (19, 20)
+    """
+    intervals = []
+    for utterance in speech.utterances:
+        intersection = utterance.intersect(frame)
+        # Not an empty set' nor a singleton
+        if intersection.measure > 0:
+            intervals.append(intersection)
+    return intervals
