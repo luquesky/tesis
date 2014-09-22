@@ -6,7 +6,7 @@ SPEECH_INTERVAL_THRESHOLD = 0.5
 class Speech(object):
     def __init__(self, word_intervals, feature_extractor=None):
         self.word_intervals = word_intervals
-        self.speech_intervals = build_speech_intervals(word_intervals)
+        self.utterances = build_utterances(word_intervals)
         self.feature_extractor = feature_extractor
 
     def length(self):
@@ -14,7 +14,7 @@ class Speech(object):
 
     def intervals_overlapping(self, frame):
         intervals = []
-        for interval in self.speech_intervals:
+        for interval in self.utterances:
             intersection = interval.intersect(frame)
             # Not an empty set' nor a singleton
             if intersection.measure > SPEECH_INTERVAL_THRESHOLD:
@@ -26,7 +26,7 @@ class Speech(object):
 
 
 
-def build_speech_intervals(word_intervals):
+def build_utterances(word_intervals):
     current_interval = None
     is_current_interval_silent = None
     speech_intervals = []
