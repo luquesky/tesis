@@ -9,11 +9,13 @@ DATA_DIR = "speech/tests/integration/data"
 
 class SpeechBuilder(object):
     def __init__(self, path_to_file):
-        self.path_to_file = os.path.abspath(path_to_file)
+        self.path_to_wav = os.path.abspath(path_to_file)
+        filename, extension = os.path.splitext(self.path_to_wav)
+        self.path_to_words = "%s.words" % filename
 
     def get_word_intervals(self):
         intervals = []
-        with open(self.path_to_file) as test_words:
+        with open(self.path_to_words) as test_words:
             rows = csv.reader(test_words, delimiter=" ")
             for row in rows:
                 intervals.append(WordInterval(float(row[0]), float(row[1]),row[2]))
@@ -24,7 +26,7 @@ class SpeechBuilder(object):
         return FeatureExtractor(
             path_to_script = os.path.abspath("scripts/extractStandardAcoustics.praat"),
             path_to_praat = "/usr/local/bin/praat",
-            path_to_wav=self.path_to_file
+            path_to_wav=self.path_to_wav
         )
 
     @property

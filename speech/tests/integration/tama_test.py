@@ -2,18 +2,15 @@
 import math
 import csv
 import os
-from sympy import Interval
 from unittest import TestCase
-from ... import Speech, tama, WordInterval, FeatureExtractor
+from ... import Speech, tama, WordInterval, FeatureExtractor, SpeechBuilder
 
 DATA_DIR = os.getcwd() + "/speech/tests/integration/data"
 
 class TamaTest(TestCase):
 
     def test_tama_can_be_run(self):
-        intervals = get_word_intervals()
-
-        speech = Speech(word_intervals=get_word_intervals(), feature_extractor= build_feature_extractor())
+        speech = SpeechBuilder("speech/tests/integration/data/test.wav").speech
         tama(speech, "F0_MEAN", frame_step=2, frame_length=4)
 
 
@@ -21,37 +18,14 @@ class TamaTest(TestCase):
     # Using frame_step = 2, and frame_length = 4 => there should be 10 frames! (the last one should be chopped)
 
     def test_tama_returns_the_right_number_of_frames(self):
-        intervals = get_word_intervals()
-
-        speech = Speech(word_intervals=get_word_intervals(), feature_extractor= build_feature_extractor())
-
+        speech = SpeechBuilder("speech/tests/integration/data/test.wav").speech
         moving_average = tama(speech, "F0_MEAN", frame_step=2, frame_length=4)
 
         self.assertEqual(len(moving_average), 10)
 
     def test_tama_return_not_nan_values(self):
-        intervals = get_word_intervals()
-
-        speech = Speech(word_intervals=get_word_intervals(), feature_extractor= build_feature_extractor())
+        speech = SpeechBuilder("speech/tests/integration/data/test.wav").speech
 
         moving_average = tama(speech, "F0_MEAN", frame_step=2, frame_length=4)
 
         self.assertTrue(all(not math.isnan(x) for x in moving_average ))
-
-
-def get_word_intervals():
-    intervals = []
-    with open("speech/tests/integration/data/test.words") as test_words:
-        rows = csv.reader(test_words, delimiter=" ")
-        for row in rows:
-            intervals.append(WordInterval(float(row[0]), float(row[1]),row[2]))
-    return intervals
-
-# This is quite ad hoc
-def build_feature_extractor():
-    return FeatureExtractor(
-        path_to_script = os.getcwd() + "/scripts/extractStandardAcoustics.praat",
-        path_to_praat = "/usr/local/bin/praat",
-        path_to_wav= DATA_DIR + "/test.wav"
-    )
-
