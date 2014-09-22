@@ -28,6 +28,8 @@ def build_utterances(word_intervals):
 
     return speech_intervals
 
+UTTERANCE_THRESHOLD = 0.4
+
 def intersecting_utterances(speech, frame):
     """
     Find all the utterances that have intersection for the frame. For utterances in the boundaries, it chops them
@@ -46,7 +48,7 @@ def intersecting_utterances(speech, frame):
     for utterance in speech.utterances:
         intersection = utterance.intersect(frame)
         # Not an empty set' nor a singleton
-        if intersection.measure > 0:
+        if intersection.measure > UTTERANCE_THRESHOLD:
             intervals.append(intersection)
     return intervals
 

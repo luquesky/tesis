@@ -4,27 +4,13 @@ from sympy import Interval
 from helpers import intersecting_utterances, hybrid_intersecting_utterances
 
 
-def tama(speech, feature, frame_step=10, frame_length=20):
-    """
-    Given a speech, it returns the time aligned moving average (tama) for the feature.
-
-    Parameters
-    ----------
-
-    speech: Speech
-        An object responding to utterances and length properties
-
-    feature: string
-        Any of the following features:
-
-
-    """
+def base_tama(speech, feature, utterance_extractor, frame_step, frame_length):
     current_step = frame_step
     averages = []
 
     while current_step <= speech.length():
         frame = __get_frame_for(speech, length=frame_length, middle=current_step)
-        matching_intervals = intersecting_utterances(speech, frame)
+        matching_intervals = utterance_extractor(speech, frame)
 
         # Now, for each matching interval, let's calculate the f0 mean
         # Remember that is an weighted average, where the weight of each interval is their ratio of length (against frame)
@@ -43,6 +29,27 @@ def tama(speech, feature, frame_step=10, frame_length=20):
         current_step+= frame_step
 
     return averages
+
+
+def tama(speech, feature, frame_step=10, frame_length=20):
+    """
+    Given a speech, it returns the time aligned moving average (tama) for the feature.
+
+    Parameters
+    ----------
+
+    speech: Speech
+        An object responding to utterances and length properties
+
+    feature: string
+        Any of the following features:
+
+
+    """
+    return base_tama(speech, feature, intersecting_utterances, frame_step=frame_step, frame_length=frame_length)
+
+def hybrid_tama(speech, feature, frame_step=10, frame_length=20):
+    return base_tama(speech, feature, hybrid_intersecting_utterances, frame_step=frame_step, frame_length=frame_length)
 
 def __get_frame_for(speech, length, middle):
 
