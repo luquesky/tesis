@@ -2,9 +2,22 @@
 from __future__ import division
 from sympy import Interval
 
-# Tama
-# Returns an array of the time series moving average
+
 def tama(speech, feature, frame_step=10, frame_length=20):
+    """
+    Given a speech, it returns the time aligned moving average (tama) for the feature.
+
+    Parameters
+    ----------
+
+    speech: Speech
+        An object responding to utterances and length properties
+
+    feature: string
+        Any of the following features:
+
+
+    """
     current_step = frame_step
     averages = []
 
