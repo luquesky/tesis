@@ -20,7 +20,6 @@ def base_tama(speech, feature, utterance_extractor, frame_step, frame_length):
 
         for interval in matching_intervals:
             features = speech.get_features(interval)
-            print "Features for %s \n %s" % (interval, features)
             frame_length += interval.measure
             average += features[feature] * interval.measure
 
