@@ -15,17 +15,24 @@ def base_tama(speech, feature, utterance_extractor, frame_step, frame_length):
         # Now, for each matching interval, let's calculate the f0 mean
         # Remember that is an weighted average, where the weight of each interval is their ratio of length (against frame)
         # OBS: There might be some intervals chopped off the frame, as they might be very tiny
-        frame_length = .0
+        sum_of_lengths = .0
         average = 0
-
+        print "=" * 80
+        print "Frame = %s" % frame
+        print "Matching Utterances:"
         for interval in matching_intervals:
+            print "#" * 40
+            print interval
             features = speech.get_features(interval)
-            frame_length += interval.measure
+            print "Features:"
+            print features
+
+            sum_of_lengths += interval.measure
             average += features[feature] * interval.measure
 
-        if frame_length > 0:
-            average = average / frame_length
-        averages.append(average )
+        if sum_of_lengths > 0:
+            average = average / sum_of_lengths
+        averages.append(average)
         current_step+= frame_step
 
     return averages
@@ -52,7 +59,6 @@ def hybrid_tama(speech, feature, frame_step=10, frame_length=20):
     return base_tama(speech, feature, hybrid_intersecting_utterances, frame_step=frame_step, frame_length=frame_length)
 
 def __get_frame_for(speech, length, middle):
-
-    lower_bound = max([0, middle - length/2.0])
-    upper_bound = min([middle + length/2.0, speech.length()])
+    lower_bound = middle - length/2.0
+    upper_bound = middle + length/2.0
     return Interval(lower_bound, upper_bound)
