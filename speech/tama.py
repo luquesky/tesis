@@ -23,7 +23,8 @@ def base_tama(speech, feature, utterance_extractor, frame_step, frame_length):
             frame_length += interval.measure
             average += features[feature] * interval.measure
 
-        average = average / frame_length
+        if frame_length > 0:
+            average = average / frame_length
         averages.append(average )
         current_step+= frame_step
 
