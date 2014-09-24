@@ -3,6 +3,7 @@ from __future__ import division
 from sympy import Interval
 from helpers import intersecting_utterances, hybrid_intersecting_utterances
 
+INTERVAL_THRESHOLD = 0.5
 
 def base_tama(speech, feature, utterance_extractor, frame_step, frame_length):
     current_step = frame_step
@@ -21,6 +22,9 @@ def base_tama(speech, feature, utterance_extractor, frame_step, frame_length):
         print "Frame = %s" % frame
         print "Matching Utterances:"
         for interval in matching_intervals:
+            if interval.measure < INTERVAL_THRESHOLD:
+                print "Skipping %s because it is too short" % interval
+                continue
             print "#" * 40
             print interval
             features = speech.get_features(interval)

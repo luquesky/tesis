@@ -18,7 +18,7 @@ def run_tama(arguments):
 def run_hybrid_tama(arguments):
     feature = arguments["<feature>"]
     speech = SpeechBuilder(arguments["<path_to_wav_file>"]).speech
-    print tama(speech, feature)
+    print hybrid_tama(speech, feature)
 
 def extract_features(arguments):
     speech = SpeechBuilder(arguments["<path_to_wav_file>"]).speech
