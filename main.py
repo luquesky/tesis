@@ -6,6 +6,7 @@ Usage:
   main.py hybrid_tama <path_to_wav_file> <feature>
   main.py extract_features <path_to_wav_file> <start> <end>
 """
+import config
 from docopt import docopt
 from sympy import Interval
 from speech import tama, hybrid_tama, SpeechBuilder

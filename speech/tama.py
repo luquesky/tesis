@@ -1,9 +1,12 @@
 #! coding: utf-8
 from __future__ import division
+import logging
 from sympy import Interval
 from helpers import intersecting_utterances, hybrid_intersecting_utterances
 
 INTERVAL_THRESHOLD = 0.5
+
+logger = logging.getLogger('main')
 
 def base_tama(speech, feature, utterance_extractor, frame_step, frame_length):
     current_step = frame_step
@@ -18,21 +21,17 @@ def base_tama(speech, feature, utterance_extractor, frame_step, frame_length):
         # OBS: There might be some intervals chopped off the frame, as they might be very tiny
         sum_of_lengths = .0
         average = 0
-        print "=" * 80
-        print "Frame = %s" % frame
-        print "Matching Utterances:"
+        log_frame(frame)
         for interval in matching_intervals:
             if interval.measure < INTERVAL_THRESHOLD:
-                print "Skipping %s because it is too short" % interval
+                logger.warning("Skipping %s because it is too short" % interval)
                 continue
-            print "#" * 40
-            print interval
             features = speech.get_features(interval)
-            print "Features:"
-            print features
-
             sum_of_lengths += interval.measure
             average += features[feature] * interval.measure
+
+            log_features(interval, features)
+
 
         if sum_of_lengths > 0:
             average = average / sum_of_lengths
@@ -66,3 +65,15 @@ def __get_frame_for(speech, length, middle):
     lower_bound = middle - length/2.0
     upper_bound = middle + length/2.0
     return Interval(lower_bound, upper_bound)
+
+def log_frame(frame):
+    logger.info("=" * 80)
+    logger.info("Frame = %s" % frame)
+    logger.info("Matching Utterances:")
+
+def log_features(interval, features):
+    logger.info("#" * 40)
+    logger.info(interval)
+
+    logger.info("Features:")
+    logger.info(features)

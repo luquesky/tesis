@@ -7,6 +7,9 @@ papers/*
 # Python extensions
 *.pyc
 
+# Logs
+log/*.log
+
 # SublimeText
 *sublime-project
 *sublime-workspace

@@ -1,5 +1,4 @@
 #! coding:utf-8
-from sympy import Interval
 from helpers import build_utterances
 
 class Speech(object):
