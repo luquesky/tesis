@@ -10,10 +10,13 @@ logger = logging.getLogger('main')
 
 def base_tama(speech, feature, utterance_extractor, frame_step, frame_length):
     current_step = frame_step
+    T = []
     averages = []
 
     while current_step <= speech.length():
         frame = __get_frame_for(speech, length=frame_length, middle=current_step)
+
+        T.append(current_step)
         matching_intervals = utterance_extractor(speech, frame)
 
         # Now, for each matching interval, let's calculate the f0 mean
@@ -38,7 +41,7 @@ def base_tama(speech, feature, utterance_extractor, frame_step, frame_length):
         averages.append(average)
         current_step+= frame_step
 
-    return averages
+    return T, averages
 
 
 def tama(speech, feature, frame_step=10, frame_length=20):
@@ -54,6 +57,14 @@ def tama(speech, feature, frame_step=10, frame_length=20):
     feature: string
         Any of the following features:
 
+    Returns
+    -------
+
+    T: Array
+    Consisting on the time where the intervals where taken
+
+    averages: Array
+    The result of applying TAMA on the selected feature for the current interval
 
     """
     return base_tama(speech, feature, intersecting_utterances, frame_step=frame_step, frame_length=frame_length)

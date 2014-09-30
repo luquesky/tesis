@@ -4,6 +4,7 @@ mock==1.0.1
 sympy==0.7.5
 numpy==1.9.0
 scipy==0.14.0
+matplotlib==1.4.0
 # Debugging & development
 ipdb
 ipython

@@ -7,6 +7,7 @@ Usage:
   main.py extract_features <path_to_wav_file> <start> <end>
 """
 import config
+import matplotlib.pyplot as plt
 from docopt import docopt
 from sympy import Interval
 from speech import tama, hybrid_tama, SpeechBuilder
@@ -19,7 +20,12 @@ def run_tama(arguments):
 def run_hybrid_tama(arguments):
     feature = arguments["<feature>"]
     speech = SpeechBuilder(arguments["<path_to_wav_file>"]).speech
-    print hybrid_tama(speech, feature)
+    T, averages = hybrid_tama(speech, feature)
+
+    plt.plot(T, averages)
+    plt.xlabel("Time")
+    plt.ylabel("Average %s" % feature)
+    plt.show()
 
 def extract_features(arguments):
     speech = SpeechBuilder(arguments["<path_to_wav_file>"]).speech
