@@ -1,6 +1,7 @@
 #! coding: utf-8
 from __future__ import division
 import logging
+import numpy as np
 from sympy import Interval
 from helpers import intersecting_utterances, hybrid_intersecting_utterances
 
@@ -41,7 +42,7 @@ def base_tama(speech, feature, utterance_extractor, frame_step, frame_length):
         averages.append(average)
         current_step+= frame_step
 
-    return T, averages
+    return np.array(T), np.array(averages)
 
 
 def tama(speech, feature, frame_step=10, frame_length=20):
