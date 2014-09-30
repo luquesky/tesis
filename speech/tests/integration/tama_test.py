@@ -13,7 +13,6 @@ class TamaTest(TestCase):
         speech = SpeechBuilder("speech/tests/integration/data/test.wav").speech
         tama(speech, "F0_MEAN", frame_step=2, frame_length=4)
 
-
     # The wav we use here has 20.87 seconds =>
     # Using frame_step = 2, and frame_length = 4 => there should be 10 frames! (the last one should be chopped)
 
@@ -29,3 +28,10 @@ class TamaTest(TestCase):
         T, moving_average = tama(speech, "F0_MEAN", frame_step=2, frame_length=4)
 
         self.assertTrue(all(not math.isnan(x) for x in moving_average ))
+
+    def test_tama_return_correct_t(self):
+        speech = SpeechBuilder("speech/tests/integration/data/test.wav").speech
+
+        T, moving_average = tama(speech, "F0_MEAN", frame_step=3, frame_length=4)
+
+        self.assertEqual([t for t in T], [3.0, 6.0, 9.0, 12.0, 15.0, 18.0])
