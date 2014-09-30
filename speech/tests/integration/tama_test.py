@@ -19,13 +19,13 @@ class TamaTest(TestCase):
 
     def test_tama_returns_the_right_number_of_frames(self):
         speech = SpeechBuilder("speech/tests/integration/data/test.wav").speech
-        moving_average = tama(speech, "F0_MEAN", frame_step=2, frame_length=4)
+        T, moving_average = tama(speech, "F0_MEAN", frame_step=2, frame_length=4)
 
         self.assertEqual(len(moving_average), 10)
 
     def test_tama_return_not_nan_values(self):
         speech = SpeechBuilder("speech/tests/integration/data/test.wav").speech
 
-        moving_average = tama(speech, "F0_MEAN", frame_step=2, frame_length=4)
+        T, moving_average = tama(speech, "F0_MEAN", frame_step=2, frame_length=4)
 
         self.assertTrue(all(not math.isnan(x) for x in moving_average ))
