@@ -1,6 +1,7 @@
 #! coding: utf-8
 from __future__ import division
 import logging
+import math
 import numpy as np
 from sympy import Interval
 from helpers import intersecting_utterances, hybrid_intersecting_utterances
@@ -27,10 +28,10 @@ def base_tama(speech, feature, utterance_extractor, frame_step, frame_length):
         average = 0
         log_frame(frame)
         for interval in matching_intervals:
-            if interval.measure < INTERVAL_THRESHOLD:
-                logger.warning("Skipping %s because it is too short" % interval)
-                continue
             features = speech.get_features(interval)
+            if math.isnan(features[feature]):
+                logger.warning("Feature %s is nan in %s" % (feature,interval))
+                continue
             sum_of_lengths += interval.measure
             average += features[feature] * interval.measure
 
