@@ -1,7 +1,11 @@
 #! coding: utf-8
+import logging
 import matplotlib.pyplot as plt
+from scipy.stats.stats import pearsonr
 
 from speech import tama, hybrid_tama
+
+logger = logging.getLogger('main')
 
 def plot_tama(speech, feature, hybrid=True):
     tama_function = hybrid_tama if hybrid else tama
@@ -22,4 +26,7 @@ def plot_tamas(speech1, speech2, feature, hybrid=True):
 
     plt.xlabel("Time")
     plt.ylabel("Average %s" % feature)
+
+    corr, p = pearsonr(averages1, averages2)
+    logger.info("Pearson correlation %.5f" % corr)
     plt.show()
