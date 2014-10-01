@@ -43,7 +43,7 @@ def base_tama(speech, feature, utterance_extractor, frame_step, frame_length):
         averages.append(average)
         current_step+= frame_step
 
-    return np.array(T), np.array(averages)
+    return np.array(T, dtype=float), np.array(averages, dtype=float)
 
 
 def tama(speech, feature, frame_step=10, frame_length=20):
@@ -80,13 +80,13 @@ def __get_frame_for(speech, length, middle):
     return Interval(lower_bound, upper_bound)
 
 def log_frame(frame):
-    logger.info("=" * 80)
-    logger.info("Frame = %s" % frame)
-    logger.info("Matching Utterances:")
+    logger.debug("=" * 80)
+    logger.debug("Frame = %s" % frame)
+    logger.debug("Matching Utterances:")
 
 def log_features(interval, features):
-    logger.info("#" * 40)
-    logger.info(interval)
+    logger.debug("#" * 40)
+    logger.debug(interval)
 
-    logger.info("Features:")
-    logger.info(features)
+    logger.debug("Features:")
+    logger.debug(features)
