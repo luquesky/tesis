@@ -1,8 +1,10 @@
 #! coding:utf-8
 # An object of this class has the responsibility of extracting the features (f_0, ) out of a wav file
 # It should be created with both a path to the wav file, and to a praat script which returns the features (in the project, they are at scripts/)
-
+import logging
 import subprocess
+
+logger = logging.getLogger('main')
 
 class FeatureExtractor(object):
 
@@ -14,6 +16,7 @@ class FeatureExtractor(object):
 
     def extract_features(self, interval):
         command = self.__get_command_to_execute(interval)
+        logger.debug("Using %s extract features" % command)
         output = subprocess.check_output(command)
 
         return self.__convert_to_dict(output)
