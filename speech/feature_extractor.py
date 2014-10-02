@@ -16,7 +16,8 @@ class FeatureExtractor(object):
 
     def extract_features(self, interval):
         command = self.__get_command_to_execute(interval)
-        logger.debug("Using %s extract features" % command)
+        logger.debug("Command to invoke feature extractor:")
+        logger.debug(command)
         output = subprocess.check_output(command)
 
         return self.__convert_to_dict(output)
