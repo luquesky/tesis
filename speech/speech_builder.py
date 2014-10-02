@@ -1,6 +1,7 @@
 #! coding: utf-8
 import os
 import csv
+from distutils.spawn import find_executable
 from word_interval import WordInterval
 from feature_extractor import FeatureExtractor
 from speech import Speech
@@ -25,7 +26,7 @@ class SpeechBuilder(object):
     def build_feature_extractor(self):
         return FeatureExtractor(
             path_to_script = os.path.abspath("scripts/extractStandardAcoustics.praat"),
-            path_to_praat = "/usr/local/bin/praat",
+            path_to_praat = find_executable("praat"),
             path_to_wav=self.path_to_wav
         )
 
