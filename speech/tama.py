@@ -15,32 +15,18 @@ def base_tama(speech, feature, utterance_extractor, frame_step, frame_length):
     T = []
     averages = []
 
+    total_sum = __tama_sum(speech, speech.utterances, feature)
+
+
     while current_step <= speech.length():
         frame = __get_frame_for(speech, length=frame_length, middle=current_step)
 
         T.append(current_step)
         matching_intervals = utterance_extractor(speech, frame)
-
-        # Now, for each matching interval, let's calculate the f0 mean
-        # Remember that is an weighted average, where the weight of each interval is their ratio of length (against frame)
-        # OBS: There might be some intervals chopped off the frame, as they might be very tiny
-        sum_of_lengths = .0
-        average = 0
         log_frame(frame)
-        for interval in matching_intervals:
-            features = speech.get_features(interval)
-            if math.isnan(features[feature]):
-                logger.warning("Feature %s is nan in %s" % (feature,interval))
-                continue
-            sum_of_lengths += interval.measure
-            average += features[feature] * interval.measure
 
-            log_features(interval, features)
-
-
-        if sum_of_lengths > 0:
-            average = average / sum_of_lengths
-        averages.append(average)
+        average = __tama_sum(speech, matching_intervals, feature)
+        averages.append(average / total_sum)
         current_step+= frame_step
 
     return np.array(T, dtype=float), np.array(averages, dtype=float)
@@ -78,6 +64,28 @@ def __get_frame_for(speech, length, middle):
     lower_bound = middle - length/2.0
     upper_bound = middle + length/2.0
     return Interval(lower_bound, upper_bound)
+
+def __tama_sum(speech, intervals, feature):
+    # Now, for each matching interval, let's calculate the f0 mean
+    # Remember that is an weighted average, where the weight of each interval is their ratio of length (against frame)
+    # OBS: There might be some intervals chopped off the frame, as they might be very tiny
+    sum_of_lengths = .0
+    average = 0
+    for interval in intervals:
+        features = speech.get_features(interval)
+        if math.isnan(features[feature]):
+            logger.warning("Feature %s is nan in %s" % (feature,interval))
+            continue
+        sum_of_lengths += interval.measure
+        average += features[feature] * interval.measure
+
+        log_features(interval, features)
+
+
+    if sum_of_lengths > 0:
+        average = average / sum_of_lengths
+    return average
+
 
 def log_frame(frame):
     logger.debug("=" * 80)
