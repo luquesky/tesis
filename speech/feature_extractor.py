@@ -13,14 +13,22 @@ class FeatureExtractor(object):
         self.path_to_script = path_to_script
         self.path_to_praat = path_to_praat
         self.path_to_wav = path_to_wav
+        self.cached_features = {}
 
     def extract_features(self, interval):
+        if self.cached_features.has_key(interval):
+            logger.debug("Using cached value for %s" % interval)
+            return self.cached_features[interval]
+
         command = self.__get_command_to_execute(interval)
         logger.debug("Command to invoke feature extractor:")
         logger.debug(command)
-        output = subprocess.check_output(command)
 
-        return self.__convert_to_dict(output)
+        output = subprocess.check_output(command)
+        features = self.__convert_to_dict(output)
+        self.cached_features[interval] = features
+
+        return features
 
     def __convert_to_dict(self, command_output):
         ret = [line.split(':') for line in command_output.splitlines()]
