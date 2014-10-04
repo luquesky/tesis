@@ -61,3 +61,14 @@ def hybrid_intersecting_utterances(speech, frame):
             intervals.append(utterance)
     return intervals
 
+
+def interpolate(averages):
+    for index, average in enumerate(averages):
+        if average != .0:
+            continue
+        elif (index > 0):
+            if (averages[index-1] != .0) and (averages[index+1] != .0):
+                averages[index] = (averages[index-1] + averages[index+1]) / 2.0
+            else:
+                averages[index] = averages[index-1]
+

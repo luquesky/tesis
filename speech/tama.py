@@ -4,7 +4,7 @@ import logging
 import math
 import numpy as np
 from sympy import Interval
-from helpers import intersecting_utterances, hybrid_intersecting_utterances
+from helpers import interpolate, intersecting_utterances, hybrid_intersecting_utterances
 
 INTERVAL_THRESHOLD = 0.5
 
@@ -28,6 +28,9 @@ def base_tama(speech, feature, utterance_extractor, frame_step, frame_length):
         average = __tama_sum(speech, matching_intervals, feature)
         averages.append(average / total_sum)
         current_step+= frame_step
+
+    # For zero-values (for instance, those in which speaker does not has an utterance) let's interpolate values
+    interpolate(averages)
 
     return np.array(T, dtype=float), np.array(averages, dtype=float)
 
@@ -81,11 +84,9 @@ def __tama_sum(speech, intervals, feature):
 
         log_features(interval, features)
 
-
     if sum_of_lengths > 0:
         average = average / sum_of_lengths
     return average
-
 
 def log_frame(frame):
     logger.debug("=" * 80)

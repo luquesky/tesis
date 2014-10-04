@@ -2,7 +2,7 @@
 from sympy import Interval
 from unittest import TestCase
 from .. import Speech, WordInterval
-from ..helpers import build_utterances, intersecting_utterances, hybrid_intersecting_utterances
+from ..helpers import build_utterances, intersecting_utterances, hybrid_intersecting_utterances, interpolate
 
 class BuildUtterancesTest(TestCase):
     def test_it_merges_silence(self):
@@ -62,3 +62,19 @@ class HybridIntersectingUtterancesTest(TestCase):
 
         self.assertItemsEqual(hybrid_intersecting_utterances(speech, Interval(13.0, 15.0)),
             [Interval(14.0, 15.5)])
+
+class InterpolateTest(TestCase):
+    def test_it_handles_zero_surrounded_by_non_zero(self):
+        averages = [1.0, .0, 3.0]
+        interpolate(averages)
+        self.assertEqual(averages, [1.0, 2.0, 3.0])
+
+    def test_it_handles_consecutive_zeros(self):
+        averages = [1.0, .0, .0, 3.0]
+        interpolate(averages)
+        self.assertEqual(averages, [1.0, 1.0, 2.0, 3.0])
+
+    def test_it_handles_leading_zeros(self):
+        averages = [.0, .0, 3.0]
+        interpolate(averages)
+        self.assertEqual(averages, [.0, .0, 3.0])
