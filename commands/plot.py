@@ -2,7 +2,7 @@
 import logging
 import matplotlib.pyplot as plt
 from scipy.stats.stats import pearsonr
-
+from helpers import autocorrelation_coefficient
 from speech import tama, hybrid_tama
 
 logger = logging.getLogger('main')
@@ -30,3 +30,15 @@ def plot_tamas(speech1, speech2, feature, hybrid=True):
     corr, p = pearsonr(averages1, averages2)
     print("Pearson correlation %.5f" % corr)
     plt.show()
+
+    lags = range(1, 10)
+    autocorr1 = [autocorrelation_coefficient(averages1, lag) for lag in lags]
+
+    autocorr2 = [autocorrelation_coefficient(averages2, lag) for lag in lags]
+
+    plt.scatter(lags, autocorr1, c="g")
+    plt.scatter(lags, autocorr2, c="r")
+
+    plt.show()
+
+
