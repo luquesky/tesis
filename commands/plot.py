@@ -28,5 +28,5 @@ def plot_tamas(speech1, speech2, feature, hybrid=True):
     plt.ylabel("Average %s" % feature)
 
     corr, p = pearsonr(averages1, averages2)
-    logger.info("Pearson correlation %.5f" % corr)
+    print("Pearson correlation %.5f" % corr)
     plt.show()
