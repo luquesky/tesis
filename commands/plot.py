@@ -3,7 +3,7 @@ import logging
 import matplotlib.pyplot as plt
 from scipy.stats.stats import pearsonr
 from helpers import autocorrelation_coefficient
-from speech import tama, hybrid_tama
+from tama import tama, hybrid_tama
 
 logger = logging.getLogger('main')
 

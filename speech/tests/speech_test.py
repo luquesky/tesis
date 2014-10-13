@@ -3,7 +3,6 @@ from mock import MagicMock
 from sympy import Interval
 from unittest import TestCase
 from .. import Speech, WordInterval
-from ..speech import build_utterances
 
 class SpeechTest(TestCase):
 
