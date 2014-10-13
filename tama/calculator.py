@@ -56,7 +56,7 @@ class Calculator(object):
             features = self.speech.get_features(interval)
             if math.isnan(features[feature]):
                 self.undefined_features = True
-                logger.warning("Feature %s is nan in %s" % (feature,interval))
+                logger.debug("Feature %s is nan in %s" % (feature,interval))
                 continue
 
             sum_of_lengths += interval.measure

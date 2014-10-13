@@ -5,6 +5,7 @@ sympy==0.7.5
 #numpy==1.9.0
 #scipy
 matplotlib==1.4.0
+pandas
 # Debugging & development
 ipdb
 ipython
