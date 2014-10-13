@@ -16,10 +16,10 @@ def plot_tama(speech, feature, hybrid=True):
     plt.ylabel("Average %s" % feature)
     plt.show()
 
-def plot_tamas(speech1, speech2, feature, hybrid=True):
+def plot_tamas(speech1, speech2, feature, hybrid=True, interpolate=True):
     tama_function = hybrid_tama if hybrid else tama
-    T1, averages1 = tama_function(speech1, feature)
-    T2, averages2 = tama_function(speech2, feature)
+    T1, averages1 = tama_function(speech1, feature, interpolate=interpolate)
+    T2, averages2 = tama_function(speech2, feature, interpolate=interpolate)
 
     plt.plot(T1, averages1)
     plt.plot(T2, averages2)

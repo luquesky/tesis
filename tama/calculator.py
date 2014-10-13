@@ -4,16 +4,21 @@ import logging
 import math
 import numpy as np
 from sympy import Interval
-from helpers import interpolate, intersecting_utterances, hybrid_intersecting_utterances
+from helpers import interpolate, hybrid_intersecting_utterances
 
 logger = logging.getLogger('main')
 
+Interval
 class Calculator(object):
-    def __init__(self, speech, frame_step, frame_length, utterance_extractor=None):
+    def __init__(self, speech, frame_step, frame_length, utterance_extractor=None, interpolate = True):
         self.speech = speech
         self.frame_step = frame_step
         self.frame_length = frame_length
         self.utterance_extractor = utterance_extractor or hybrid_intersecting_utterances
+
+        # This variable is set to true if, after a run, feature was undefined for a frame
+        self.undefined_features = False
+        self.interpolate = interpolate
 
     def calculate(self, feature):
         current_step = self.frame_step
@@ -30,11 +35,12 @@ class Calculator(object):
             log_frame(frame)
 
             average = self.__tama_sum(matching_intervals, feature)
-            averages.append(average / total_sum)
+            averages.append(average/total_sum)
             current_step+= self.frame_step
 
         # For zero-values (for instance, those in which speaker does not has an utterance) let's interpolate values
-        interpolate(averages)
+        if self.interpolate:
+            interpolate(averages)
 
         return np.array(T, dtype=float), np.array(averages, dtype=float)
 
@@ -49,8 +55,10 @@ class Calculator(object):
         for interval in intervals:
             features = self.speech.get_features(interval)
             if math.isnan(features[feature]):
+                self.undefined_features = True
                 logger.warning("Feature %s is nan in %s" % (feature,interval))
                 continue
+
             sum_of_lengths += interval.measure
             average += features[feature] * interval.measure
 

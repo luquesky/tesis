@@ -7,7 +7,7 @@ import logging
 logger = logging.getLogger('main')
 
 
-def tama(speech, feature, frame_step=10, frame_length=20):
+def tama(speech, feature, frame_step=10, frame_length=20, interpolate=True):
     """
     Given a speech, it returns the time aligned moving average (tama) for the feature.
 
@@ -30,11 +30,21 @@ def tama(speech, feature, frame_step=10, frame_length=20):
     The result of applying TAMA on the selected feature for the current interval
 
     """
-    calculator = Calculator(speech, frame_step=frame_step, frame_length=frame_length, utterance_extractor= intersecting_utterances)
+    calculator = Calculator(speech,
+        frame_step=frame_step,
+        frame_length=frame_length,
+        utterance_extractor=intersecting_utterances,
+        interpolate=interpolate
+    )
 
     return calculator.calculate(feature)
 
-def hybrid_tama(speech, feature, frame_step=10, frame_length=20):
-    calculator = Calculator(speech, frame_step=frame_step, frame_length=frame_length, utterance_extractor= hybrid_intersecting_utterances)
+def hybrid_tama(speech, feature, frame_step=10, frame_length=20, interpolate=True):
+    calculator = Calculator(speech,
+        frame_step=frame_step,
+        frame_length=frame_length,
+        utterance_extractor=hybrid_intersecting_utterances,
+        interpolate=interpolate
+    )
 
     return calculator.calculate(feature)
