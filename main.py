@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt
 from docopt import docopt
 from sympy import Interval
 from commands import plot_tama, plot_tamas
-from speech import tama, hybrid_tama, SpeechBuilder
+from speech import SpeechBuilder
 
 def run_tama(arguments):
     feature = arguments["<feature>"]
