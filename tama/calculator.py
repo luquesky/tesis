@@ -54,7 +54,7 @@ class Calculator(object):
         average = 0
         for interval in intervals:
             features = self.speech.get_features(interval)
-            if math.isnan(features[feature]):
+            if not features.has_key(feature) or math.isnan(features[feature]):
                 self.undefined_features = True
                 logger.debug("Feature %s is nan in %s" % (feature,interval))
                 continue

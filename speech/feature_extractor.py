@@ -15,12 +15,17 @@ class FeatureExtractor(object):
         self.path_to_wav = path_to_wav
 
     def extract_features(self, interval):
-        command = self.__get_command_to_execute(interval)
+        try:
+            command = self.__get_command_to_execute(interval)
 
-        output = subprocess.check_output(command)
-        features = self.__convert_to_dict(output)
+            output = subprocess.check_output(command)
+            features = self.__convert_to_dict(output)
 
-        return features
+            return features
+        except:
+            import ipdb; ipdb.set_trace()
+            logger.error("There was an error calling %s with interval %s" % (self.path_to_script, interval))
+            return {}
 
     def __convert_to_dict(self, command_output):
         ret = [line.split(':') for line in command_output.splitlines()]
