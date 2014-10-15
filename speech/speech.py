@@ -12,3 +12,7 @@ class Speech(object):
 
     def get_features(self, interval):
         return self.feature_extractor.extract_features(interval)
+
+    @property
+    def silent_intervals(self):
+        return [interval for interval in self.word_intervals if interval.is_silent]
