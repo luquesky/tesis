@@ -1,6 +1,8 @@
 #! coding:utf-8
 import os
+import csv
 from . import Session
+from task import Task
 from speech import SpeechBuilder
 
 class SessionBuilder(object):
@@ -10,8 +12,9 @@ class SessionBuilder(object):
     @property
     def session(self):
         speechA, speechB = self.__build_speechs()
+        tasks = self.__build_tasks()
 
-        return Session([], speechA, speechB)
+        return Session(tasks, speechA, speechB)
 
     def __build_speechs(self):
         filename, extension = os.path.splitext(self.path_to_tasks)
@@ -21,3 +24,16 @@ class SessionBuilder(object):
 
         return SpeechBuilder(path_to_A).speech, SpeechBuilder(path_to_B).speech
 
+    def __build_tasks(self):
+        tasks = []
+        with open(self.path_to_tasks) as tasks_file:
+            rows = csv.reader(tasks_file, delimiter=" ")
+            for row in rows:
+                begin = float(row[0])
+                end = float(row[1])
+                description = row[2]
+
+                if (description != "#") and (description != "comments"):
+                    task = Task(begin, end, description)
+                    tasks.append(task)
+        return tasks
