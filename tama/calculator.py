@@ -20,14 +20,17 @@ class Calculator(object):
         self.undefined_features = False
         self.interpolate = interpolate
 
-    def calculate(self, feature):
-        current_step = self.frame_step
+    def calculate(self, feature, interval=None):
+        if interval is None:
+            interval = Interval(0, self.speech.length)
+
+        current_step = interval.inf + self.frame_step
         T = []
         averages = []
 
         total_sum = self.__tama_sum(self.speech.utterances, feature)
 
-        while current_step <= self.speech.length():
+        while interval.contains(current_step):
             frame = self.__get_frame_for(length=self.frame_length, middle=current_step)
 
             T.append(current_step)

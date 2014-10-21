@@ -1,6 +1,7 @@
 #! coding:utf-8
 import math
 import os
+from sympy import Interval
 from unittest import TestCase
 from speech import Speech, WordInterval, FeatureExtractor, SpeechBuilder
 from tama import Calculator
@@ -37,3 +38,13 @@ class TamaTest(TestCase):
 
 
         self.assertEqual([t for t in T], [3.0, 6.0, 9.0, 12.0, 15.0, 18.0])
+
+    def test_tama_works_for_a_specified_interval(self):
+        speech = SpeechBuilder("tama/tests/data/test.wav").speech
+
+        calculator = Calculator(speech, frame_step=3, frame_length=4)
+
+        T, moving_average = calculator.calculate("F0_MEAN", interval=Interval(0, 10))
+
+
+        self.assertEqual([t for t in T], [3.0, 6.0, 9.0])

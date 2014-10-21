@@ -7,6 +7,7 @@ class Speech(object):
         self.utterances = build_utterances(word_intervals)
         self.feature_extractor = feature_extractor
 
+    @property
     def length(self):
         return self.word_intervals[-1].sup
 

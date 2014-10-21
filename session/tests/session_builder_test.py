@@ -8,8 +8,8 @@ class SessionBuilderTest(TestCase):
 
         session = builder.session
 
-        self.assertAlmostEqual(session.speechA.length(), 122.98)
-        self.assertAlmostEqual(session.speechB.length(), 122.98)
+        self.assertAlmostEqual(session.speechA.length, 122.98)
+        self.assertAlmostEqual(session.speechB.length, 122.98)
 
     def test_it_builds_with_tasks(self):
         builder = SessionBuilder("data/test/session.tasks")
