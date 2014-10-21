@@ -9,7 +9,8 @@ papers/*
 
 # Logs
 log/*.log
-
+# Ipython stuff
+.ipynb*
 # SublimeText
 *sublime-project
 *sublime-workspace

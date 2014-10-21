@@ -6,7 +6,7 @@ class Task(object):
     SILENCE_WORD = '#'
 
     def __init__(self, inf, sup, description):
-        self.word = description
+        self.description = description
         self.interval = Interval(inf, sup)
 
     # Delegate missing attributes to interval
