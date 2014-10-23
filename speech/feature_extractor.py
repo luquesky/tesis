@@ -23,7 +23,6 @@ class FeatureExtractor(object):
 
             return features
         except:
-            import ipdb; ipdb.set_trace()
             logger.error("There was an error calling %s with interval %s" % (self.path_to_script, interval))
             return {}
 

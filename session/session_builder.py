@@ -20,7 +20,7 @@ class SessionBuilder(object):
         filename, extension = os.path.splitext(self.path_to_tasks)
 
         path_to_A = "%s.A.wav" % filename
-        path_to_B = "%s.A.wav" % filename
+        path_to_B = "%s.B.wav" % filename
 
         return SpeechBuilder(path_to_A).speech, SpeechBuilder(path_to_B).speech
 
