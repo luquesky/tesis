@@ -6,7 +6,7 @@ papers/*
 .tags*
 # Python extensions
 *.pyc
-
+*.pickle
 # Logs
 log/*.log
 # Ipython stuff
