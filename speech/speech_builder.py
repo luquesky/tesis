@@ -5,6 +5,7 @@ from distutils.spawn import find_executable
 from word_interval import WordInterval
 from feature_extractor import FeatureExtractor
 from composite_feature_extractor import CompositeFeatureExtractor
+from cached_feature_extractor import CachedFeatureExtractor
 from speech import Speech
 
 DATA_DIR = "speech/tests/integration/data"
@@ -37,11 +38,12 @@ class SpeechBuilder(object):
             path_to_wav=self.path_to_wav
         )
 
-        return CompositeFeatureExtractor(extractor1, extractor2)
+        return CachedFeatureExtractor(CompositeFeatureExtractor(extractor1, extractor2))
 
     @property
     def speech(self):
         word_intervals = self.get_word_intervals()
         feature_extractor = self.build_feature_extractor()
-        return Speech(word_intervals=word_intervals,
+        return Speech(
+            word_intervals=word_intervals,
             feature_extractor=feature_extractor)
