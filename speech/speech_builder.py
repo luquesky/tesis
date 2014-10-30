@@ -45,5 +45,6 @@ class SpeechBuilder(object):
         word_intervals = self.get_word_intervals()
         feature_extractor = self.build_feature_extractor()
         return Speech(
+            path_to_wav=self.path_to_wav,
             word_intervals=word_intervals,
             feature_extractor=feature_extractor)

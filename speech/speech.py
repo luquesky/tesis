@@ -2,7 +2,8 @@
 from helpers import build_utterances
 
 class Speech(object):
-    def __init__(self, word_intervals, feature_extractor=None):
+    def __init__(self, path_to_wav, word_intervals, feature_extractor=None):
+        self.path_to_wav = path_to_wav
         self.word_intervals = word_intervals
         self.utterances = build_utterances(word_intervals)
         self.feature_extractor = feature_extractor

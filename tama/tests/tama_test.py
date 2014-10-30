@@ -1,9 +1,8 @@
 #! coding:utf-8
 import math
-import os
 from sympy import Interval
 from unittest import TestCase
-from speech import Speech, WordInterval, FeatureExtractor, SpeechBuilder
+from speech import SpeechBuilder
 from tama import Calculator
 
 class TamaTest(TestCase):
