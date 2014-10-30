@@ -1,7 +1,7 @@
 #! coding:utf-8
 from sympy import Interval
 # This class represents a word interval, which is simply an interval with a word.
-# Special case to be mentioned, SILENCE_WORD string means silence in that interval 
+# Special case to be mentioned, SILENCE_WORD string means silence in that interval
 
 class WordInterval(object):
     SILENCE_WORD = '#'
