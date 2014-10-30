@@ -28,7 +28,9 @@ class Calculator(object):
         T = []
         averages = []
 
-        total_sum = self.__tama_sum(self.speech.utterances, feature)
+        # To calculate the total average, let's find first the matching intervals...
+        matching_intervals = self.utterance_extractor(self.speech, interval)
+        total_sum = self.__tama_sum(matching_intervals, feature)
 
         while interval.contains(current_step):
             frame = self.__get_frame_for(length=self.frame_length, middle=current_step)

@@ -43,7 +43,8 @@ class TamaTest(TestCase):
 
         calculator = Calculator(speech, frame_step=3, frame_length=4)
 
-        T, moving_average = calculator.calculate("F0_MEAN", interval=Interval(0, 10))
+        # Be careful. Not going to work for a silent interval
+        T, moving_average = calculator.calculate("F0_MEAN", interval=Interval(13, 20))
 
 
-        self.assertEqual([t for t in T], [3.0, 6.0, 9.0])
+        self.assertEqual([t for t in T], [16.0, 19.0])
