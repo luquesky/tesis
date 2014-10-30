@@ -1,14 +1,19 @@
 #! coding: utf-8
 import os
 import pickle
+from . import SpeechBuilder
 
 class SpeechMapper(object):
     def __init__(self):
         pass
 
     def fetch(self, speech_path):
-        with open(self.__pickle_file_path(speech_path), "rb") as h:
-            return pickle.load(h)
+        try:
+            with open(self.__pickle_file_path(speech_path), "rb") as h:
+                return pickle.load(h)
+        except:
+            # At any exception => build it from scratch
+            return SpeechBuilder(speech_path).speech
 
     def save(self, speech):
         with open(self.__pickle_file_path(speech.path_to_wav), "wb") as h:
