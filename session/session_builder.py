@@ -3,7 +3,7 @@ import os
 import csv
 from . import Session
 from task import Task
-from speech import SpeechBuilder
+from speech import SpeechMapper
 
 class SessionBuilder(object):
     def __init__(self, path_to_tasks):
@@ -22,7 +22,10 @@ class SessionBuilder(object):
         path_to_A = "%s.A.wav" % filename
         path_to_B = "%s.B.wav" % filename
 
-        return SpeechBuilder(path_to_A).speech, SpeechBuilder(path_to_B).speech
+        # This is somehow nasty... but well...
+        mapper = SpeechMapper()
+
+        return mapper.fetch(path_to_A), mapper.fetch(path_to_B)
 
     def __build_tasks(self):
         tasks = []
