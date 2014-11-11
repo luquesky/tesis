@@ -6,7 +6,7 @@ import subprocess
 
 logger = logging.getLogger('main')
 
-class FeatureExtractor(object):
+class ScriptExtractor(object):
 
     # All paths should be absolute...praat
     def __init__(self, path_to_script, path_to_praat, path_to_wav):

@@ -5,7 +5,7 @@ import logging
 
 logger = logging.getLogger('main')
 
-class CompositeFeatureExtractor(object):
+class CompositeExtractor(object):
 
     # All paths should be absolute...praat
     def __init__(self, extractor1, extractor2):

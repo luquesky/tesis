@@ -3,7 +3,7 @@ import logging
 
 logger = logging.getLogger('main')
 
-class CachedFeatureExtractor(object):
+class CachedExtractor(object):
     def __init__(self, extractor):
         self.extractor = extractor
         self.cached_features = {}
