@@ -3,7 +3,7 @@ import os
 import csv
 from distutils.spawn import find_executable
 from word_interval import WordInterval
-from features import ScriptExtractor, CachedExtractor, CompositeExtractor
+from features import ScriptExtractor, CachedExtractor, CompositeExtractor, SyllabeExtractor
 from speech import Speech
 
 DATA_DIR = "speech/tests/integration/data"
@@ -15,12 +15,15 @@ class SpeechBuilder(object):
         self.path_to_words = "%s.words" % filename
 
     def get_word_intervals(self):
-        intervals = []
+        if hasattr(self, "intervals"):
+            return self.intervals
+
+        self.intervals = []
         with open(self.path_to_words) as test_words:
             rows = csv.reader(test_words, delimiter=" ")
             for row in rows:
-                intervals.append(WordInterval(float(row[0]), float(row[1]),row[2]))
-        return intervals
+                self.intervals.append(WordInterval(float(row[0]), float(row[1]),row[2]))
+        return self.intervals
 
     # This is quite ad hoc
     def build_feature_extractor(self):
@@ -36,7 +39,10 @@ class SpeechBuilder(object):
             path_to_wav=self.path_to_wav
         )
 
-        return CachedExtractor(CompositeExtractor(extractor1, extractor2))
+
+        syl_extractor = self.build_syllabe_extractor()
+
+        return CachedExtractor(CompositeExtractor(extractor1, extractor2, syl_extractor))
 
     @property
     def speech(self):
@@ -46,3 +52,13 @@ class SpeechBuilder(object):
             path_to_wav=self.path_to_wav,
             word_intervals=word_intervals,
             feature_extractor=feature_extractor)
+
+
+    def build_syllabe_extractor(self):
+        with open("data/sylcounts.txt") as f:
+            rows = csv.reader(f, delimiter='\t')
+            syllabe_count = {k:int(v) for k,v in rows}
+            return SyllabeExtractor(
+                word_intervals= self.get_word_intervals(),
+                syllabes_count=syllabe_count
+            )
