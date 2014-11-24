@@ -5,8 +5,9 @@ from tama import hybrid_tama
 logger = logging.getLogger('main')
 
 class Session(object):
-    def __init__(self, tasks, speechA, speechB):
+    def __init__(self, path_to_tasks, tasks, speechA, speechB):
         self.tasks = tasks
+        self.path_to_tasks = path_to_tasks
         self.speechA = speechA
         self.speechB = speechB
 

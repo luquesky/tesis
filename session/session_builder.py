@@ -14,7 +14,7 @@ class SessionBuilder(object):
         speechA, speechB = self.__build_speechs()
         tasks = self.__build_tasks()
 
-        return Session(tasks, speechA, speechB)
+        return Session(tasks=tasks, path_to_tasks=self.path_to_tasks, speechA=speechA, speechB=speechB)
 
     def __build_speechs(self):
         filename, extension = os.path.splitext(self.path_to_tasks)
