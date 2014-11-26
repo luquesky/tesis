@@ -15,11 +15,15 @@ class Session(object):
     def analyze(self, features=[]):
         tamas = {}
         for task in self.tasks:
-            tamas[task] = {}
             print "Working in task: %s" % task
-            for feature in features:
-                tamas[task][feature] = {}
-                print "Calculating %s" % feature
-                tamas[task][feature]["A"] = hybrid_tama(self.speechA, feature, interpolate=False, interval=task.interval)
-                tamas[task][feature]["B"] = hybrid_tama(self.speechB, feature, interpolate=False, interval=task.interval)
+            tamas[task] = self.analyze_task(task, features)
         return tamas
+
+    def analyze_task(self, task, features=[]):
+        ret = {}
+        for feature in features:
+            ret[feature] = {}
+            print "Calculating %s" % feature
+            ret[feature]["A"] = hybrid_tama(self.speechA, feature, interpolate=False, interval=task.interval)
+            ret[feature]["B"] = hybrid_tama(self.speechB, feature, interpolate=False, interval=task.interval)
+        return ret
