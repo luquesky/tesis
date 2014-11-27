@@ -60,5 +60,5 @@ class SpeechBuilder(object):
             syllabe_count = {k:int(v) for k,v in rows}
             return SyllabeExtractor(
                 word_intervals= self.get_word_intervals(),
-                syllabes_count=syllabe_count
+                syllabe_count=syllabe_count
             )
