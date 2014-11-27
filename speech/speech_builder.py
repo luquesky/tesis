@@ -41,13 +41,11 @@ class SpeechBuilder(object):
 
 
         syllabe_extractor = self.build_syllabe_extractor()
-        phoneme_extractor = self.build_phoneme_extractor()
 
         return CachedExtractor( CompositeExtractor(
             extractor1,
             extractor2,
-            syllabe_extractor,
-            phoneme_extractor
+            syllabe_extractor
             )
         )
 
