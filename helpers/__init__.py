@@ -1,4 +1,5 @@
 #! coding:utf-8
+from math import sqrt
 from scipy.stats.stats import ss
 
 # Calculates autocorrelation coefficient for X taking lag = k
@@ -16,3 +17,20 @@ def interval_distance(int1, int2):
         return 0.0
     else:
         return min([abs(int2.inf - int1.sup), abs(int1.inf - int2.sup)])
+
+# Computes the cross correlation for X, Y, and lag
+# (see Kousidis et al[2009])
+def cross_correlation(X, Y, lag):
+    xm = X.mean()
+    ym = Y.mean()
+
+    if lag >= 0:
+        xprod = X[lag:] - xm
+        yprod = Y[:-lag] - ym
+    else:
+        xprod = X[:-lag] - xm
+        yprod = Y[lag:] - ym
+
+    num = sum(xprod * yprod)
+    denom = sqrt(ss(X - xm) * ss(Y-ym))
+    return num / denom
