@@ -32,7 +32,7 @@ class WordMappingExtractor(object):
             intersection = word_interval.intersect(interval.closure)
 
             if intersection.measure > 0:
-                count += self.mapping[word_interval.word]
+                count += self.mapping[word_interval.word.lower()]
             elif intersection.is_EmptySet:
                 break
             index+=1

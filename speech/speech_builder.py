@@ -3,7 +3,7 @@ import os
 import csv
 from distutils.spawn import find_executable
 from word_interval import WordInterval
-from features import ScriptExtractor, CachedExtractor, CompositeExtractor, SyllabeExtractor
+from features import ScriptExtractor, CachedExtractor, CompositeExtractor, SyllabeExtractor, WordMappingExtractor
 from speech import Speech
 
 DATA_DIR = "speech/tests/integration/data"
@@ -40,9 +40,16 @@ class SpeechBuilder(object):
         )
 
 
-        syl_extractor = self.build_syllabe_extractor()
+        syllabe_extractor = self.build_syllabe_extractor()
+        phoneme_extractor = self.build_phoneme_extractor()
 
-        return CachedExtractor(CompositeExtractor(extractor1, extractor2, syl_extractor))
+        return CachedExtractor( CompositeExtractor(
+            extractor1,
+            extractor2,
+            syllabe_extractor,
+            phoneme_extractor
+            )
+        )
 
     @property
     def speech(self):
@@ -57,8 +64,25 @@ class SpeechBuilder(object):
     def build_syllabe_extractor(self):
         with open("data/sylcounts.txt") as f:
             rows = csv.reader(f, delimiter='\t')
-            syllabe_count = {k:int(v) for k,v in rows}
+            syllabe_count = {k.lower():int(v) for k,v in rows}
             return SyllabeExtractor(
                 word_intervals= self.get_word_intervals(),
                 syllabe_count=syllabe_count
             )
+
+    def build_phoneme_extractor(self):
+        with open("data/phonetic-dictionary-games.txt") as f:
+            rows = csv.reader(f, delimiter=" ")
+            mapping = {'#': 0}
+
+
+            for row in rows:
+                key = row[0].lower()
+                value = len(row) - 1
+                if key in mapping:
+                    mapping[key] = max(mapping[key], value)
+                else:
+                    mapping[key] = value
+
+            return WordMappingExtractor(self.get_word_intervals(), mapping, feature_name="PHONEMES")
+
