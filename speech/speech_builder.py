@@ -3,7 +3,7 @@ import os
 import csv
 from distutils.spawn import find_executable
 from word_interval import WordInterval
-from features import ScriptExtractor, CachedExtractor, CompositeExtractor, SyllabeExtractor, WordMappingExtractor
+from features import ScriptExtractor, CachedExtractor, CompositeExtractor, SyllabeExtractor, PhonemeExtractor
 from speech import Speech
 
 DATA_DIR = "speech/tests/integration/data"
@@ -41,11 +41,13 @@ class SpeechBuilder(object):
 
 
         syllabe_extractor = self.build_syllabe_extractor()
+        phoneme_extractor = self.build_phoneme_extractor()
 
-        return CachedExtractor( CompositeExtractor(
-            extractor1,
-            extractor2,
-            syllabe_extractor
+        return CachedExtractor(CompositeExtractor(
+                extractor1,
+                extractor2,
+                syllabe_extractor,
+                phoneme_extractor
             )
         )
 
@@ -73,7 +75,6 @@ class SpeechBuilder(object):
             rows = csv.reader(f, delimiter=" ")
             mapping = {'#': 0}
 
-
             for row in rows:
                 key = row[0].lower()
                 value = len(row) - 1
@@ -82,5 +83,5 @@ class SpeechBuilder(object):
                 else:
                     mapping[key] = value
 
-            return WordMappingExtractor(self.get_word_intervals(), mapping, feature_name="PHONEMES")
+            return PhonemeExtractor(self.get_word_intervals(), mapping)
 

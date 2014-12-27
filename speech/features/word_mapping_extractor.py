@@ -1,6 +1,8 @@
 #! coding:utf-8
 import bisect
+import logging
 
+logger = logging.getLogger('main')
 # Sums the mapping of words contained in the interval
 # Mapping should be a dict with domain of the words, and with numeric values
 # Common examples: count the syllabes, and phonemes
@@ -35,7 +37,7 @@ class WordMappingExtractor(object):
             intersection = word_interval.intersect(interval.closure)
 
             if intersection.measure > 0:
-                count += self.mapping[word_interval.word.lower()]
+                count += self.mapping(word_interval.word.lower())
             elif intersection.is_EmptySet:
                 break
             index+=1
@@ -43,7 +45,15 @@ class WordMappingExtractor(object):
         return count
 
 def SyllabeExtractor(word_intervals, syllabe_count):
-    return WordMappingExtractor(word_intervals, syllabe_count, feature_name="SYLLABES")
+    mapping = lambda word: syllabe_count[word]
+    return WordMappingExtractor(word_intervals, mapping, feature_name="SYLLABES")
 
 def PhonemeExtractor(word_intervals, phoneme_count):
-    return WordMappingExtractor(word_intervals, phoneme_count, feature_name="PHONEMES")
+    def mapping(word):
+        try:
+            preprocessed_word = "".join(w for w in word if w.isalpha() or w == '\'')
+            return phoneme_count[preprocessed_word]
+        except KeyError:
+            logger.warning("%s(%s) has no defined phonemes. Defaulting to 0" % (word, preprocessed_word))
+            return 0
+    return WordMappingExtractor(word_intervals, mapping, feature_name="PHONEMES")

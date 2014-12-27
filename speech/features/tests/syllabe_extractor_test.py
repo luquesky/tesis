@@ -4,7 +4,7 @@ from sympy import Interval
 from ... import WordInterval
 from .. import WordMappingExtractor, SyllabeExtractor
 
-class WordMappingExtractorTest(TestCase):
+class SyllabeExtractorTest(TestCase):
     def test_it_contains_the_number_of_syllabes_and_its_average(self):
         extractor = SyllabeExtractor([WordInterval(0, 1, "hello")], {"hello" : 2})
 
