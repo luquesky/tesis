@@ -14,3 +14,10 @@ log/*.log
 # SublimeText
 *sublime-project
 *sublime-workspace
+# Latex stuff
+*.aux
+*.dvi
+*.tex~
+*.fls
+*.log
+*latexmk
