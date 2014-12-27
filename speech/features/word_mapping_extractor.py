@@ -14,9 +14,12 @@ class WordMappingExtractor(object):
     def extract_features(self, interval):
         count = self.sum_words_on_interval(interval)
 
+        count_key = "%s_COUNT" % self.feature_name
+        avg_key = "%s_AVG" % self.feature_name
+
         return {
-            "SYLLABES_COUNT": count,
-            "SYLLABES_AVG": float(count) / interval.measure
+            count_key: count,
+            avg_key: float(count) / interval.measure
         }
 
     def sum_words_on_interval(self, interval):
@@ -41,3 +44,6 @@ class WordMappingExtractor(object):
 
 def SyllabeExtractor(word_intervals, syllabe_count):
     return WordMappingExtractor(word_intervals, syllabe_count, feature_name="SYLLABES")
+
+def PhonemeExtractor(word_intervals, phoneme_count):
+    return WordMappingExtractor(word_intervals, phoneme_count, feature_name="PHONEMES")
