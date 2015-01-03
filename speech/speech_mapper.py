@@ -1,5 +1,6 @@
 #! coding: utf-8
 import os
+import dill
 import pickle
 from . import SpeechBuilder
 
