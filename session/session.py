@@ -10,14 +10,16 @@ class Session(object):
         self.path_to_tasks = path_to_tasks
         self.speechA = speechA
         self.speechB = speechB
+        self.tamas = {}
 
     # Analyze with tama each task of the session
     def analyze(self, features=[]):
-        tamas = {}
-        for task in self.tasks:
-            print "Working in task: %s" % task
-            tamas[task] = self.analyze_task(task, features)
-        return tamas
+        if len(self.tamas) == 0:
+            for task in self.tasks:
+                logger.info("Working in task: %s" % task)
+                self.tamas[task] = self.analyze_task(task, features)
+
+        return self.tamas
 
     def analyze_task(self, task, features=[]):
         ret = {}
