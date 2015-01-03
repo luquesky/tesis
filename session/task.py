@@ -9,9 +9,20 @@ class Task(object):
         self.description = description
         self.interval = Interval(inf, sup)
 
-    # Delegate missing attributes to interval
-    def __getattr__(self, name):
-        return getattr(self.interval, name)
+    @property
+    def inf(self):
+        return self.interval.inf
+
+    @property
+    def sup(self):
+        return self.interval.sup
+
+    def intersect(self, another_interval):
+        return self.interval.intersect(another_interval)
+
+
+    def __eq__(self, other):
+        return (self.interval == other.interval) and (self.description == other.description)
 
     def __str__(self):
         return "%s Task: %s" % (self.interval, self.description)
