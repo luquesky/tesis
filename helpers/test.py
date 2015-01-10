@@ -29,6 +29,12 @@ class IntervalDistanceTest(TestCase):
 class CrossCorrelationTest(TestCase):
     def test_for_positive_lag(self):
         x = np.array([1.0, 2.0, 3.0], dtype=float)
-        y = np.array([-2, -4, -6], dtype=float)
+        y = np.array([2, 0, 4], dtype=float)
 
-        self.assertAlmostEqual(cross_correlation(x, y, 1), 0)
+        self.assertAlmostEqual(cross_correlation(x, y, lag=1), -0.5)
+
+    def test_for_negative_lag(self):
+        x = np.array([1.0, 2.0, 3.0], dtype=float)
+        y = np.array([2, 0, 4], dtype=float)
+
+        self.assertAlmostEqual(cross_correlation(x, y, lag=-1), 0.5)
