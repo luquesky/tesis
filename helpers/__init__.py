@@ -24,12 +24,15 @@ def cross_correlation(X, Y, lag):
     xm = X.mean()
     ym = Y.mean()
 
-    if lag >= 0:
+    if lag > 0:
         # Here we take...
         # x_lag, x_{lag+1}, ..., x_n and
         # y_1, y_2, ... y_lag
         xprod = X[lag:] - xm
         yprod = Y[:-lag] - ym
+    elif lag == 0:
+        xprod = X - xm
+        yprod = Y - ym
     else:
         # x_1, x_2, ..., x_lag and
         # y_lag, y_{lag+1}, ... y_n
