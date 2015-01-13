@@ -21,3 +21,4 @@ log/*.log
 *.fls
 *.log
 *latexmk
+misc/
