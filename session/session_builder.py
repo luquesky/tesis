@@ -1,6 +1,7 @@
 #! coding:utf-8
 import os
 import csv
+import re
 from . import Session
 from task import Task
 from speech import SpeechMapper
@@ -36,7 +37,7 @@ class SessionBuilder(object):
                 end = float(row[1])
                 description = row[2]
 
-                if (description != "#") and (description != "comments"):
+                if re.match(r'Images.*', description):
                     task = Task(begin, end, description)
                     tasks.append(task)
         return tasks
