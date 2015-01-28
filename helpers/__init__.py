@@ -31,6 +31,8 @@ def interval_distance(int1, int2):
 # X_1, ..., X_{n-lag}, and Y_lag, ..., Y_n
 # if lag == 0, it is the same as the correlation
 #
+# To wrap up, if l > 0, and we have a good value (~1), it means that Y influences X. If l < 0, X influences Y. If l = 0, then we have feedback
+
 # (see Kousidis et al[2009])
 def cross_correlation(X, Y, lag):
     xm = X.mean()
