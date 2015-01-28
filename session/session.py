@@ -17,29 +17,31 @@ class Session(object):
         self.tamas = {}
 
     # Analyze with tama each task of the session
-    def analyze(self, features=[], lags=xrange(-20, 21)):
+    def analyze(self, features=[]):
         if len(self.tamas) == 0:
             for task in self.tasks:
                 logger.info("Working in task: %s" % task)
-                self.tamas[task] = self.analyze_task(task, features=features, lags= lags)
+                self.tamas[task] = self.analyze_task(task, features=features)
 
         return self.tamas
 
-    def analyze_task(self, task, features, lags):
+    def analyze_task(self, task, features):
         ret = {}
         for feature in features:
-            ret[feature] = self.analyze_task_feature(task, feature=feature, lags=lags)
+            ret[feature] = self.analyze_task_feature(task, feature=feature)
         return ret
 
-    def analyze_task_feature(self, task, feature, lags):
+    def analyze_task_feature(self, task, feature):
         print "Calculating %s" % feature
-        ret = {}
 
         TA, averagesA = hybrid_tama(self.speechA, feature, interpolate=False, interval=task.interval)
         TB, averagesB = hybrid_tama(self.speechB, feature, interpolate=False, interval=task.interval)
 
+
         assert np.array_equal(TA, TB)
         n = len(TA)
+
+        lags = range(-n, n+1)
         cross_correlations = [(lag, cross_correlation(averagesA, averagesB, lag)) for lag in lags]
 
         # lag > 0
