@@ -41,12 +41,13 @@ class Session(object):
         assert np.array_equal(TA, TB)
         n = len(TA)
 
-        lags = range(-n, n+1)
+        lag_limit = min(6, n)
+        lags = range(-lag_limit, lag_limit+1)
         cross_correlations = [(lag, cross_correlation(averagesA, averagesB, lag)) for lag in lags]
 
         # lag > 0
-        positive_correlations = [(l, cc) for (l, cc) in cross_correlations if l > 0]
-        negative_correlations = [(l, cc) for (l, cc) in cross_correlations if l < 0]
+        positive_correlations = [(l, cc) for (l, cc) in cross_correlations if l >= 0]
+        negative_correlations = [(l, cc) for (l, cc) in cross_correlations if l <= 0]
 
         l_pos, cc_pos = max(positive_correlations, key=itemgetter(1))
         l_neg, cc_neg = max(negative_correlations, key=itemgetter(1))
