@@ -20,6 +20,11 @@ class Calculator(object):
         self.undefined_features = False
         self.interpolate = interpolate
 
+    # Calculates timeline for feature
+    # Returns T, Y, two equally sized numpy arrays where
+    # T[i] contains the time where frame were selected
+    # Y[i] contains the average of feature for that frame
+
     def calculate(self, feature, interval=None):
         if interval is None:
             interval = Interval(0, self.speech.length)
@@ -28,19 +33,17 @@ class Calculator(object):
         T = []
         averages = []
 
-        # To calculate the total average, let's find first the matching intervals...
-        matching_intervals = self.utterance_extractor(self.speech, interval)
-        total_sum = self.__tama_sum(matching_intervals, feature)
+        total_average = self.get_total_average(interval, feature)
 
         while interval.contains(current_step):
-            frame = self.__get_frame_for(length=self.frame_length, middle=current_step)
+            frame = get_frame_for(length=self.frame_length, middle=current_step)
 
             T.append(current_step)
             matching_intervals = self.utterance_extractor(self.speech, frame)
             log_frame(frame)
 
             average = self.__tama_sum(matching_intervals, feature)
-            averages.append(average/total_sum)
+            averages.append(average/total_average)
             current_step+= self.frame_step
 
         # For zero-values (for instance, those in which speaker does not has an utterance) let's interpolate values
@@ -73,10 +76,17 @@ class Calculator(object):
             average = average / sum_of_lengths
         return average
 
-    def __get_frame_for(self, length, middle):
-        lower_bound = middle - length/2.0
-        upper_bound = middle + length/2.0
-        return Interval(lower_bound, upper_bound)
+    def get_total_average(self, interval, feature):
+        # To calculate the total average, let's find first the matching intervals...
+        matching_intervals = self.utterance_extractor(self.speech, interval)
+        return self.__tama_sum(matching_intervals, feature)
+
+
+
+def get_frame_for(length, middle):
+    lower_bound = middle - length/2.0
+    upper_bound = middle + length/2.0
+    return Interval(lower_bound, upper_bound)
 
 def log_frame(frame):
     logger.debug("=" * 80)
