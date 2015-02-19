@@ -48,3 +48,14 @@ def hybrid_tama(speech, feature, frame_step=10, frame_length=20, interpolate=Tru
     )
 
     return calculator.calculate(feature, interval=interval)
+
+# Calculates weighted mean in a speech of a feature
+def tama_mean(speech, feature, frame_step=10, frame_length=20, interval=None):
+    calculator = Calculator(speech,
+        frame_step=frame_step,
+        frame_length=frame_length,
+        utterance_extractor=hybrid_intersecting_utterances,
+        interpolate=True
+    )
+
+    return calculator.get_total_average(interval, feature)

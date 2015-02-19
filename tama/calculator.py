@@ -8,7 +8,6 @@ from helpers import interpolate, hybrid_intersecting_utterances
 
 logger = logging.getLogger('main')
 
-Interval
 class Calculator(object):
     def __init__(self, speech, frame_step, frame_length, utterance_extractor=None, interpolate = True):
         self.speech = speech
@@ -33,16 +32,15 @@ class Calculator(object):
         T = []
         averages = []
 
-        total_average = self.get_total_average(interval, feature)
+        total_average = self.get_average(interval, feature)
 
         while interval.contains(current_step):
             frame = get_frame_for(length=self.frame_length, middle=current_step)
 
             T.append(current_step)
-            matching_intervals = self.utterance_extractor(self.speech, frame)
             log_frame(frame)
 
-            average = self.__tama_sum(matching_intervals, feature)
+            average = self.get_average(frame, feature)
             averages.append(average/total_average)
             current_step+= self.frame_step
 
@@ -53,9 +51,13 @@ class Calculator(object):
         return np.array(T, dtype=float), np.array(averages, dtype=float)
 
 
+    def get_average(self, interval, feature):
+        # To calculate the total average, let's find first the matching intervals...
+        matching_intervals = self.utterance_extractor(self.speech, interval)
+        return self.__tama_sum(matching_intervals, feature)
 
     def __tama_sum(self, intervals, feature):
-        # Now, for each matching interval, let's calculate the f0 mean
+        # Calculate the tama average for the feature, for given intervals
         # Remember that is an weighted average, where the weight of each interval is their ratio of length (against frame)
         # OBS: There might be some intervals chopped off the frame, as they might be very tiny
         sum_of_lengths = .0
@@ -76,10 +78,6 @@ class Calculator(object):
             average = average / sum_of_lengths
         return average
 
-    def get_total_average(self, interval, feature):
-        # To calculate the total average, let's find first the matching intervals...
-        matching_intervals = self.utterance_extractor(self.speech, interval)
-        return self.__tama_sum(matching_intervals, feature)
 
 
 

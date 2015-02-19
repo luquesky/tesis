@@ -1,11 +1,12 @@
 #! coding:utf-8
 import math
+from mock import Mock
 from sympy import Interval
 from unittest import TestCase
 from speech import SpeechBuilder
 from tama import Calculator
 
-class TamaTest(TestCase):
+class CalculatorTest(TestCase):
     # The wav we use here has 20.87 seconds =>
     # Using frame_step = 2, and frame_length = 4 => there should be 10 frames! (the last one should be chopped)
 
@@ -48,3 +49,17 @@ class TamaTest(TestCase):
 
 
         self.assertEqual([t for t in T], [16.0, 19.0])
+
+
+    ##
+    ## Average test
+    def test_it_calculates_the_right_average(self):
+        speech = Mock()
+        speech.get_features.side_effect = [{"F0_MEAN":0.5}, {"F0_MEAN":1.25}]
+        utterance_extractor = Mock(return_value=[Interval(0,1), Interval(2, 4)])
+        calculator = Calculator(speech, utterance_extractor=utterance_extractor, frame_step=10, frame_length=20)
+
+
+        average = calculator.get_average(interval=Interval(0, 3), feature="F0_MEAN")
+
+        self.assertAlmostEqual(average, 1.0)
