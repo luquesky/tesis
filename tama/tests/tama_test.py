@@ -15,7 +15,7 @@ class CalculatorTest(TestCase):
 
         calculator = Calculator(speech, frame_step=2, frame_length=4)
 
-        T, moving_average = calculator.calculate("F0_MEAN")
+        T, moving_average, mean = calculator.calculate("F0_MEAN")
 
         self.assertEqual(len(moving_average), 10)
 
@@ -24,7 +24,7 @@ class CalculatorTest(TestCase):
 
         calculator = Calculator(speech, frame_step=2, frame_length=4)
 
-        T, moving_average = calculator.calculate("F0_MEAN")
+        T, moving_average, mean = calculator.calculate("F0_MEAN")
 
 
         self.assertTrue(all(not math.isnan(x) for x in moving_average ))
@@ -34,7 +34,7 @@ class CalculatorTest(TestCase):
 
         calculator = Calculator(speech, frame_step=3, frame_length=4)
 
-        T, moving_average = calculator.calculate("F0_MEAN")
+        T, moving_average, mean = calculator.calculate("F0_MEAN")
 
 
         self.assertEqual([t for t in T], [3.0, 6.0, 9.0, 12.0, 15.0, 18.0])
@@ -45,7 +45,7 @@ class CalculatorTest(TestCase):
         calculator = Calculator(speech, frame_step=3, frame_length=4)
 
         # Be careful. Not going to work for a silent interval
-        T, moving_average = calculator.calculate("F0_MEAN", interval=Interval(13, 20))
+        T, moving_average, mean = calculator.calculate("F0_MEAN", interval=Interval(13, 20))
 
 
         self.assertEqual([t for t in T], [16.0, 19.0])
@@ -53,6 +53,7 @@ class CalculatorTest(TestCase):
 
     ##
     ## Average test
+    ## TODO: Refactor this...it's plainly horrible
     def test_it_calculates_the_right_average(self):
         speech = Mock()
         speech.get_features.side_effect = [{"F0_MEAN":0.5}, {"F0_MEAN":1.25}]

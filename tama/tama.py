@@ -58,4 +58,4 @@ def tama_mean(speech, feature, frame_step=10, frame_length=20, interval=None):
         interpolate=True
     )
 
-    return calculator.get_total_average(interval, feature)
+    return calculator.get_average(interval, feature)
