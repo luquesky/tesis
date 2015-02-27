@@ -34,8 +34,8 @@ class Session(object):
     def analyze_task_feature(self, task, feature):
         print "Calculating %s" % feature
 
-        TA, averagesA = hybrid_tama(self.speechA, feature, interpolate=False, interval=task.interval)
-        TB, averagesB = hybrid_tama(self.speechB, feature, interpolate=False, interval=task.interval)
+        TA, averagesA, A_mean = hybrid_tama(self.speechA, feature, interpolate=False, interval=task.interval)
+        TB, averagesB, B_mean = hybrid_tama(self.speechB, feature, interpolate=False, interval=task.interval)
 
 
         assert np.array_equal(TA, TB)
@@ -55,8 +55,8 @@ class Session(object):
         confidence_value = 2 / math.sqrt(n)
 
         return {
-            "A": (TA, averagesA),
-            "B": (TB, averagesB),
+            "A": (TA, averagesA, A_mean),
+            "B": (TB, averagesB, B_mean),
             "cross_correlations": cross_correlations,
             "confidence_value": confidence_value,
             "best_positive_lag": (l_pos, cc_pos),
