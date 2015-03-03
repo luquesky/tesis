@@ -1,13 +1,13 @@
 #! coding:utf-8
-from sympy import Interval
-
 # This models a task belonging to a session of Columbia Games
 class Task(object):
     SILENCE_WORD = '#'
 
-    def __init__(self, inf, sup, description):
+    def __init__(self, interval, speechA, speechB, description):
         self.description = description
-        self.interval = Interval(inf, sup)
+        self.speechA = speechA
+        self.speechB = speechB
+        self.interval = interval
 
     @property
     def inf(self):

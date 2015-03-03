@@ -9,11 +9,9 @@ from helpers import cross_correlation
 logger = logging.getLogger('main')
 
 class Session(object):
-    def __init__(self, path_to_tasks, tasks, speechA, speechB):
+    def __init__(self, path_to_tasks, tasks):
         self.tasks = tasks
         self.path_to_tasks = path_to_tasks
-        self.speechA = speechA
-        self.speechB = speechB
         self.tamas = {}
 
     # Analyze with tama each task of the session
@@ -34,8 +32,8 @@ class Session(object):
     def analyze_task_feature(self, task, feature):
         print "Calculating %s" % feature
 
-        TA, averagesA, A_mean = hybrid_tama(self.speechA, feature, interpolate=False, interval=task.interval)
-        TB, averagesB, B_mean = hybrid_tama(self.speechB, feature, interpolate=False, interval=task.interval)
+        TA, averagesA, A_mean = hybrid_tama(task.speechA, feature, interpolate=False, interval=task.interval)
+        TB, averagesB, B_mean = hybrid_tama(task.speechB, feature, interpolate=False, interval=task.interval)
 
 
         assert np.array_equal(TA, TB)
