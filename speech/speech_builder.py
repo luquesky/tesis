@@ -9,21 +9,30 @@ from speech import Speech
 DATA_DIR = "speech/tests/integration/data"
 
 class SpeechBuilder(object):
-    def __init__(self, path_to_file):
+    def __init__(self, path_to_file, interval):
         self.path_to_wav = os.path.abspath(path_to_file)
+        self.interval = interval
+
         filename, extension = os.path.splitext(self.path_to_wav)
         self.path_to_words = "%s.words" % filename
 
     def get_word_intervals(self):
-        if hasattr(self, "intervals"):
-            return self.intervals
+        if hasattr(self, "word_intervals"):
+            return self.word_intervals
 
-        self.intervals = []
+        self.word_intervals = []
         with open(self.path_to_words) as test_words:
             rows = csv.reader(test_words, delimiter=" ")
             for row in rows:
-                self.intervals.append(WordInterval(float(row[0]), float(row[1]),row[2]))
-        return self.intervals
+                wint = WordInterval(float(row[0]), float(row[1]),row[2])
+                if wint.inf > self.interval.sup:
+                    break
+
+                intersection = self.interval.intersect(wint.interval)
+                if intersection.measure > 0:
+                    self.word_intervals.append(wint)
+
+        return self.word_intervals
 
     # This is quite ad hoc
     def build_feature_extractor(self):
@@ -53,11 +62,11 @@ class SpeechBuilder(object):
 
     @property
     def speech(self):
-        word_intervals = self.get_word_intervals()
         feature_extractor = self.build_feature_extractor()
         return Speech(
             path_to_wav=self.path_to_wav,
-            word_intervals=word_intervals,
+            interval=self.interval,
+            word_intervals=self.word_intervals,
             feature_extractor=feature_extractor)
 
 

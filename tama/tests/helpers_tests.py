@@ -8,6 +8,7 @@ class IntervalsOverlappingTest(TestCase):
     def test_intervals_overlapping_for_included_interval(self):
         speech = Speech(
             path_to_wav="",
+            interval=Interval(0,15.5),
             word_intervals=[
             WordInterval(0, 14, "woooow"),
         ])
@@ -17,6 +18,7 @@ class IntervalsOverlappingTest(TestCase):
     def test_intervals_overlapping_for_merged_non_silent_intervals(self):
         speech = Speech(
             path_to_wav="",
+            interval=Interval(0,15.5),
             word_intervals=[
             WordInterval(0, 14.0, WordInterval.SILENCE_WORD),
             WordInterval(14.0, 14.5, "hi"),
@@ -30,6 +32,7 @@ class HybridIntersectingUtterancesTest(TestCase):
     def test_intervals_overlapping_for_included_interval(self):
         speech = Speech(
             path_to_wav="",
+            interval=Interval(0,15.5),
             word_intervals=[
             WordInterval(0, 14, "#"),
         ])
@@ -37,7 +40,7 @@ class HybridIntersectingUtterancesTest(TestCase):
         self.assertEqual(hybrid_intersecting_utterances(speech, Interval(0, 14)), [])
 
     def test_intervals_overlapping_for_merged_non_silent_intervals(self):
-        speech = Speech(path_to_wav="", word_intervals=[
+        speech = Speech(path_to_wav="", interval=Interval(0,15.5),word_intervals=[
             WordInterval(0.0, 14.0, "#"),
             WordInterval(14.0, 14.5, "hi"),
             WordInterval(14.5, 15.5, "frank")
