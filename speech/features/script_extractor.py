@@ -1,6 +1,8 @@
 #! coding:utf-8
 # An object of this class has the responsibility of extracting the features (f_0, ) out of a wav file
 # It should be created with both a path to the wav file, and to a praat script which returns the features (in the project, they are at scripts/)
+import os
+from distutils.spawn import find_executable
 import logging
 import subprocess
 
@@ -40,3 +42,17 @@ class ScriptExtractor(object):
     # FIXME: Change min & max pitch
     def __get_command_to_execute(self, interval):
         return (self.path_to_praat, self.path_to_script, self.path_to_wav, str(interval.inf), str(interval.sup), "75", "500")
+
+def StandardAcousticsExtractor(path_to_wav):
+    return ScriptExtractor(
+        path_to_script = os.path.abspath("scripts/extractStandardAcoustics.praat"),
+        path_to_praat = find_executable("praat"),
+        path_to_wav=path_to_wav
+    )
+
+def VoiceAnalysisExtractor(path_to_wav):
+    return ScriptExtractor(
+        path_to_script = os.path.abspath("scripts/voice-analysis.praat"),
+        path_to_praat = find_executable("praat"),
+        path_to_wav=path_to_wav
+    )

@@ -3,7 +3,7 @@ import os
 import csv
 from distutils.spawn import find_executable
 from word_interval import WordInterval
-from features import ScriptExtractor, CachedExtractor, CompositeExtractor, SyllabeExtractor, PhonemeExtractor
+from features import StandardAcousticsExtractor, VoiceAnalysisExtractor, CachedExtractor, CompositeExtractor, SyllabeExtractor, PhonemeExtractor
 from speech import Speech
 
 DATA_DIR = "speech/tests/integration/data"
@@ -36,17 +36,9 @@ class SpeechBuilder(object):
 
     # This is quite ad hoc
     def build_feature_extractor(self):
-        extractor1 = ScriptExtractor(
-            path_to_script = os.path.abspath("scripts/extractStandardAcoustics.praat"),
-            path_to_praat = find_executable("praat"),
-            path_to_wav=self.path_to_wav
-        )
+        extractor1 = StandardAcousticsExtractor(self.path_to_wav)
 
-        extractor2 = ScriptExtractor(
-            path_to_script = os.path.abspath("scripts/voice-analysis.praat"),
-            path_to_praat = find_executable("praat"),
-            path_to_wav=self.path_to_wav
-        )
+        extractor2 = VoiceAnalysisExtractor(self.path_to_wav)
 
 
         syllabe_extractor = self.build_syllabe_extractor()
