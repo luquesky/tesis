@@ -9,9 +9,10 @@ from speech import Speech
 DATA_DIR = "speech/tests/integration/data"
 
 class SpeechBuilder(object):
-    def __init__(self, path_to_file, interval):
+    def __init__(self, path_to_file, interval, feature_extractor=None):
         self.path_to_wav = os.path.abspath(path_to_file)
         self.interval = interval
+        self.feature_extractor = feature_extractor
 
         filename, extension = os.path.splitext(self.path_to_wav)
         self.path_to_words = "%s.words" % filename
@@ -54,7 +55,7 @@ class SpeechBuilder(object):
 
     @property
     def speech(self):
-        feature_extractor = self.build_feature_extractor()
+        feature_extractor = self.feature_extractor or self.build_feature_extractor()
         return Speech(
             path_to_wav=self.path_to_wav,
             interval=self.interval,
