@@ -1,5 +1,7 @@
 #! coding:utf-8
 # This models a task belonging to a session of Columbia Games
+
+
 class Task(object):
     SILENCE_WORD = '#'
 
@@ -17,9 +19,12 @@ class Task(object):
     def sup(self):
         return self.interval.sup
 
+    @property
+    def length(self):
+        return self.sup - self.inf
+
     def intersect(self, another_interval):
         return self.interval.intersect(another_interval)
-
 
     def __eq__(self, other):
         return (self.interval == other.interval) and (self.description == other.description)
