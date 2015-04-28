@@ -11,14 +11,14 @@ class SessionMapper(object):
     def __init__(self):
         pass
 
-    def fetch(self, path_to_tasks):
+    def fetch(self, path_to_tasks, name=None):
         try:
             with open(self.__pickle_file_path(path_to_tasks), "rb") as h:
                 return pickle.load(h)
         except:
             # At any exception => build it from scratch
             logger.info("Pickle not found. Building from scratch")
-            return SessionBuilder(path_to_tasks).session
+            return SessionBuilder(path_to_tasks, name=name).session
 
     def save(self, session):
         with open(self.__pickle_file_path(session.path_to_tasks), "wb") as h:

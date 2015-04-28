@@ -8,10 +8,12 @@ from helpers import cross_correlation
 
 logger = logging.getLogger('main')
 
+
 class Session(object):
-    def __init__(self, path_to_tasks, tasks):
+    def __init__(self, path_to_tasks, name, tasks):
         self.tasks = tasks
         self.path_to_tasks = path_to_tasks
+        self.name = name
         self.tamas = {}
 
     # Analyze with tama each task of the session

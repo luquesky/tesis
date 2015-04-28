@@ -7,8 +7,10 @@ from . import Session
 from task import Task
 from speech import SpeechBuilder
 
+
 class SessionBuilder(object):
-    def __init__(self, path_to_tasks):
+    def __init__(self, path_to_tasks, name=None):
+        self.name = name or path_to_tasks
         self.path_to_tasks = os.path.abspath(path_to_tasks)
 
     @property
@@ -16,8 +18,7 @@ class SessionBuilder(object):
         #speechA, speechB = self.__build_speechs()
         tasks = self.__build_tasks()
 
-        return Session(tasks=tasks, path_to_tasks=self.path_to_tasks)
-
+        return Session(tasks=tasks, path_to_tasks=self.path_to_tasks, name=self.name)
 
     def __build_tasks(self):
         tasks = []
