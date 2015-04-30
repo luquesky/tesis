@@ -30,7 +30,8 @@ def tama(speech, feature, frame_step=10, frame_length=20, interpolate=False, int
     The result of applying TAMA on the selected feature for the current interval
 
     """
-    calculator = Calculator(speech,
+    calculator = Calculator(
+        speech,
         frame_step=frame_step,
         frame_length=frame_length,
         utterance_extractor=intersecting_utterances,
@@ -39,8 +40,10 @@ def tama(speech, feature, frame_step=10, frame_length=20, interpolate=False, int
 
     return calculator.calculate(feature, interval=interval)
 
+
 def hybrid_tama(speech, feature, frame_step=10, frame_length=20, interpolate=False, interval=None):
-    calculator = Calculator(speech,
+    calculator = Calculator(
+        speech,
         frame_step=frame_step,
         frame_length=frame_length,
         utterance_extractor=hybrid_intersecting_utterances,
