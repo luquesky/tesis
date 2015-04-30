@@ -1,6 +1,7 @@
 #! coding:utf-8
 import logging
 
+
 def init_logging():
     logger = logging.getLogger('main')
     logger.setLevel(logging.INFO)
@@ -14,5 +15,7 @@ def init_logging():
     logger.addHandler(fh)
     logger.addHandler(ch)
 
+
+TASK_LENGTH_THRESHOLD = 100
 
 init_logging()

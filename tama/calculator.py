@@ -9,7 +9,7 @@ from helpers import interpolate, hybrid_intersecting_utterances
 logger = logging.getLogger('main')
 
 class Calculator(object):
-    def __init__(self, speech, frame_step, frame_length, utterance_extractor=None, interpolate = True):
+    def __init__(self, speech, frame_step, frame_length, utterance_extractor=None, interpolate = False):
         self.speech = speech
         self.frame_step = frame_step
         self.frame_length = frame_length
