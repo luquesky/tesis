@@ -7,7 +7,7 @@ import logging
 logger = logging.getLogger('main')
 
 
-def tama(speech, feature, frame_step=10, frame_length=20, interpolate=True, interval=None):
+def tama(speech, feature, frame_step=10, frame_length=20, interpolate=False, interval=None):
     """
     Given a speech, it returns the time aligned moving average (tama) for the feature.
 
@@ -39,7 +39,7 @@ def tama(speech, feature, frame_step=10, frame_length=20, interpolate=True, inte
 
     return calculator.calculate(feature, interval=interval)
 
-def hybrid_tama(speech, feature, frame_step=10, frame_length=20, interpolate=True, interval=None):
+def hybrid_tama(speech, feature, frame_step=10, frame_length=20, interpolate=False, interval=None):
     calculator = Calculator(speech,
         frame_step=frame_step,
         frame_length=frame_length,
@@ -50,12 +50,12 @@ def hybrid_tama(speech, feature, frame_step=10, frame_length=20, interpolate=Tru
     return calculator.calculate(feature, interval=interval)
 
 # Calculates weighted mean in a speech of a feature
-def tama_mean(speech, feature, frame_step=10, frame_length=20, interval=None):
+def tama_mean(speech, feature, frame_step=10, frame_length=20, interval=None, interpolate=False):
     calculator = Calculator(speech,
         frame_step=frame_step,
         frame_length=frame_length,
         utterance_extractor=hybrid_intersecting_utterances,
-        interpolate=True
+        interpolate=interpolate
     )
 
     return calculator.get_average(interval, feature)
