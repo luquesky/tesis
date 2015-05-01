@@ -17,7 +17,7 @@
 \begin{abstract}
 
 El \emph{entrainment} (mimetización) es un fenómeno inconsciente que se manifiesta a través de la adaptación de posturas, forma de hablar, gestos faciales y otros comportamientos entre dos o más interactores. A su vez, la ocurrencia de esta mimetización está fuertemente emparentada con el sentimiento de empatía y compenetración entre los participantes.
- 
+
 En esta tesis, nos proponemos explorar una técnica algorítmica para detectar el entrainment entre variables prosódicas de dos personas. Esta técnica nos permitirá determinar si existe o no convergencia para ciertos parámetros, y ver como está ésto correlacionado con variables sociales tales como empatía (escribir más acá!)
 
 
@@ -26,28 +26,45 @@ En esta tesis, nos proponemos explorar una técnica algorítmica para detectar e
 
 \section{Introducción}
 
-Los sistemas de diálogo humano-computadora son cada vez más frecuentes, y sus aplicaciones comprenden una 
-amplia gama de rubros: desde aplicaciones móviles, motores de búsqueda, juegos, o tecnologías de asistencia para 
-ancianos y discapacitados.
+Los sistemas de diálogo humano-computadora son cada vez más frecuentes, y sus aplicaciones comprenden una amplia gama de rubros: desde aplicaciones móviles, motores de búsqueda, juegos, o tecnologías de asistencia para ancianos y discapacitados.
 
 Si bien es cierto que estos sistemas logran captar la dimensión lingüística de la comunicación humana, tienen un déficit importante a la hora de procesar y transmitir el aspecto superestructural de la comunicación, que radica en el intercambio de afecto, emociones, actitudes y otras intenciones de los participantes. La habilidad de los participantes de poder expresar, comprender, y reaccionar de acuerdo a estas señales sociales es necesaria para el entendimiento mutuo y una comunicación exitosa.
- 
+
 Un aspecto particular de la comunicación es el fenómeno de \emph{entrainment}(arrastre, mimetización, efecto camaleón), que comprende la adaptación inconsciente de las variables acústicas/prosódicas(a/p) (por ejemplo, el tono de la voz, la velocidad del habla, etc) de manera dinámica en el transcurso de una o varias interacciones. Este fenómeno ha sido largamente estudiado, y se ha observado que la convergencia de los participantes en estas variables ocurre en conjunto con una interacción más fluída y un mayor sentimiento de simpatía por sus interlocutores.
 
-Poder medir esta mimetización de los interlocutores no es una tarea fácil, sin embargo. En primer lugar, un diálogo no es una sucesión de turnos, sino que es una serie de tiempo dinámica, llena de interrupciones. Además, la mimetización no tiene un carácter instantáneo, sino que se sucede a lo largo de la interacción entre los participantes. Estos factores dificultan ostensiblemente poder modelar este fenómeno.
+Poder medir esta mimetización de los interlocutores no es una tarea fácil, sin embargo. En primer lugar, un diálogo no es una sucesión de turnos, sino que es una serie de tiempo dinámica, llena de interrupciones. Más aún, la mimetización no tiene un carácter instantáneo, sino que se sucede a lo largo de la interacción entre los participantes. Estos factores dificultan ostensiblemente poder modelar este fenómeno.
 
 \section{Objetivo de la tesis}
 
-El objetivo del presente trabajo es verificar un método para medir la mimetización entre dos interlocutores. El método en cuestión es TAMA, que fue descripto por Kousidis(2009) (agregar cita). 
+El objetivo del presente trabajo es verificar un método para medir la mimetización entre dos interlocutores sobre un corpus etiquetado con variables psicosociales, y ver como el \emph{entrainment} está emparejado con la percepción de empatía entre los participantes, compenetración en la charla, y otros.
 
-Lo novedoso del trabajo es poder aplicar esta herramienta sobre el corpus ``Columbia games'' (¿se llamaba así? :P). Este corpus de conversaciones posee etiquetas psico-sociales, que permitirán corroborar si esta medición de la mimetización de los interlocutores se correlaciona con los rasgos esperados (compenetración en la charla, simpatía con el interlocutor, etc)
+El método utilizado es \emph{TAMA}(Time-aligned Moving Average), que modela una conversación entre dos interlocutores como series de tiempo. Lo novedoso del trabajo es poder aplicar esta herramienta sobre el corpus ``Columbia Games Corpus''. Este corpus de conversaciones posee etiquetas psico-sociales, que permitirán corroborar si esta medición de la mimetización de los interlocutores se correlaciona con los rasgos esperados (compenetración en la charla, simpatía con el interlocutor, etc).
 
 \section{Método}
 
-Escribir un poco más de lo que vamos a hacer
+Como ya se mencionó, utilizaremos \emph{TAMA}, introducido en \cite{KOU2009}. Consideramos, previo a la utilización de la técnica, a una conversación como una serie de intervalos de elocuciones. Estos intervalos poseen variables acústicas/prosódicas, como pueden ser el tono (frecuencia de la voz), el volumen, y otros.
 
-\section{Bibliografía}
+\emph{TAMA} convierte estas secuencias de elocuciones en dos series de tiempo suavizadas por un promedio móvil, atenuando mayormente los silencios entre turnos. Una vez convertida la conversación en dos charlas, efectuamos análisis estadísticos bi-variados sobre ambas para medir si una de las series ``copia'' a la otra; es decir, si están mimetizadas.
 
-Citas a los papers que Agustín me pasó 
+La mimetización puede ser unidireccional ($A \rightarrow B$) donde una de las conversaciones puede ser predecida por la otra. También puede ocurrir que ambas conversaciones se retroalimenten ($A \leftrightarrow B$).
+
+Finalmente, habiendo determinado si existe \emph{entrainment} en una conversación, veremos si ésto se correlaciona con las etiquetas psico-sociales que tiene el corpus.
+
+
+
+\begin{thebibliography}{9}
+\bibitem{BRE2006}
+    Brennan:
+    \emph{Lexical entrainment in spontaneous dialog},
+    1996
+\bibitem{CHAR1999}
+    Chartrand, Bargh:
+    \emph{The chameleon effect: The perception-behavior link and social interaction},
+    1999
+\bibitem{KOU2009}
+    Kousidis, Dorran, McDonnell \& Coyle:
+    \emph{Time Series Analysis of Acoustic Feature Convergence in Human Dialogues},
+    2009
+\end{thebibliography}
 
 \end{document}
