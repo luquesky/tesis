@@ -24,23 +24,23 @@ En esta tesis, nos proponemos explorar una técnica algorítmica para detectar e
 \end{abstract}
 
 
-\section{Introducción}
+\section*{Introducción}
 
 Los sistemas de diálogo humano-computadora son cada vez más frecuentes, y sus aplicaciones comprenden una amplia gama de rubros: desde aplicaciones móviles, motores de búsqueda, juegos, o tecnologías de asistencia para ancianos y discapacitados.
 
 Si bien es cierto que estos sistemas logran captar la dimensión lingüística de la comunicación humana, tienen un déficit importante a la hora de procesar y transmitir el aspecto superestructural de la comunicación, que radica en el intercambio de afecto, emociones, actitudes y otras intenciones de los participantes. La habilidad de los participantes de poder expresar, comprender, y reaccionar de acuerdo a estas señales sociales es necesaria para el entendimiento mutuo y una comunicación exitosa.
 
-Un aspecto particular de la comunicación es el fenómeno de \emph{entrainment}(arrastre, mimetización, efecto camaleón), que comprende la adaptación inconsciente de las variables acústicas/prosódicas(a/p) (por ejemplo, el tono de la voz, la velocidad del habla, etc) de manera dinámica en el transcurso de una o varias interacciones. Este fenómeno ha sido largamente estudiado, y se ha observado que la convergencia de los participantes en estas variables ocurre en conjunto con una interacción más fluída y un mayor sentimiento de simpatía por sus interlocutores.
+Un aspecto particular de la comunicación es el fenómeno de \emph{entrainment}(arrastre, mimetización, efecto camaleón), que comprende la adaptación inconsciente de las variables acústicas/prosódicas(a/p) (por ejemplo, el tono de la voz, la velocidad del habla, etc) de manera dinámica en el transcurso de una o varias interacciones. Este fenómeno ha sido introducido por \emph{Brennan et al}\cite{BRE1996} en 1996, y se ha observado que la convergencia de los participantes en estas variables ocurre en conjunto con una interacción más fluída y un mayor sentimiento de simpatía por sus interlocutores \cite{CHAR1999}.
 
 Poder medir esta mimetización de los interlocutores no es una tarea fácil, sin embargo. En primer lugar, un diálogo no es una sucesión de turnos, sino que es una serie de tiempo dinámica, llena de interrupciones. Más aún, la mimetización no tiene un carácter instantáneo, sino que se sucede a lo largo de la interacción entre los participantes. Estos factores dificultan ostensiblemente poder modelar este fenómeno.
 
-\section{Objetivo de la tesis}
+\section*{Objetivo de la tesis}
 
 El objetivo del presente trabajo es verificar un método para medir la mimetización entre dos interlocutores sobre un corpus etiquetado con variables psicosociales, y ver como el \emph{entrainment} está emparejado con la percepción de empatía entre los participantes, compenetración en la charla, y otros.
 
 El método utilizado es \emph{TAMA}(Time-aligned Moving Average), que modela una conversación entre dos interlocutores como series de tiempo. Lo novedoso del trabajo es poder aplicar esta herramienta sobre el corpus ``Columbia Games Corpus''. Este corpus de conversaciones posee etiquetas psico-sociales, que permitirán corroborar si esta medición de la mimetización de los interlocutores se correlaciona con los rasgos esperados (compenetración en la charla, simpatía con el interlocutor, etc).
 
-\section{Método}
+\section*{Método}
 
 Como ya se mencionó, utilizaremos \emph{TAMA}, introducido en \cite{KOU2009}. Consideramos, previo a la utilización de la técnica, a una conversación como una serie de intervalos de elocuciones. Estos intervalos poseen variables acústicas/prosódicas, como pueden ser el tono (frecuencia de la voz), el volumen, y otros.
 
@@ -50,14 +50,15 @@ La mimetización puede ser unidireccional ($A \rightarrow B$) donde una de las c
 
 Finalmente, habiendo determinado si existe \emph{entrainment} en una conversación, veremos si ésto se correlaciona con las etiquetas psico-sociales que tiene el corpus.
 
-\subsection{Corpus}
+\subsection*{Corpus}
 
-El corpus utilizado, \emph{Columbia Games Corpus} consiste de nueve horas de diálogo espontáneo entre pares de sujetos que juegan una serie de juegos de computadora. Seis mujeres y siete hombres participaron en la colección del corpus; once de los sujetos volvieron a realizar una conversación con un nuevo compañero.
+El corpus utilizado, \emph{Columbia Games Corpus}\cite{LEV2012} consiste de nueve horas de diálogo espontáneo entre pares de sujetos que interactúan en una serie de juegos de computadora. Seis mujeres y siete hombres participaron en la colección del corpus; once de los sujetos volvieron a realizar una conversación con un nuevo compañero.
 
-Escribir más acá.
+Cada sesión está compuesta por varias tareas. En cada tarea, los jugadores observan colecciones idénticas de objetos en sus pantallas. Uno de los jugadores (el descriptor) tiene un objeto destacado entre todos los demás, y debe describir la posición de éste a su interlocutor. Los jugadores reciben un puntaje de acuerdo a qué tan bien fueron seguidas las instrucciones dadas por el descriptor. Las parejas completaron 14 de estas tareas, alternando roles. A su vez, los interlocutores fueron separados por cortinas para asegurar que la comunicación fuera exclusivamente oral.
+
 
 \begin{thebibliography}{9}
-\bibitem{BRE2006}
+\bibitem{BRE1996}
     Brennan:
     \emph{Lexical entrainment in spontaneous dialog},
     1996
@@ -65,7 +66,14 @@ Escribir más acá.
     Chartrand, Bargh:
     \emph{The chameleon effect: The perception-behavior link and social interaction},
     1999
-
+\bibitem{DEL2013}
+    De Looze, Scherer, Vaughan, Campbell:
+    \emph{Investigating automatic measurements of prosodic accommodation and its dynamics in social interaction},
+    2013
+\bibitem{KOU2008}
+    Kousidis et al:
+    \emph{Towards measuring continuous acoustic feature convergence in unconstrained spoken dialogues},
+    2008
 \bibitem{KOU2009}
     Kousidis, Dorran, McDonnell \& Coyle:
     \emph{Time Series Analysis of Acoustic Feature Convergence in Human Dialogues},
@@ -74,6 +82,10 @@ Escribir más acá.
     Levitan, Gravano, Willson, Benus, Hirschberg \& Nenkova,
     \emph{Acoustic-Prosodic entrainment and social behavior},
     2012
+\bibitem{CHATFIELD}
+    Chatfield C.,
+    \emph{The analysis of time series: an introduction, Third Edition}
+    1984
 \end{thebibliography}
 
 \end{document}
