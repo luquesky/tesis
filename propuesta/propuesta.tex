@@ -8,8 +8,9 @@
 \selectlanguage{spanish}
 
 \title{Propuesta de Tesis}
-\author{Juan Manuel Pérez}
-
+\author{Alumno: Juan Manuel Pérez \\
+Director: Agustín Gravano \\
+Codirector: Ramiro H. Gálvez}
 \begin{document}
 
 \maketitle
@@ -42,9 +43,9 @@ El método utilizado es \emph{TAMA}(Time-aligned Moving Average), que modela una
 
 \section*{Método}
 
-Como ya se mencionó, utilizaremos \emph{TAMA}, introducido en \cite{KOU2009}. Consideramos, previo a la utilización de la técnica, a una conversación como una serie de intervalos de elocuciones. Estos intervalos poseen variables acústicas/prosódicas, como pueden ser el tono (frecuencia de la voz), el volumen, y otros.
+Como ya se mencionó, utilizaremos \emph{TAMA}, introducido en \cite{KOU2009}. Consideramos, previo a la utilización de la técnica, a una conversación como una serie de intervalos de locuciones. Estos intervalos poseen variables acústicas/prosódicas, como pueden ser el tono (frecuencia de la voz), el volumen, y otros.
 
-\emph{TAMA} convierte estas secuencias de elocuciones en dos series de tiempo suavizadas por un promedio móvil, atenuando mayormente los silencios entre turnos. Una vez convertida la conversación en dos charlas, efectuamos análisis estadísticos bi-variados sobre ambas para medir si una de las series ``copia'' a la otra; es decir, si están mimetizadas.
+\emph{TAMA} convierte estas secuencias de locuciones en dos series de tiempo suavizadas por un promedio móvil, atenuando mayormente los silencios entre turnos. Una vez convertida la conversación en dos charlas, efectuamos análisis estadísticos bi-variados sobre ambas para medir si una de las series ``copia'' a la otra; es decir, si están mimetizadas.
 
 La mimetización puede ser unidireccional ($A \rightarrow B$) donde una de las conversaciones puede ser predecida por la otra. También puede ocurrir que ambas conversaciones se retroalimenten ($A \leftrightarrow B$).
 
