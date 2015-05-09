@@ -43,7 +43,7 @@ class Calculator(object):
 
             average = self.get_average(frame, feature)
             averages.append(average/total_average)
-            current_step+= self.frame_step
+            current_step += self.frame_step
 
         # For zero-values (for instance, those in which speaker does not has an utterance) let's interpolate values
         if self.interpolate:
@@ -53,21 +53,22 @@ class Calculator(object):
 
         return series, total_average
 
-
     def get_average(self, interval, feature):
         # To calculate the total average, let's find first the matching intervals...
         matching_intervals = self.utterance_extractor(self.speech, interval)
         return self.__tama_sum(matching_intervals, feature)
 
+    # Calculate the tama average for the feature, for given intervals
+    # Remember that is an weighted average, where the weight of each interval is their ratio of length (against frame)
+    # OBS: There might be some intervals chopped off the frame, as they might be very tiny
     def __tama_sum(self, intervals, feature):
-        # Calculate the tama average for the feature, for given intervals
-        # Remember that is an weighted average, where the weight of each interval is their ratio of length (against frame)
-        # OBS: There might be some intervals chopped off the frame, as they might be very tiny
         sum_of_lengths = .0
         average = 0
         for interval in intervals:
             features = self.speech.get_features(interval)
+
             if not features.has_key(feature) or math.isnan(features[feature]):
+                # Ignore this interval
                 self.undefined_features = True
                 logger.debug("Feature %s is nan in %s" % (feature,interval))
                 continue
@@ -79,6 +80,8 @@ class Calculator(object):
 
         if sum_of_lengths > 0:
             average = average / sum_of_lengths
+        else:
+            average = np.nan
         return average
 
 
