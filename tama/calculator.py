@@ -1,15 +1,17 @@
 #! coding:utf-8
 from __future__ import division
 import logging
-import math
 import numpy as np
+import pandas as pd
+import math
 from sympy import Interval
 from helpers import interpolate, hybrid_intersecting_utterances
 
 logger = logging.getLogger('main')
 
+
 class Calculator(object):
-    def __init__(self, speech, frame_step, frame_length, utterance_extractor=None, interpolate = False):
+    def __init__(self, speech, frame_step, frame_length, utterance_extractor=None, interpolate=False):
         self.speech = speech
         self.frame_step = frame_step
         self.frame_length = frame_length
@@ -20,9 +22,8 @@ class Calculator(object):
         self.interpolate = interpolate
 
     # Calculates timeline for feature
-    # Returns T, Y, mu two equally sized numpy arrays where
-    # T[i] contains the time where frame were selected
-    # Y[i] contains the average of feature for that frame
+    # Returns s, mu where
+    # s is a pd.Series containing the time series
     # mu is the mean estimator (don't confuse it with sample mean)
     def calculate(self, feature, interval=None):
         if interval is None:
@@ -48,7 +49,9 @@ class Calculator(object):
         if self.interpolate:
             interpolate(averages)
 
-        return np.array(T, dtype=float), np.array(averages, dtype=float), total_average
+        series = pd.Series(np.array(averages, dtype=float), index=np.array(T, dtype=float))
+
+        return series, total_average
 
 
     def get_average(self, interval, feature):
