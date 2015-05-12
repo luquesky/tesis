@@ -27,13 +27,13 @@ class Calculator(object):
     # mu is the mean estimator (don't confuse it with sample mean)
     def calculate(self, feature, interval=None):
         if interval is None:
-            interval = Interval(0, self.speech.length)
+            interval = self.speech.interval
 
         current_step = interval.inf + self.frame_step
         T = []
         averages = []
 
-        total_average = self.get_average(interval, feature)
+        mu = self.get_average(interval, feature)
 
         while interval.contains(current_step):
             frame = get_frame_for(length=self.frame_length, middle=current_step)
@@ -42,7 +42,7 @@ class Calculator(object):
             log_frame(frame)
 
             average = self.get_average(frame, feature)
-            averages.append(average/total_average)
+            averages.append(average-mu)
             current_step += self.frame_step
 
         # For zero-values (for instance, those in which speaker does not has an utterance) let's interpolate values
@@ -51,12 +51,13 @@ class Calculator(object):
 
         series = pd.Series(np.array(averages, dtype=float), index=np.array(T, dtype=float))
 
-        return series, total_average
+        return series, mu
 
     def get_average(self, interval, feature):
         # To calculate the total average, let's find first the matching intervals...
         matching_intervals = self.utterance_extractor(self.speech, interval)
         return self.__tama_sum(matching_intervals, feature)
+
 
     # Calculate the tama average for the feature, for given intervals
     # Remember that is an weighted average, where the weight of each interval is their ratio of length (against frame)

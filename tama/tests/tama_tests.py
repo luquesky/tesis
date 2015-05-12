@@ -14,17 +14,16 @@ class TamaTest(TestCase):
     def test_tama_returns_the_right_number_of_frames(self):
         speech = SpeechBuilder("tama/tests/data/test.wav", interval=Interval(0, 30)).speech
 
-        series, mean = tama(speech, "F0_MEAN", frame_step=2, frame_length=4, interpolate=False, interval=None)
+        series, mean = tama(speech, "F0_MEAN", frame_step=3, frame_length=4)
 
         self.assertEqual(len(series), 10)
 
     def test_tama_return_correct_t(self):
         speech = SpeechBuilder("tama/tests/data/test.wav", interval=Interval(0, 30)).speech
 
-        series, mean = tama(speech, "F0_MEAN", frame_step=3, frame_length=4, interpolate=False, interval=None)
+        series, mean = tama(speech, "F0_MEAN", frame_step=3, frame_length=4)
 
-
-        self.assertTrue((series.index == [3.0, 6.0, 9.0, 12.0, 15.0, 18.0]).all())
+        self.assertTrue((series.index == [3.0, 6.0, 9.0, 12.0, 15.0, 18.0, 21.0, 24.0, 27.0, 30.0]).all())
 
     def test_tama_works_for_a_specified_interval(self):
         speech = SpeechBuilder("tama/tests/data/test.wav", interval=Interval(0, 30)).speech
