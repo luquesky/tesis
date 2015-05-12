@@ -11,7 +11,8 @@ class SpeechTest(TestCase):
             WordInterval(0, 14, "#"),
             WordInterval(14, 14.5, "hi")
         ])
-        self.assertEqual(speech.length, 14.5)
+
+        self.assertAlmostEqual(speech.length, 15.0)
 
     def test_getting_features_for_an_interval_should_ask_feature_extractor_for_it(self):
         mock_extractor = MagicMock(spec=["extract_features"])
@@ -26,6 +27,12 @@ class SpeechTest(TestCase):
         speech.get_features(interval)
 
         mock_extractor.extract_features.assert_called_with(interval)
+
+    def test_it_sets_its_interval(self):
+        interval = Interval(0, 15)
+        speech = Speech(path_to_wav="", interval=interval,word_intervals=[])
+
+        self.assertEqual(speech.interval, interval)
 
 
     def test_is_speaking_returns_false_when_silent_interval(self):
