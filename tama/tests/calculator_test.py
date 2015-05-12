@@ -54,3 +54,4 @@ class CalculatorTest(TestCase):
         average = calculator.get_average(interval=Interval(0, 3), feature="F0_MEAN")
 
         self.assertAlmostEqual(average, 1.0)
+
