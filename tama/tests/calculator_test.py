@@ -55,3 +55,14 @@ class CalculatorTest(TestCase):
 
         self.assertAlmostEqual(average, 1.0)
 
+class StandardDeviationTest(TestCase):
+    def test_it_calculates_the_right_deviation(self):
+        speech = Mock()
+        speech.get_features.side_effect = [{"F0_MEAN": 2}, {"F0_MEAN": 1}]
+        utterance_extractor = Mock(return_value=[Interval(0,0.5), Interval(2, 3)])
+
+        calculator = Calculator(speech, utterance_extractor=utterance_extractor, frame_step=10, frame_length=20)
+        deviation = calculator.get_standard_deviation(feature="F0_MEAN")
+
+        self.assertAlmostEqual(deviation, math.sqrt(2))
+
