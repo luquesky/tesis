@@ -1,4 +1,5 @@
 #! coding:utf-8
+import numpy as np
 from mock import MagicMock
 from sympy import Interval
 from unittest import TestCase
@@ -28,11 +29,43 @@ class SpeechTest(TestCase):
 
         mock_extractor.extract_features.assert_called_with(interval)
 
+    def test_get_feature_for_a_not_existent_variable_returns_nan(self):
+        extractor = MagicMock()
+        extractor.extract_features.return_value = {}
+
+        speech = Speech(path_to_wav="", interval=Interval(0, 15), feature_extractor=extractor, word_intervals=[])
+
+        feature = speech.get_feature("F0_MEAN", interval=(0, 15))
+        self.assertTrue(np.isnan(feature))
+
+
+    def test_get_feature_for_a_nan_variable_returns_nan(self):
+        extractor = MagicMock()
+        extractor.extract_features.return_value = {"F0_MEAN": np.nan}
+
+        speech = Speech(path_to_wav="", interval=Interval(0, 15), feature_extractor=extractor, word_intervals=[])
+
+        feature = speech.get_feature("F0_MEAN", interval=(0, 15))
+        self.assertTrue(np.isnan(feature))
+
+    def test_get_feature_for_a_valid_value_returns_it(self):
+        extractor = MagicMock()
+        extractor.extract_features.return_value = {"F0_MEAN": 1.0}
+
+        speech = Speech(path_to_wav="", interval=Interval(0, 15), feature_extractor=extractor, word_intervals=[])
+
+        feature = speech.get_feature("F0_MEAN", interval=(0, 15))
+
+        self.assertAlmostEqual(feature, 1.0)
+
+
     def test_it_sets_its_interval(self):
         interval = Interval(0, 15)
         speech = Speech(path_to_wav="", interval=interval,word_intervals=[])
 
         self.assertEqual(speech.interval, interval)
+
+
 
 
     def test_is_speaking_returns_false_when_silent_interval(self):

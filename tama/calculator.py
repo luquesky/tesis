@@ -35,6 +35,8 @@ class Calculator(object):
 
         mu = self.get_average(interval, feature)
 
+        # A frame is the time span which is taken into account when calculating the value for the time series in the current point
+
         while interval.contains(current_step):
             frame = get_frame_for(length=self.frame_length, middle=current_step)
 
@@ -58,14 +60,20 @@ class Calculator(object):
         matching_intervals = self.utterance_extractor(self.speech, interval)
         return self.__tama_sum(matching_intervals, feature)
 
+    def get_standard_deviation(self, feature, frame=None):
+        if not frame:
+            frame = self.speech.interval
 
-    # Calculate the tama average for the feature, for given intervals
-    # Remember that is an weighted average, where the weight of each interval is their ratio of length (against frame)
-    # OBS: There might be some intervals chopped off the frame, as they might be very tiny
-    def __tama_sum(self, intervals, feature):
-        sum_of_lengths = .0
-        average = 0
-        for interval in intervals:
+        matching_utterances = self.utterance_extractor(self.speech, frame)
+
+        variance = 0.0
+
+        # Sum of lengths of all utterances
+        D = sum(utterance.measure for utterance in matching_utterances)
+
+        for utterance in matching_utterances:
+            w = utterance.measure
+
             features = self.speech.get_features(interval)
 
             if not features.has_key(feature) or math.isnan(features[feature]):
@@ -74,10 +82,25 @@ class Calculator(object):
                 logger.debug("Feature %s is nan in %s" % (feature,interval))
                 continue
 
-            sum_of_lengths += interval.measure
-            average += features[feature] * interval.measure
 
-            log_features(interval, features)
+        return 0
+
+    # Calculate the tama average for the feature, for given intervals
+    # Remember that is an weighted average, where the weight of each interval is their ratio of length (against frame)
+    # OBS: There might be some intervals chopped off the frame, as they might be very tiny
+    def __tama_sum(self, intervals, feature):
+        sum_of_lengths = .0
+        average = 0
+        for interval in intervals:
+            f = self.speech.get_feature(feature, interval)
+            if math.isnan(f):
+                # Ignore this interval
+                self.undefined_features = True
+                logger.debug("Feature %s is nan in %s" % (feature,interval))
+                continue
+
+            sum_of_lengths += interval.measure
+            average += f * interval.measure
 
         if sum_of_lengths > 0:
             average = average / sum_of_lengths

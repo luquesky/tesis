@@ -1,4 +1,5 @@
 #! coding:utf-8
+import numpy as np
 from bisect import bisect_left
 from helpers import build_utterances
 
@@ -17,6 +18,14 @@ class Speech(object):
 
     def get_features(self, interval):
         return self.feature_extractor.extract_features(interval)
+
+    def get_feature(self, feature, interval):
+        features = self.get_features(interval)
+
+        if not features.has_key(feature):
+            return np.nan
+        else:
+            return features[feature]
 
     def is_speaking_at(self, time):
         index = bisect_left(self.supremes, time)

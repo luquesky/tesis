@@ -46,7 +46,7 @@ class CalculatorTest(TestCase):
     ## TODO: Refactor this...it's plainly horrible
     def test_it_calculates_the_right_average(self):
         speech = Mock()
-        speech.get_features.side_effect = [{"F0_MEAN":0.5}, {"F0_MEAN":1.25}]
+        speech.get_feature.side_effect = [0.5, 1.25]
         utterance_extractor = Mock(return_value=[Interval(0,1), Interval(2, 4)])
         calculator = Calculator(speech, utterance_extractor=utterance_extractor, frame_step=10, frame_length=20)
 
@@ -62,7 +62,7 @@ class StandardDeviationTest(TestCase):
         utterance_extractor = Mock(return_value=[Interval(0,0.5), Interval(2, 3)])
 
         calculator = Calculator(speech, utterance_extractor=utterance_extractor, frame_step=10, frame_length=20)
-        deviation = calculator.get_standard_deviation(feature="F0_MEAN")
+        deviation = calculator.get_standard_deviation(feature="F0_MEAN",)
 
         self.assertAlmostEqual(deviation, math.sqrt(2))
 

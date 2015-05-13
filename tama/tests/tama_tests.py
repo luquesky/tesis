@@ -31,3 +31,4 @@ class TamaTest(TestCase):
         series, mean = tama(speech, "F0_MEAN", frame_step=3, frame_length=4, interpolate=False, interval=Interval(13, 20))
 
         self.assertTrue((series.index == [16.0, 19.0]).all())
+
