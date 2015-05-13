@@ -4,7 +4,7 @@ from unittest import TestCase
 from mock import Mock
 from sympy import Interval
 from speech import SpeechBuilder
-from tama import tama
+from tama import tama, tama_standard_error
 
 
 class TamaTest(TestCase):
@@ -32,3 +32,11 @@ class TamaTest(TestCase):
 
         self.assertTrue((series.index == [16.0, 19.0]).all())
 
+
+class StandardErrorTest(TestCase):
+    def test_it_calculates_the_right_deviation(self):
+        speech = SpeechBuilder("tama/tests/data/test.wav", interval=Interval(0, 30)).speech
+
+        deviation = tama_standard_error(speech, "F0_MEAN", frame_step=3, frame_length=4)
+
+        self.assertTrue(deviation > .0)

@@ -57,8 +57,20 @@ def tama_mean(speech, feature, frame_step=10, frame_length=20, interval=None, in
     calculator = Calculator(speech,
         frame_step=frame_step,
         frame_length=frame_length,
-        utterance_extractor=hybrid_intersecting_utterances,
+        utterance_extractor=intersecting_utterances,
         interpolate=interpolate
     )
 
     return calculator.get_average(interval, feature)
+
+
+def tama_standard_error(speech, feature, frame_step=10, frame_length=20, interpolate=False):
+    calculator = Calculator(speech,
+        frame_step=frame_step,
+        frame_length=frame_length,
+        utterance_extractor=intersecting_utterances,
+        interpolate=interpolate
+    )
+    prefix = feature.split("_")[0]
+    stdv_feature = prefix + "_STDV"
+    return calculator.get_standard_deviation(stdv_feature)

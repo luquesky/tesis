@@ -65,6 +65,7 @@ class Calculator(object):
     def get_standard_deviation(self, feature, frame=None):
         if not frame:
             frame = self.speech.interval
+
         matching_utterances = self.utterance_extractor(self.speech, frame)
 
         variance = 0.0
