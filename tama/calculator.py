@@ -1,9 +1,9 @@
 #! coding:utf-8
 from __future__ import division
 import logging
+import math
 import numpy as np
 import pandas as pd
-import math
 from sympy import Interval
 from helpers import interpolate, hybrid_intersecting_utterances
 
@@ -60,10 +60,11 @@ class Calculator(object):
         matching_intervals = self.utterance_extractor(self.speech, interval)
         return self.__tama_sum(matching_intervals, feature)
 
+    # Calculates the standard error estimation
+    # feature: A feature that calculates the S.E of a frame
     def get_standard_deviation(self, feature, frame=None):
         if not frame:
             frame = self.speech.interval
-
         matching_utterances = self.utterance_extractor(self.speech, frame)
 
         variance = 0.0
@@ -72,18 +73,17 @@ class Calculator(object):
         D = sum(utterance.measure for utterance in matching_utterances)
 
         for utterance in matching_utterances:
-            w = utterance.measure
+            w = utterance.measure / D
+            # Here, we are supposed to be receiving a
+            f = self.get_feature(feature, utterance)
 
-            features = self.speech.get_features(interval)
-
-            if not features.has_key(feature) or math.isnan(features[feature]):
+            if math.isnan(f):
                 # Ignore this interval
-                self.undefined_features = True
-                logger.debug("Feature %s is nan in %s" % (feature,interval))
                 continue
 
+            variance += (w ** 2) * (f ** 2)
 
-        return 0
+        return math.sqrt(variance)
 
     # Calculate the tama average for the feature, for given intervals
     # Remember that is an weighted average, where the weight of each interval is their ratio of length (against frame)
@@ -92,11 +92,10 @@ class Calculator(object):
         sum_of_lengths = .0
         average = 0
         for interval in intervals:
-            f = self.speech.get_feature(feature, interval)
+            f = self.get_feature(feature, interval)
+
             if math.isnan(f):
                 # Ignore this interval
-                self.undefined_features = True
-                logger.debug("Feature %s is nan in %s" % (feature,interval))
                 continue
 
             sum_of_lengths += interval.measure
@@ -108,7 +107,14 @@ class Calculator(object):
             average = np.nan
         return average
 
+    def get_feature(self, feature, interval):
+        f = self.speech.get_feature(feature, interval)
 
+        if math.isnan(f):
+            # Ignore this interval
+            self.undefined_features = True
+            logger.debug("Feature %s is nan in %s" % (feature,interval))
+        return f
 
 
 def get_frame_for(length, middle):
