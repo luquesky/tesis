@@ -44,7 +44,7 @@ class Calculator(object):
             log_frame(frame)
 
             average = self.get_average(frame, feature)
-            averages.append(average-mu)
+            averages.append(average)
             current_step += self.frame_step
 
         # For zero-values (for instance, those in which speaker does not has an utterance) let's interpolate values
