@@ -24,16 +24,19 @@ class SessionBuilder(object):
         tasks = []
         with open(self.path_to_tasks) as tasks_file:
             rows = csv.reader(tasks_file, delimiter=" ")
+            index = 0
             for row in rows:
+
                 begin = float(row[0])
                 end = float(row[1])
                 interval = Interval(begin, end)
                 description = row[2]
 
-                speechA, speechB = self.__build_speechs(interval)
-
                 if re.match(r'Images.*', description):
-                    task = Task(interval, speechA=speechA, speechB=speechB, description=description)
+                    index += 1
+                    name = "Task %s" % str(index).zfill(2)
+                    speechA, speechB = self.__build_speechs(interval)
+                    task = Task(interval, speechA=speechA, speechB=speechB, description=description, name=name)
                     tasks.append(task)
         return tasks
 

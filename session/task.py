@@ -5,10 +5,11 @@
 class Task(object):
     SILENCE_WORD = '#'
 
-    def __init__(self, interval, speechA, speechB, description):
+    def __init__(self, interval, speechA, speechB, name="", description=""):
         self.description = description
         self.speechA = speechA
         self.speechB = speechB
+        self.name = name
         self.interval = interval
 
     @property
