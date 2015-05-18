@@ -1,4 +1,5 @@
 #! coding:utf-8
+import pandas as pd
 from math import sqrt
 from scipy.stats.stats import ss
 
@@ -34,6 +35,8 @@ def interval_distance(int1, int2):
 # To wrap up, if l > 0, and we have a good value (~1), it means that Y influences X. If l < 0, X influences Y. If l = 0, then we have feedback
 
 # (see Kousidis et al[2009])
+
+
 def cross_correlation(X, Y, lag):
     xm = X.mean()
     ym = Y.mean()
@@ -50,6 +53,9 @@ def cross_correlation(X, Y, lag):
         xprod = X[lag:] - xm
         yprod = Y[:-lag] - ym
 
-    num = sum(xprod * yprod)
-    denom = sqrt(ss(X - xm) * ss(Y-ym))
+    # Here we use values to ignore the indices
+    # .. and create a new Series to sum ignoring
+    num = pd.Series(xprod.values * yprod.values).sum()
+    denom = sqrt(((X - xm) ** 2).sum() * ((Y - ym) ** 2).sum())
+
     return num / denom

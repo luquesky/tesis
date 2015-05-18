@@ -1,5 +1,6 @@
 #! coding:utf-8
 import numpy as np
+import pandas as pd
 from unittest import TestCase
 from sympy import Interval
 from . import autocorrelation_coefficient, interval_distance, cross_correlation
@@ -28,13 +29,19 @@ class IntervalDistanceTest(TestCase):
 
 class CrossCorrelationTest(TestCase):
     def test_for_positive_lag(self):
-        x = np.array([1.0, 2.0, 3.0], dtype=float)
-        y = np.array([2, 0, 4], dtype=float)
+        x = pd.Series([1.0, 2.0, 3.0], dtype=float)
+        y = pd.Series([2, 0, 4], dtype=float)
 
         self.assertAlmostEqual(cross_correlation(x, y, lag=1), -0.5)
 
     def test_for_negative_lag(self):
-        x = np.array([1.0, 2.0, 3.0], dtype=float)
-        y = np.array([2, 0, 4], dtype=float)
+        x = pd.Series([1.0, 2.0, 3.0], dtype=float)
+        y = pd.Series([2, 0, 4], dtype=float)
 
         self.assertAlmostEqual(cross_correlation(x, y, lag=-1), 0.5)
+
+    def test_works_with_nans(self):
+        x = pd.Series([1, 2, np.nan, 3])
+        y = pd.Series([2, 0, 3, 1])
+
+        self.assertTrue(not np.isnan(cross_correlation(x, y, lag=1)))
