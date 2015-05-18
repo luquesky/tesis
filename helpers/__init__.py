@@ -50,12 +50,12 @@ def cross_correlation(X, Y, lag):
         # Here we take...
         # x_lag, x_{lag+1}, ..., x_n and
         # y_1, y_2, ... y_lag
-        xprod = X[lag:] - xm
-        yprod = Y[:-lag] - ym
+        xprod = X.values[lag:] - xm
+        yprod = Y.values[:-lag] - ym
 
     # Here we use values to ignore the indices
     # .. and create a new Series to sum ignoring
-    num = pd.Series(xprod.values * yprod.values).sum()
+    num = pd.Series(xprod * yprod).sum()
     denom = sqrt(((X - xm) ** 2).sum() * ((Y - ym) ** 2).sum())
 
     return num / denom
