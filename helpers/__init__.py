@@ -59,3 +59,11 @@ def cross_correlation(X, Y, lag):
     denom = sqrt(((X - xm) ** 2).sum() * ((Y - ym) ** 2).sum())
 
     return num / denom
+
+
+def cross_correlogram(X, Y, lags=None):
+    if not lags:
+        lags = range(-6, 7)
+
+    return pd.Series({lag:cross_correlation(X, Y, lag) for lag in lags})
+
