@@ -62,20 +62,28 @@ def cross_correlation(X, Y, lag):
 
 
 def cross_correlogram(X, Y, lags=None):
+    n = len(X)
+
     if not lags:
-        lags = range(-6, 7)
+        lags = range(-n/2, n/2 + 1)
 
     return pd.Series({lag:cross_correlation(X, Y, lag) for lag in lags})
 
 
-# Returns E_XY, where this is the maximum correlation in the negative side of the X-Y correlogram
-# According to the cross-correlation definition, that means the best correlation with X, moving Y
+# Returns l_XY, E_XY, l_YX, E_YX where
+#  - E_XY is the maximum correlation in the negative side of the X-Y correlogram
+#  - L_XY is the lag where E_XY occurs
+#  - E_YX is the maximum correlation in the positive side of the X-Y correlogram
+#  - L_YX is the lag where E_YX occurs
 def entrainment(X, Y, lags=None):
-    n = len(X)
-    if not lags:
-        lags = range(-n/2, 1)
-    assert(all(l <= 0 for l in lags))
     assert(len(X) == len(Y))
+    n = len(X)
+
+    if not lags:
+        lags = range(-n/2, n/2 + 1)
 
     correlations = cross_correlogram(X, Y, lags=lags)
-    return correlations.max()
+    l_xy = correlations[correlations.index <= 0].abs().idxmax()
+    l_yx = correlations[correlations.index >= 0].abs().idxmax()
+
+    return l_xy, correlations[l_xy], l_yx, correlations[l_yx]
