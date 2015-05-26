@@ -40,6 +40,10 @@ def tama(speech, feature, frame_step=10, frame_length=20, interpolate=False, int
 
     return calculator.calculate(feature, interval=interval)
 
+def normalized_tama(speech, feature, frame_step=10, frame_length=20, interpolate=False, interval=None):
+    T, mean = tama(speech, feature, frame_step, frame_length, interpolate=interpolate, interval=interval)
+
+    return pd.Series((T - mean) / T.std(), dtype=float)
 
 def hybrid_tama(speech, feature, frame_step=10, frame_length=20, interpolate=False, interval=None):
     calculator = Calculator(
