@@ -8,6 +8,7 @@ from speech import Speech
 
 DATA_DIR = "speech/tests/integration/data"
 
+
 class SpeechBuilder(object):
     def __init__(self, path_to_file, interval, feature_extractor=None):
         self.path_to_wav = os.path.abspath(path_to_file)
@@ -45,13 +46,7 @@ class SpeechBuilder(object):
         syllabe_extractor = self.build_syllabe_extractor()
         phoneme_extractor = self.build_phoneme_extractor()
 
-        return CachedExtractor(CompositeExtractor(
-                extractor1,
-                extractor2,
-                syllabe_extractor,
-                phoneme_extractor
-            )
-        )
+        return CachedExtractor(extractor1)
 
     @property
     def speech(self):

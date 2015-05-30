@@ -8,8 +8,8 @@ import subprocess
 
 logger = logging.getLogger('main')
 
-class ScriptExtractor(object):
 
+class ScriptExtractor(object):
     # All paths should be absolute...praat
     def __init__(self, path_to_script, path_to_praat, path_to_wav):
         self.path_to_script = path_to_script
@@ -31,7 +31,7 @@ class ScriptExtractor(object):
     def __convert_to_dict(self, command_output):
         ret = [line.split(':') for line in command_output.splitlines()]
 
-        return dict([(k.upper(), self.__convert_to_float(v)) for (k,v) in ret])
+        return {k.upper():self.__convert_to_float(v) for (k,v) in ret}
 
     def __convert_to_float(self, value):
         try:
