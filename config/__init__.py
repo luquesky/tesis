@@ -15,7 +15,7 @@ def init_logging():
     logger.addHandler(fh)
     logger.addHandler(ch)
 
-
-TASK_LENGTH_THRESHOLD = 100
-
 init_logging()
+
+TASK_LENGTH_THRESHOLD = 40
+
