@@ -10,6 +10,7 @@ def autocorrelation_coefficient(X, lag):
     denom = ss(X - xm)
     return num / denom
 
+
 def interval_distance(int1, int2):
     intersect = int1.closure.intersect(int2.closure)
 
@@ -87,3 +88,5 @@ def entrainment(X, Y, lags=None):
     l_yx = correlations[correlations.index >= 0].abs().idxmax()
 
     return l_xy, correlations[l_xy], l_yx, correlations[l_yx]
+
+
