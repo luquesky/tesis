@@ -1,5 +1,6 @@
 #! coding: utf-8
 from __future__ import division
+import config
 import pandas as pd
 from calculator import Calculator
 from helpers import intersecting_utterances, hybrid_intersecting_utterances
@@ -8,7 +9,7 @@ import logging
 logger = logging.getLogger('main')
 
 
-def tama(speech, feature, frame_step=10, frame_length=20, interpolate=False, interval=None):
+def tama(speech, feature, frame_step=None, frame_length=None, interpolate=False, interval=None):
     """
     Given a speech, it returns the time aligned moving average (tama) for the feature.
 
@@ -19,7 +20,7 @@ def tama(speech, feature, frame_step=10, frame_length=20, interpolate=False, int
         An object responding to utterances and length properties
 
     feature: string
-        Any of the following features:
+        Any of the features that could be returned by speech.get_features()
 
     Returns
     -------
@@ -31,6 +32,10 @@ def tama(speech, feature, frame_step=10, frame_length=20, interpolate=False, int
     The result of applying TAMA on the selected feature for the current interval
 
     """
+
+    frame_step = frame_step or config.SERIES_FRAME_STEP
+    frame_length = frame_length or config.SERIES_FRAME_LENGTH
+
     calculator = Calculator(
         speech,
         frame_step=frame_step,
@@ -41,10 +46,12 @@ def tama(speech, feature, frame_step=10, frame_length=20, interpolate=False, int
 
     return calculator.calculate(feature, interval=interval)
 
-def normalized_tama(speech, feature, frame_step=10, frame_length=20, interpolate=False, interval=None):
-    T, mean = tama(speech, feature, frame_step, frame_length, interpolate=interpolate, interval=interval)
+
+def normalized_tama(speech, feature, frame_step=None, frame_length=None, interpolate=False, interval=None):
+    T, mean = tama(speech, feature, frame_step=frame_step, frame_length=frame_length, interpolate=interpolate, interval=interval)
 
     return pd.Series((T - mean) / T.std(), dtype=float)
+
 
 def hybrid_tama(speech, feature, frame_step=10, frame_length=20, interpolate=False, interval=None):
     calculator = Calculator(
@@ -56,6 +63,7 @@ def hybrid_tama(speech, feature, frame_step=10, frame_length=20, interpolate=Fal
     )
 
     return calculator.calculate(feature, interval=interval)
+
 
 # Calculates weighted mean in a speech of a feature
 def tama_mean(speech, feature, frame_step=10, frame_length=20, interval=None, interpolate=False):
