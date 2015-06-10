@@ -18,4 +18,4 @@ def init_logging():
 init_logging()
 
 TASK_LENGTH_THRESHOLD = 40
-
+SERIES_LENGTH_THRESHOLD = 5
