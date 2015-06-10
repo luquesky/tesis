@@ -1,7 +1,10 @@
 #! coding:utf-8
 import pandas as pd
+import numpy as np
 from math import sqrt
 from scipy.stats.stats import ss
+import config
+
 
 # Calculates autocorrelation coefficient for X taking lag = k
 def autocorrelation_coefficient(X, lag):
@@ -34,16 +37,22 @@ def interval_distance(int1, int2):
 # if lag == 0, it is the same as the correlation
 #
 # To wrap up, if l > 0, and we have a good value (~1), it means that Y influences X. If l < 0, X influences Y. If l = 0, then we have feedback
-
+#
 # (see Kousidis et al[2009])
+# -----------
+# Parameters
+# X, Y : Time Series
+# lag: lag corresponding to the description above
+# min_threshold: Number of points required to calculate the cross-correlation. If shifted-series have less points than this, it returns np.nan
 
 
-def cross_correlation(X, Y, lag):
+def cross_correlation(X, Y, lag, min_threshold=None):
+    min_threshold = min_threshold or config.CORRELATION_LENGTH_THRESHOLD
     xm = X.mean()
     ym = Y.mean()
 
     if lag < 0:
-        return cross_correlation(Y, X, -lag)
+        return cross_correlation(Y, X, -lag, min_threshold=min_threshold)
     elif lag == 0:
         xprod = X - xm
         yprod = Y - ym
@@ -53,6 +62,14 @@ def cross_correlation(X, Y, lag):
         # y_1, y_2, ... y_lag
         xprod = X.values[lag:] - xm
         yprod = Y.values[:-lag] - ym
+
+    def count_not_nan(arr):
+        return (~np.isnan(arr)).sum()
+
+    # If less than min_threshold...
+
+    if count_not_nan(xprod) < min_threshold or count_not_nan(yprod) < min_threshold:
+        return np.nan
 
     # Here we use values to ignore the indices
     # .. and create a new Series to sum ignoring
