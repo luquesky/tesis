@@ -4,7 +4,6 @@ import math
 import numpy as np
 from operator import itemgetter
 from tama import hybrid_tama
-from helpers import cross_correlation
 
 logger = logging.getLogger('main')
 
