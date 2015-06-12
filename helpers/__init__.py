@@ -23,6 +23,7 @@ def plot_correlograms(A, B, feature, ax=None):
     sp = cross_correlations.plot(style="bo", ax=ax)
     sp.set_xlabel("Lag")
     sp.set_ylabel("Correlation")
+    sp.set_ylim([-1, 1])
 
     confidence_value = 2 / np.sqrt(n)
     # Draw confidence interval
