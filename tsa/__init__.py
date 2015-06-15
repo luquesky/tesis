@@ -6,13 +6,6 @@ from scipy.stats.stats import ss
 import config
 
 
-# Calculates autocorrelation coefficient for X taking lag = k
-def autocorrelation_coefficient(X, lag):
-    xm = X.mean()
-    num = sum((X[lag:] - xm) * (X[:-lag] - xm))
-    denom = ss(X - xm)
-    return num / denom
-
 
 # Computes the cross correlation for X, Y, and lag
 # Cross correlation is defined with the very same formula as the correlation
@@ -98,3 +91,23 @@ def entrainment(X, Y, lags=None):
     return l_xy, correlations[l_xy], l_yx, correlations[l_yx]
 
 
+# Calculates autocorrelation coefficient for X taking lag = k
+def autocorrelation(X, lag):
+    if lag == 0:
+        return 1.0
+
+    xm = X.mean()
+
+    num = pd.Series((X.values[lag:] - xm) * (X.values[:-lag] - xm)).sum()
+    denom = pd.Series((X - xm)**2).sum()
+
+    return num / denom
+
+
+def autocorrelogram(X, lags=None):
+    n = len(X)
+
+    if not lags:
+        lags = range(n/2 + 1)
+
+    return pd.Series({lag: autocorrelation(X, lag) for lag in lags})

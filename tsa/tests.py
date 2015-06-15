@@ -2,14 +2,19 @@
 import numpy as np
 import pandas as pd
 from unittest import TestCase
-from sympy import Interval
-from . import autocorrelation_coefficient, cross_correlation
+from . import autocorrelation, cross_correlation
+
 
 class AutocorrelationCoefficientTest(TestCase):
     def test_it_works(self):
-        x = np.array([1.0, 2.0, 3.0, 4.0], dtype=float)
+        x = pd.Series([1.0, 2.0, 3.0, 4.0], dtype=float)
 
-        self.assertAlmostEqual(autocorrelation_coefficient(x, lag=1), 0.25)
+        self.assertAlmostEqual(autocorrelation(x, lag=1), 0.25)
+
+    def test_it_should_return_one_for_lag_zero(self):
+        X = pd.Series([1, 2, 3, 4, 5], index=range(10, 15))
+
+        self.assertAlmostEqual(autocorrelation(X, 0), 1.0)
 
 
 class CrossCorrelationTest(TestCase):
