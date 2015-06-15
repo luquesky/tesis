@@ -42,15 +42,15 @@ def plot_correlograms(A, B, feature, ax=None):
 
 def plot_autocorrelations(A, B, ax=None):
     n = len(A)
-    lag_limit = min(10, n/2 + 1)
+    lag_limit = min(10, n/4 + 1)
     lags = range(lag_limit+1)
 
     autocorrA = autocorrelogram(A, lags)
     autocorrB = autocorrelogram(B, lags)
 
-    autocorrA.plot(style="ro", ax=ax)
+    autocorrA.plot(style="ro-", ax=ax)
 
-    sp = autocorrB.plot(style="bo", ax=ax)
+    sp = autocorrB.plot(style="bo-", ax=ax)
     sp.set_xlabel("Lag")
     sp.set_ylabel("Autocorrelation")
     sp.set_title("Autocorrelogram")
