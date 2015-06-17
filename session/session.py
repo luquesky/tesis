@@ -3,7 +3,6 @@ import logging
 import math
 import numpy as np
 from operator import itemgetter
-from tama import hybrid_tama
 
 logger = logging.getLogger('main')
 
