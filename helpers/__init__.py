@@ -40,17 +40,19 @@ def plot_correlograms(A, B, feature, ax=None):
     pd.Series({l_AB: E_AB, l_BA: E_BA}).plot(style="ro", ax=ax)
 
 
-def plot_autocorrelations(A, B, ax=None):
+def plot_autocorrelations(A, B=None, ax=None):
     n = len(A)
     lag_limit = min(10, n/4 + 1)
     lags = range(lag_limit+1)
 
     autocorrA = autocorrelogram(A, lags)
-    autocorrB = autocorrelogram(B, lags)
+    sp = autocorrA.plot(style="o-", ax=ax)
 
-    autocorrA.plot(style="ro-", ax=ax)
 
-    sp = autocorrB.plot(style="bo-", ax=ax)
+    if B is not None:
+        autocorrB = autocorrelogram(B, lags)
+        autocorrB.plot(style="o-", ax=ax)
+
     sp.set_xlabel("Lag")
     sp.set_ylabel("Autocorrelation")
     sp.set_title("Autocorrelogram")

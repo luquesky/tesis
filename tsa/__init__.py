@@ -111,3 +111,17 @@ def autocorrelogram(X, lags=None):
         lags = range(n/2 + 1)
 
     return pd.Series({lag: autocorrelation(X, lag) for lag in lags})
+
+
+def autoregressive(Z, *alphas):
+    X = pd.Series(index=range(len(Z)))
+    for i in X.index:
+        X[i] = Z[i]
+
+        for j, alpha in enumerate(alphas):
+            index = i - (j+1)
+
+            if index > 0:
+                X[i] = alpha * X[index] + Z[i]
+
+    return X
