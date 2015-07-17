@@ -15,9 +15,9 @@ def plot_tamas(A, B, feature, ax=None):
     print "B -> A = %.5f (lag = %s)" % (E_BA, l_BA)
 
 
-def plot_cross_correlogram(A, B, feature, ax=None):
+def plot_cross_correlogram(A, B, feature, ax=None, max_lag=6):
     n = len(A)
-    lag_limit = min(6, n)
+    lag_limit = min(max_lag, n)
     lags = range(-lag_limit, lag_limit+1)
 
     cross_correlations = cross_correlogram(A, B, lags)
