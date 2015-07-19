@@ -36,7 +36,7 @@ def plot_cross_correlogram(A, B, feature, ax=None, max_lag=6):
     sp.axvline(0, color="k")
     sp.axhline(0, color="k")
     # Draw max values
-    l_AB, E_AB, l_BA, E_BA = entrainment(A, B, lags=range(-6, 6))
+    l_AB, E_AB, l_BA, E_BA = entrainment(A, B, lags=lags)
     pd.Series({l_AB: E_AB, l_BA: E_BA}).plot(style="ro", ax=ax)
 
 
@@ -46,13 +46,11 @@ def plot_autocorrelations(A, B=None, ax=None):
     lags = range(lag_limit+1)
 
     autocorrA = autocorrelogram(A, lags)
-    sp = autocorrA.plot(style="o-", ax=ax)
-
-
+    autocorrB = None
     if B is not None:
         autocorrB = autocorrelogram(B, lags)
-        autocorrB.plot(style="o-", ax=ax)
 
+    sp = pd.DataFrame({'A': autocorrA, 'B': autocorrB}).plot(color=['r', 'b'], style='-o', ax=ax)
     sp.set_xlabel("Lag")
     sp.set_ylabel("Autocorrelation")
     sp.set_title("Autocorrelogram")
