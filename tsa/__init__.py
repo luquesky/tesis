@@ -125,3 +125,19 @@ def autoregressive(Z, *alphas):
                 X[i] = alpha * X[index] + Z[i]
 
     return X
+
+
+# Returns rX, rY, residuals of X and Y
+def autoregressive_prewhitening(X, Y):
+
+    estimator_alpha = autocorrelation(X, 1)
+    mu = X.mean()
+
+    def _filter(T):
+        # To sum the previous value, we have to move the series forward (and replace nans with 0!)
+        T_shift = T.shift(1).replace(np.nan, 0)
+        return (T - mu) - estimator_alpha * (T_shift - mu)
+
+    rX = _filter(X)
+    rY = _filter(Y)
+    return rX, rY
