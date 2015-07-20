@@ -9,3 +9,10 @@ class SessionBuilderTest(TestCase):
         session = builder.session
 
         self.assertEqual(len(session.tasks), 1)
+
+    def test_it_builds_with_number(self):
+        builder = SessionBuilder("data/test/session.tasks", number=3)
+
+        session = builder.session
+
+        self.assertEqual(session.number, 3)

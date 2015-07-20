@@ -8,10 +8,11 @@ logger = logging.getLogger('main')
 
 
 class Session(object):
-    def __init__(self, path_to_tasks, name, tasks):
+    def __init__(self, path_to_tasks, name, number, tasks):
         self.tasks = tasks
         self.path_to_tasks = path_to_tasks
         self.name = name
+        self.number = number
         self.tamas = {}
 
     # Analyze with tama each task of the session
