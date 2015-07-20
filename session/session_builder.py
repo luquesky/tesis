@@ -35,11 +35,19 @@ class SessionBuilder(object):
 
                 if re.match(r'Images.*', description):
                     index += 1
-                    name = "Task %s" % str(index).zfill(2)
-                    speechA, speechB = self.__build_speechs(interval)
-                    task = Task(interval, speechA=speechA, speechB=speechB, description=description, name=name)
+                    task = self.__build_task(index, description=description, interval=interval)
                     tasks.append(task)
         return tasks
+
+    def __build_task(self, task_number, description, interval):
+        name = "Task-%s" % str(task_number).zfill(2)
+        speechA, speechB = self.__build_speechs(interval)
+        return Task(interval,
+                    number=task_number,
+                    speechA=speechA,
+                    speechB=speechB,
+                    description=description,
+                    name=name)
 
     def __build_speechs(self, interval):
         filename, extension = os.path.splitext(self.path_to_tasks)
