@@ -2,6 +2,7 @@
 from unittest import TestCase
 from .. import SessionBuilder
 
+
 class SessionBuilderTest(TestCase):
     def test_it_builds_with_tasks(self):
         builder = SessionBuilder("data/test/session.tasks")

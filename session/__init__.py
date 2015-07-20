@@ -11,4 +11,4 @@ def load_session(session_number):
     num = str(session_number).zfill(2)
     name = "session-%s" % num
     tasks_path = "data/games-corpus/session_%s/s%s.objects.1.tasks" % (num, num)
-    return mapper.fetch(tasks_path, name=name)
+    return mapper.fetch(tasks_path, name=name, number=session_number)
