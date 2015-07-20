@@ -10,7 +10,7 @@ class Task(object):
         self.speechA = speechA
         self.speechB = speechB
         self.name = name
-        self.number = number
+        self.number = int(number)
         self.interval = interval
 
     @property

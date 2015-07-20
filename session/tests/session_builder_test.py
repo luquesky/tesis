@@ -5,7 +5,7 @@ from .. import SessionBuilder
 
 class SessionBuilderTest(TestCase):
     def test_it_builds_with_tasks(self):
-        builder = SessionBuilder("data/test/session.tasks")
+        builder = SessionBuilder("data/test/session.tasks", number=1)
 
         session = builder.session
 

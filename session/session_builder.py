@@ -9,9 +9,9 @@ from speech import SpeechBuilder
 
 
 class SessionBuilder(object):
-    def __init__(self, path_to_tasks, **options):
+    def __init__(self, path_to_tasks, number, **options):
         self.name = options.get('name') or path_to_tasks
-        self.number = options.get('number')
+        self.number = int(number)
         self.path_to_tasks = os.path.abspath(path_to_tasks)
 
     @property
