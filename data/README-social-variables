@@ -1,0 +1,9 @@
+MTurkData.csv
+  MTurk social variables for each <Game,Task> pair in the Objects games.
+  Game=[1..12], Task=[1..14]
+  For each <Game,Task,Variable>, the number is the number turkers (subjects)
+  that answered 'yes' to the question, out of a maximum of 5 turkers.
+
+tableByGame.csv
+  Mean value for each <Game,Variable> over all 14 tasks.
+  
