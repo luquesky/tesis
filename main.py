@@ -14,8 +14,8 @@ from speech import SpeechBuilder
 
 
 def extract_features(arguments):
-    speech = SpeechBuilder(arguments["<path_to_wav_file>"]).speech
     interval = Interval(float(arguments["<start>"]), float(arguments["<end>"]))
+    speech = SpeechBuilder(arguments["<path_to_wav_file>"], interval).speech
     print speech.get_features(interval)
 
 

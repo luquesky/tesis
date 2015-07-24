@@ -39,14 +39,14 @@ class SpeechBuilder(object):
     # This is quite ad hoc
     def build_feature_extractor(self):
         extractor1 = StandardAcousticsExtractor(self.path_to_wav)
-
         extractor2 = VoiceAnalysisExtractor(self.path_to_wav)
 
 
         syllabe_extractor = self.build_syllabe_extractor()
         phoneme_extractor = self.build_phoneme_extractor()
 
-        return CachedExtractor(extractor1)
+        composed_extractor = CompositeExtractor(extractor1, extractor2, syllabe_extractor, phoneme_extractor)
+        return CachedExtractor(composed_extractor)
 
     @property
     def speech(self):
