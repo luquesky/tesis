@@ -73,3 +73,15 @@ def interval_distance(int1, int2):
         return 0.0
     else:
         return min([abs(int2.inf - int1.sup), abs(int1.inf - int2.sup)])
+
+
+def remove_A_B_variables(df, new_vars, old_vars):
+    speaker = df['speaker']
+    for sv in new_vars:
+        try:
+            sv_A = "%s_A" % sv
+            sv_B = "%s_B" % sv
+            df[sv] = (1 - speaker) * df[sv_A] + speaker * df[sv_B]
+        except KeyError:
+            pass
+    df.drop(old_vars, axis=1, inplace=True)

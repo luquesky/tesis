@@ -1,7 +1,8 @@
 #! coding:utf-8
+import pandas as pd
 from unittest import TestCase
 from sympy import Interval
-from . import interval_distance
+from . import interval_distance, remove_A_B_variables
 
 
 class IntervalDistanceTest(TestCase):
@@ -19,3 +20,12 @@ class IntervalDistanceTest(TestCase):
         interval1 = Interval(2, 3)
         interval2 = Interval(0, 1)
         self.assertAlmostEqual(interval_distance(interval1, interval2), 1.0)
+
+
+class RemoveABVariablesTest(TestCase):
+    def test_for_empty_df_it_should_keep_columns(self):
+        df = pd.DataFrame(columns=["session", "task", "X"])
+
+        remove_A_B_variables(df, new_vars=["X"], old_vars=[])
+
+        self.assertEquals(df.columns, ["session", "task", "X"])
