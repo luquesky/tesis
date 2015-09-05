@@ -17,6 +17,8 @@ log/*.log
 # Latex stuff
 *.aux
 *.dvi
+*.cls
+*.toc
 *.tex~
 *.fls
 *.log
