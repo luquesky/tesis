@@ -24,8 +24,8 @@ class IntervalDistanceTest(TestCase):
 
 class RemoveABVariablesTest(TestCase):
     def test_for_empty_df_it_should_keep_columns(self):
-        df = pd.DataFrame(columns=["session", "task", "X"])
+        df = pd.DataFrame(columns=["session", "task", "X", "speaker"])
 
         remove_A_B_variables(df, new_vars=["X"], old_vars=[])
 
-        self.assertEquals(df.columns, ["session", "task", "X"])
+        self.assertItemsEqual(df.columns, ["session", "task", "X", "speaker"])
