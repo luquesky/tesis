@@ -1,4 +1,8 @@
-all:
-	latexmk -pdf tesis.tex
+all: tesis
+tesis:
+	cd src/ && \
+	latexmk -pdf tesis.tex $(options) && \
+	mv tesis.pdf ..
 clean:
-	latexmk -c tesis.tex
+	cd src/ && \
+	latexmk -c tesis.tex $(options)
