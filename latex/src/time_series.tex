@@ -26,3 +26,19 @@ Hay varios motivos por los cuales uno querría efectuar un análisis de una seri
 
 Si bien ésto no requiere técnicas avanzadas de análisis, es el primer paso fundamental para comprender una serie de tiempo.
 
+
+\emph{2) Explicación} Cuando analizamos dos o más series de tiempo, podemos querer ver cómo se comportan en conjunto. Una variación en una serie de tiempo puede producir un cambio en otra. Por ejemplo, podemos intentar buscar como varían en conjunto la temperatura diaria con la cantidad de mL de lluvia caídos.
+
+\emph{3) Predicción} Dada una serie de tiempo, podemos querer intentar predecir un valor futuro.
+
+\emph{4) Control} Dado un proceso del que se mide cierto parámetro de calidad, podemos querer ajustar variables de entrada para mantenerla en ciertos valores.
+
+En nuestro caso, nos es de interés 1 y 2.
+
+
+\subsection*{Definición formal}
+
+Una proceso estocástico es una colección de variables aleatorias $\{X_t \}_{t \in T}$ donde $T$ es un conjunto de puntos de tiempo. En nuestro caso, nos interesa $T = \mathbb{N}$, de manera que el proceso será de la forma $X_1, X_2, \ldots $. Podemos entender un proceso estocástico como un conjunto de variables ordenadas por el tiempo.
+
+Llamamos serie de tiempo a una observación de este proceso estocástico. Usualmente sólo tendremos esta instancia, a diferencia de otros problemas estadísticos donde tendremos muchas observaciones.
+
