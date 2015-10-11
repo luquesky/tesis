@@ -1,5 +1,7 @@
 \section{Series de Tiempo}
 
+
+
 \subsection*{Definición Informal}
 En términos informales, una serie de tiempo es un conjunto de datos recolectados secuencialmente en el tiempo. Este tipo de datos se dan en varios campos de estudio, mayormente en economía, ciencias de la atmósfera, y otras.
 
@@ -42,3 +44,30 @@ Una proceso estocástico es una colección de variables aleatorias $\{X_t \}_{t 
 
 Llamamos serie de tiempo a una observación de este proceso estocástico. Usualmente sólo tendremos esta instancia, a diferencia de otros problemas estadísticos donde tendremos muchas observaciones.
 
+\subsection*{Autocorrelación}
+
+
+\subsection{Estacionariedad}
+
+Un concepto importante en series de tiempo es el de estacionariedad. En lenguaje coloquial, una serie de tiempo estacionaria es aquella en la que no observamos cambios sistemáticos de ésta en el tiempo: si tomamos una parte de la serie, y observamos otro parte distinta de la serie, las propiedades de ésta se mantienen.
+
+Ejemplos de series de tiempo estacionarias son las de ruido blanco, y ejemplos de no estacionarias aquellas que tienen una tendencia. (mejorar esto...)
+
+Formalmente, un proceso estocástico $X_i, i \in \mathbb{N}$ es se dice fuertemente estacionario si, para todo conjunto de índices $t_1, \ldots , t_n$ y para un desplazamiento $\tau \in \mathbb{N}$ tenemos que
+
+\begin{displaymath}
+    F_{X_{t_1}, X_{t_2}, \ldots , X_{t_n} } = F_{X_{t_1} + \tau, X_{t_2} + \tau, \ldots , X_{t_n} + \tau}
+\end{displaymath}
+
+Es decir, que la función de probabilidad se preserva por traslados.
+
+Se derivan como propiedades que, para todo $X_t$ y cualquier desplazamiento $\tau$
+
+\begin{align}
+    E[X_t] &= E[X_{t + \tau}] \label{eq:1} \\
+    Var[X_t] &= VAR[X_{t + \tau}] \label{eq:2} \\
+    \gamma_{t, t+k} &= \gamma_{t+\tau, t + k + \tau } \label{eq:3}
+\end{align}
+
+Un proceso estocástico se dice débilmente estacionario si respeta las ecuaciones \ref{eq:1}, \ref{eq:2} y \ref{eq:3}
+\subsection{Análisis bivariado}
