@@ -1,6 +1,7 @@
 \section{Series de Tiempo}
 
-
+\theoremstyle{definition}
+\newtheorem{definicion}{Definición}
 
 \subsection*{Definición Informal}
 En términos informales, una serie de tiempo es un conjunto de datos recolectados secuencialmente en el tiempo. Este tipo de datos se dan en varios campos de estudio, mayormente en economía, ciencias de la atmósfera, y otras.
@@ -38,13 +39,13 @@ Si bien ésto no requiere técnicas avanzadas de análisis, es el primer paso fu
 En nuestro caso, nos es de interés 1 y 2.
 
 
-\subsection*{Definición formal}
+\subsection{Procesos estocásticos}
 
-Una proceso estocástico es una colección de variables aleatorias $\{X_t \}_{t \in T}$ donde $T$ es un conjunto de puntos de tiempo. En nuestro caso, nos interesa $T = \mathbb{N}$, de manera que el proceso será de la forma $X_1, X_2, \ldots $. Podemos entender un proceso estocástico como un conjunto de variables ordenadas por el tiempo.
+\begin{definicion}
+Una proceso estocástico es una colección de variables aleatorias $\{X_t \}_{t \in T}$ donde $T$ es un conjunto de puntos de tiempo. En nuestro caso, nos interesa $T = \mathbb{N}$, de manera que el proceso será de la forma $X_1, X_2, \ldots $
+\end{definicion}
 
-Llamamos serie de tiempo a una observación de este proceso estocástico. Usualmente sólo tendremos esta instancia, a diferencia de otros problemas estadísticos donde tendremos muchas observaciones.
-
-\subsection*{Autocorrelación}
+Podemos entender un proceso estocástico como un conjunto de variables ordenadas por el tiempo. Llamamos serie de tiempo a una observación de este proceso estocástico. Usualmente sólo tendremos esta instancia, a diferencia de otros problemas estadísticos donde tendremos muchas observaciones.
 
 
 \subsection{Estacionariedad}
@@ -53,21 +54,31 @@ Un concepto importante en series de tiempo es el de estacionariedad. En lenguaje
 
 Ejemplos de series de tiempo estacionarias son las de ruido blanco, y ejemplos de no estacionarias aquellas que tienen una tendencia. (mejorar esto...)
 
-Formalmente, un proceso estocástico $X_i, i \in \mathbb{N}$ es se dice fuertemente estacionario si, para todo conjunto de índices $t_1, \ldots , t_n$ y para un desplazamiento $\tau \in \mathbb{N}$ tenemos que
+\begin{definicion}
+Un proceso estocástico $X_i, i \in \mathbb{N}$ se dice fuertemente estacionario si, para todo conjunto de índices $t_1, \ldots , t_n$ y para un desplazamiento $\tau \in \mathbb{N}$ tenemos que
 
 \begin{displaymath}
     F_{X_{t_1}, X_{t_2}, \ldots , X_{t_n} } = F_{X_{t_1} + \tau, X_{t_2} + \tau, \ldots , X_{t_n} + \tau}
 \end{displaymath}
 
 Es decir, que la función de probabilidad se preserva por traslados.
+\end{definicion}
 
 Se derivan como propiedades que, para todo $X_t$ y cualquier desplazamiento $\tau$
 
 \begin{align}
     E[X_t] &= E[X_{t + \tau}] \label{eq:1} \\
-    Var[X_t] &= VAR[X_{t + \tau}] \label{eq:2} \\
-    \gamma_{t, t+k} &= \gamma_{t+\tau, t + k + \tau } \label{eq:3}
+    Var[X_t] &= Var[X_{t + \tau}] \label{eq:2} \\
+    Cov(X_s, X_t) &= Cov(X_{s+\tau}, X_{t + \tau}) \label{eq:3}
 \end{align}
 
-Un proceso estocástico se dice débilmente estacionario si respeta las ecuaciones \ref{eq:1}, \ref{eq:2} y \ref{eq:3}
+Las ecuaciones \ref{eq:1} y \ref{eq:2} nos dicen que tanto la media como la varianza son constantes (no dependen de $t$), y que la covarianza sólo depende de la diferencia $| s - t |$.
+
+
+\begin{definicion}
+    Un proceso se dice débilmente estacionario si cumple \ref{eq:1}, \ref{eq:2}, \ref{eq:3}
+\end{definicion}
+
+A partir de aquí, cuando hablemos de series estacionarias estaremos hablando de series débilmente estacionarias
+
 \subsection{Análisis bivariado}
