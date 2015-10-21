@@ -1,8 +1,25 @@
 \section{Descripción TAMA}
 
+Para construir la serie de tiempo de cada interlocutor, dividimos primero el diálogo en ventanas solapadas de igual tamaño \cite{KOU2008}. A la diferencia entre ventana y ventana llamaremos \emph{frame step}, y al tamaño de ventana \emph{frame length}.
+
+\begin{figure}
+\centering
+\includegraphics[width=10cm]{images/tama.png}
+\end{figure}
+
+Para cada una de estas ventanas, calcularemos la media
+
+\begin{align}
+    \mu &= \sum\limits_{i=1}^N f_i dr_i \label{eq:tama_mean}\\
+    dr_i &= \frac{d_i}{\sum\limits_{i=1}^N d_i}
+\end{align}
+
+
+
+
 \section{Selección de Ventana}
 
-En \ref{KOU2009} se menciona una elección de \emph{frame step} y \emph{frame length} de 10s y 20s respectivamente. En el caso de nuestro corpus, quisimos buscar los parámetros que mejor se ajustaban a éste, manteniendo la superposición del 50\% entre ventanas sucesivas. Con lo que nos queda que $FL = 2 * FS$
+En \cite{KOU2009} se menciona una elección de \emph{frame step} y \emph{frame length} de 10s y 20s respectivamente. En el caso de nuestro corpus, quisimos buscar los parámetros que mejor se ajustaban a éste, manteniendo la superposición del 50\% entre ventanas sucesivas. Con lo que nos queda que $FL = 2 * FS$
 
 ¿Qué queremos optimizar? La métrica que elegimos para ésto es encontrar un balance entre un frame no tan grande (para no suavizar en exceso la curva) y que nos reduzca considerablemente la cantidad de indefiniciones; es decir, aquellas ventanas que tomamos en un interlocutor que no tienen ninguna interacción de su parte. Para ver ésto, graficamos la cantidad de indefiniciones en función del step tomado.
 
