@@ -3,6 +3,7 @@
 %\documentclass[11pt,a4paper]{tesis}
 
 \usepackage{graphicx}
+\usepackage[authoryear]{natbib}
 \usepackage{amssymb}
 \usepackage{amsmath}
 \usepackage{amsthm}
@@ -41,12 +42,14 @@
 \chapter{Introducción}
 \include{introduccion}
 
+
 \chapter{Método}
 
 \include{corpus}
 \include{time_series}
 \include{tama}
-
+\include{metodo}
+\include{time_plots}
 
 \begin{itemize}
 \item Selección de Ventanas
@@ -55,5 +58,7 @@
 
 %%%% BIBLIOGRAFIA
 \backmatter
-\include{bibliography}
+\bibliographystyle{alpha}
+
+\bibliography{tesis}
 \end{document}
