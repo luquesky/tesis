@@ -1,0 +1,26 @@
+\section{Análisis Bivariado}
+
+Para medir cuánto se ``mimetizan'' las dos series, utilizaremos la función de correlación cruzada (c.c.f), que mide cuánto se parecen la serie $X$ e $Y$ aplicando un desplazamiento $k$, dándonos un valor entre $-1$ y $1$ (similar a la correlación de la estadística clásica).
+
+Podemos aproximar la c.c.f. mediante la fórmula de la correlación cruzada muestral.
+
+\begin{equation}
+  r_{AB}(k) =
+\end{equation}
+
+Para cada tarea, calculamos un correlograma cruzado para $k \in \{-6, -5, \ldots, 0, \ldots , 6\}$. Los valores de $k \geq 0$ los podemos considerar como aquellos en los cuales nos estamos fijando si $B$ se mimetiza con $A$, y aquellos $k \leq 0$ al revés. Luego, definimos
+
+\begin{align}
+  A \rightarrow B &= max \{ r_{AB}(k), k \leq 0 \} \\
+  B \rightarrow A &= max \{ r_{AB}(k), k \geq 0 \} \\
+\end{align}
+
+
+
+
+\begin{figure}
+\centering
+\includegraphics[width=15cm]{images/time_plot_with_cross_correlation.png}
+\caption{Time-plot producido por TAMA, junto a su autocorrelación y correlación cruzada\label{time_plot_with_bivariate}}
+
+\end{figure}
