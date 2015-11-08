@@ -22,11 +22,13 @@ Podemos aproximar la c.c.f. mediante la fórmula de la correlación cruzada mues
   r_{AB}(k) =
   \left\{
     \begin{array}{ll}
-      \crosscorr{X}{Y} & \mbox{si } k \geq 0 \\
-      \crosscorr{Y}{X} & \mbox{si } k \leq 0
+      \crosscorr{A}{B} & \mbox{si } k \geq 0 \\
+      \crosscorr{B}{A} & \mbox{si } k < 0
     \end{array}
   \right.
 \end{equation}
+
+Podemos ver que, si $k \geq 0$, lo que hacemos es, a grandes rasgos, calcular la correlación de Pearson entre $A_{t+k}$ e $B_t$. Si $k < 0$, lo hacemos entre $A_t$ e $B_{t+k}$.
 
 Para cada tarea, calculamos un correlograma cruzado para $k \in \{-6, -5, \ldots, 0, \ldots , 6\}$. Los valores de $k \geq 0$ los podemos considerar como aquellos en los cuales nos estamos fijando si $B$ se mimetiza con $A$, y aquellos $k \leq 0$ al revés. Luego, definimos
 
@@ -36,7 +38,7 @@ Para cada tarea, calculamos un correlograma cruzado para $k \in \{-6, -5, \ldots
 \end{align}
 
 
-
+$A \rightarrow B$ es el entrainment direccional de $A$ hacia $B$, que mide cuánto se mimetiza $B$ a $A$. (explicar un poco más ésto)
 
 \begin{figure}
 \centering
