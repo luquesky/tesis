@@ -1,11 +1,31 @@
 \section{Análisis Bivariado}
 
+\newcommand{\varnorm}[1] {
+    (#1_t - \mu_{\lowercase{#1}})
+}
+
+\newcommand{\squarederr}[1]{
+    \sum\limits_{t=1}^n \varnorm{#1}^2
+}
+
+\newcommand{\crosscorr}[2]{
+  \frac{\sum\limits_{t=|k|+1}^n \varnorm{#1} (#2_{t-|k|} - \mu_{#2})}{
+    \sqrt{\squarederr{#1} \squarederr{#2}}
+  } \\
+}
+
 Para medir cuánto se ``mimetizan'' las dos series, utilizaremos la función de correlación cruzada (c.c.f), que mide cuánto se parecen la serie $X$ e $Y$ aplicando un desplazamiento $k$, dándonos un valor entre $-1$ y $1$ (similar a la correlación de la estadística clásica).
 
 Podemos aproximar la c.c.f. mediante la fórmula de la correlación cruzada muestral.
 
 \begin{equation}
   r_{AB}(k) =
+  \left\{
+    \begin{array}{ll}
+      \crosscorr{X}{Y} & \mbox{si } k \geq 0 \\
+      \crosscorr{Y}{X} & \mbox{si } k \leq 0
+    \end{array}
+  \right.
 \end{equation}
 
 Para cada tarea, calculamos un correlograma cruzado para $k \in \{-6, -5, \ldots, 0, \ldots , 6\}$. Los valores de $k \geq 0$ los podemos considerar como aquellos en los cuales nos estamos fijando si $B$ se mimetiza con $A$, y aquellos $k \leq 0$ al revés. Luego, definimos
