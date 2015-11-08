@@ -1,1 +1,31 @@
-\section{Armado de Tabla por Tarea}
+\section{Armado de Tabla}
+
+Para condensar todos nuestros datos, armamos una tabla por cada variable a/p. Esta table contiene información definida para cada interlocutor, tarea y sesión de nuestro corpus.
+
+\begin{itemize}
+  \item session: número de sesión
+  \item task: número de tarea
+  \item speaker: 0 si corresponde al interlocutor A; B en otro caso
+  \item count: La cantidad de puntos definidos que tiene la serie
+  \item entrainment: Si $speaker=0$, es $A\rightarrow B$; $B \rightarrow A$ en otro caso
+  \item best\_lag: el lag del cross-correlogram donde se logra el \emph{entrainment}
+  \item tama\_mean: el promedio de la variable
+\end{itemize}
+
+Además, agregamos las variables sociales (relativas al interlocutor) para cada fila:
+
+\begin{itemize}
+  \item conversation\_awkward
+  \item flow\_naturally
+  \item hard\_time\_understanding\_each\_other
+  \item contributes\_to\_successful\_completion
+  \item making\_self\_clear
+  \item engaged\_in\_game
+  \item planning\_what\_to\_say
+  \item gives\_encouragement
+  \item difficult\_for\_partner\_to\_speak
+  \item bored\_with\_game
+  \item dislikes\_partner
+\end{itemize}
+
+Ésto nos da una tabla de 210 filas, y 21 columnas.
