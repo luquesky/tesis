@@ -1,11 +1,14 @@
 #! coding: utf-8
 import re
 
+def __social_variables(social_dataframe):
+    return filter(lambda x: x != "session" and x!= "task", social_dataframe.columns)
+
+
 def __variables_with_suffix(social_dataframe, suffix):
     regex = r'.*_%s' % suffix
-    variables = filter(lambda x: x != "session" and x!= "task", social_dataframe.columns)
 
-    return filter(lambda x: re.match(regex, x), variables)
+    return filter(lambda x: re.match(regex, x), __social_variables(social_dataframe))
 
 def remove_yes_no_variables(social_dataframe):
     no_variables = __variables_with_suffix(social_dataframe, "no")
@@ -27,14 +30,21 @@ def remove_a_b_variables(social_dataframe):
     B_df['speaker'] = 1
 
     ret = A_df.append(B_df)
-    # speaker = df['speaker']
-    # for sv in new_vars:
-    #     try:
-    #         sv_A = "%s_A" % sv
-    #         sv_B = "%s_B" % sv
-    #         df[sv] = (1 - speaker) * df[sv_A] + speaker * df[sv_B]
-    #     except KeyError:
-    #         print "%s is not of type _A or _B"
-    #         pass
-    # df.drop(old_vars, axis=1, inplace=True)
+
+    A_variables = __variables_with_suffix(social_dataframe, "A")
+    B_variables = __variables_with_suffix(social_dataframe, "B")
+
+    variables_without_suffix = [var[:-2] for var in A_variables]
+
+    for var in variables_without_suffix:
+        try:
+            sv_A = "%s_A" % var
+            sv_B = "%s_B" % var
+            ret[var] = (1 - ret["speaker"]) * ret[sv_A] + ret["speaker"] * ret[sv_B]
+        except KeyError:
+            print "%s is not of type _A or _B"
+            pass
+
+    ret.drop(A_variables, axis=1, inplace=True)
+    ret.drop(B_variables, axis=1, inplace=True)
     return ret
