@@ -1,5 +1,6 @@
 #! coding: utf-8
 import re
+import pandas as pd
 
 def __social_variables(social_dataframe):
     return filter(lambda x: x != "session" and x!= "task", social_dataframe.columns)
@@ -51,6 +52,6 @@ def remove_a_b_variables(social_dataframe):
 
 
 def get_social_variables(path):
-    dataframe = pd.DataFrame.from_csv("data/social-variables.csv")
+    dataframe = pd.DataFrame.from_csv(path)
 
     return remove_a_b_variables(remove_yes_no_variables(dataframe))
