@@ -48,3 +48,9 @@ def remove_a_b_variables(social_dataframe):
     ret.drop(A_variables, axis=1, inplace=True)
     ret.drop(B_variables, axis=1, inplace=True)
     return ret
+
+
+def get_social_variables(path):
+    dataframe = pd.DataFrame.from_csv("data/social-variables.csv")
+
+    return remove_a_b_variables(remove_yes_no_variables(dataframe))
