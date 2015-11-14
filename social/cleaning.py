@@ -2,14 +2,16 @@
 import re
 import pandas as pd
 
+
 def __social_variables(social_dataframe):
-    return filter(lambda x: x != "session" and x!= "task", social_dataframe.columns)
+    return filter(lambda x: x != "session" and x != "task" and x !="speaker", social_dataframe.columns)
 
 
 def __variables_with_suffix(social_dataframe, suffix):
     regex = r'.*_%s' % suffix
 
     return filter(lambda x: re.match(regex, x), __social_variables(social_dataframe))
+
 
 def remove_yes_no_variables(social_dataframe):
     no_variables = __variables_with_suffix(social_dataframe, "no")
@@ -22,6 +24,7 @@ def remove_yes_no_variables(social_dataframe):
     new_df.drop(no_variables, axis=1, inplace=True)
 
     return new_df
+
 
 def remove_a_b_variables(social_dataframe):
     A_df = social_dataframe.copy(deep=True)
@@ -53,5 +56,20 @@ def remove_a_b_variables(social_dataframe):
 
 def get_social_variables(path):
     dataframe = pd.DataFrame.from_csv(path)
+    dataframe = remove_a_b_variables(remove_yes_no_variables(dataframe))
 
-    return remove_a_b_variables(remove_yes_no_variables(dataframe))
+    vars_to_keep = [
+        "contributes_to_successful_completion",
+        "making_self_clear",
+        "engaged_in_game",
+        "planning_what_to_say",
+        "gives_encouragement",
+        "difficult_for_partner_to_speak",
+        "bored_with_game",
+        "dislikes_partner"
+    ]
+
+    columns_to_be_removed = [x for x in __social_variables(dataframe) if x not in vars_to_keep]
+    dataframe.drop(columns_to_be_removed, axis=1, inplace=True)
+
+    return dataframe
