@@ -1,5 +1,6 @@
 #! coding: utf-8
 import re
+import social
 import pandas as pd
 
 
@@ -58,18 +59,7 @@ def get_social_variables(path):
     dataframe = pd.DataFrame.from_csv(path)
     dataframe = remove_a_b_variables(remove_yes_no_variables(dataframe))
 
-    vars_to_keep = [
-        "contributes_to_successful_completion",
-        "making_self_clear",
-        "engaged_in_game",
-        "planning_what_to_say",
-        "gives_encouragement",
-        "difficult_for_partner_to_speak",
-        "bored_with_game",
-        "dislikes_partner"
-    ]
-
-    columns_to_be_removed = [x for x in __social_variables(dataframe) if x not in vars_to_keep]
+    columns_to_be_removed = [x for x in __social_variables(dataframe) if x not in social.relevant_variables]
     dataframe.drop(columns_to_be_removed, axis=1, inplace=True)
 
     return dataframe
