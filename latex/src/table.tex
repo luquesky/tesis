@@ -1,6 +1,6 @@
 \section{Armado de Tabla}
 
-Para condensar todos nuestros datos, armamos una tabla por cada variable a/p. Esta table contiene información definida para cada interlocutor, tarea y sesión de nuestro corpus.
+Para condensar todos nuestros datos, armamos una tabla por cada variable a/p. Esta tabla contiene información definida para cada interlocutor, tarea y sesión de nuestro corpus.
 
 \begin{itemize}
   \item session: número de sesión
@@ -15,28 +15,26 @@ Para condensar todos nuestros datos, armamos una tabla por cada variable a/p. Es
 Además, agregamos las variables sociales (relativas al interlocutor) para cada fila:
 
 \begin{itemize}
-  \item conversation\_awkward
-  \item flow\_naturally
-  \item hard\_time\_understanding\_each\_other
-  \item contributes\_to\_successful\_completion
-  \item making\_self\_clear
-  \item engaged\_in\_game
-  \item planning\_what\_to\_say
-  \item gives\_encouragement
-  \item difficult\_for\_partner\_to\_speak
-  \item bored\_with\_game
-  \item dislikes\_partner
+\item contributes\_to\_successful\_completion
+\item making\_self\_clear
+\item engaged\_in\_game
+\item planning\_what\_to\_say
+\item gives\_encouragement
+\item difficult\_for\_partner\_to\_speak
+\item bored\_with\_game
+\item dislikes\_partner
 \end{itemize}
+
+El corpus original cuenta con más variables pero éstas son las únicas que tomaremos en cuenta (citar algo acá!)
 
 En el corpus original, cada variable estaba replicada por cada interlocutor, y por sí o por no, de manera que teníamos:
 
 \begin{enumerate}
   \item $conversation\_awkward\_A_yes$
-  \item $conversation\_awkward$
-  \item $conversation\_awkward$
-  \item $conversation\_awkward$
+  \item $conversation\_awkward\_A_no$
+  \item $conversation\_awkward\_B_yes$
+  \item $conversation\_awkward\_B_no$
 \end{itemize}
-
 
 
 Ésto nos da una tabla de 210 filas, y 21 columnas.
