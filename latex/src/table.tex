@@ -2,19 +2,19 @@
 
 Para condensar todos nuestros datos, armamos una tabla por cada variable a/p. Esta tabla contiene información definida para cada interlocutor, tarea y sesión de nuestro corpus.
 
-\begin{itemize}
+\begin{enumerate}
   \item session: número de sesión
-  \item task: número de tarea
   \item speaker: 0 si corresponde al interlocutor A; B en otro caso
+  \item task: número de tarea
   \item count: La cantidad de puntos definidos que tiene la serie
   \item entrainment: Si $speaker=0$, es $A\rightarrow B$; $B \rightarrow A$ en otro caso
   \item best\_lag: el lag del cross-correlogram donde se logra el \emph{entrainment}
   \item tama\_mean: el promedio de la variable
-\end{itemize}
+\end{enumerate}
 
 Además, agregamos las variables sociales (relativas al interlocutor) para cada fila:
 
-\begin{itemize}
+\begin{enumerate}
 \item contributes\_to\_successful\_completion
 \item making\_self\_clear
 \item engaged\_in\_game
@@ -23,7 +23,7 @@ Además, agregamos las variables sociales (relativas al interlocutor) para cada 
 \item difficult\_for\_partner\_to\_speak
 \item bored\_with\_game
 \item dislikes\_partner
-\end{itemize}
+\end{enumerate}
 
 El corpus original cuenta con más variables pero éstas son las únicas que tomaremos en cuenta (citar algo acá!)
 
@@ -34,7 +34,15 @@ En el corpus original, cada variable estaba replicada por cada interlocutor, y p
   \item $conversation\_awkward\_A_no$
   \item $conversation\_awkward\_B_yes$
   \item $conversation\_awkward\_B_no$
-\end{itemize}
+\end{enumerate}
 
 
-Ésto nos da una tabla de 210 filas, y 21 columnas.
+Ésto nos da una tabla de 210 filas, y 21 columnas. Para cada sesión y speaker, podemos pensar que tenemos una serie de tiempo donde el tiempo es cada tarea, y los datos son el entrainment y las variables sociales. En la jerga econométrica, llamamos a este tipo de datos \emph{de panel}\cite{gujarati1999}: un conjunto de mediciones temporales sobre un mismo sujeto a lo largo del tiempo. En este caso el sujeto es un interlocutor en una sesión, el tiempo son las tareas, y las mediciones son los entrainments
+
+
+\begin{figure}
+\centering
+
+\input{panel_data}
+\label{panel_data}
+\end{figure}

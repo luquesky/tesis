@@ -11,9 +11,6 @@ def correlation_analysis(df, entrainment_var="entrainment", social_vars=None):
     corr = pd.Series(index=social_vars)
 
     for var in social_vars:
-        try:
-            corr[var] = df[entrainment_var].corr(df[var])
-        except KeyError as e:
-            import ipdb; ipdb.set_trace()
+        corr[var] = df[entrainment_var].corr(df[var])
 
     return corr
