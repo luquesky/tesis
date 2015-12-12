@@ -42,6 +42,7 @@ arma_tabla_regs <- function(data_set, dep) {
     "dislikes_partner")
 
   tabla_regresiones <- data.frame()
+
   for (sv in social_vars) {
 
     formula_reg <- as.formula(paste(paste(sv, dep, sep = " ~ "), "", sep = "")) # Acá definimos la relación etre variable social y entr (puede ser absoluto) que va a tester la regresión
