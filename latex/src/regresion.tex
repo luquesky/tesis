@@ -37,13 +37,23 @@ obtenemos que
 Nuestro objetivo es poder entonces conseguir estimadores $\widehat{\beta_1}, \widehat{\beta_2}$ que nos permitan analizar y predecir el comportamiento conjunto de estas variables.
 
 \subsection{Nuestro modelo}
-
-Sea entonces una variable acústica/prosódica (por ejemplo, el pitch o la intensidad), y una variable social de las que acabamos de enumerar en \ref{sec:panel_data}. Sean $E_1, \ldots, E_n$ los valores de entrainment para el set de datos que definimos en \ref{sec:panel_data}, y sean $V_1, V_2, \ldots V_n$ los valores
-
 \begin{figure}
 \centering
 \includegraphics[width=15cm]{images/regression_F0_MEAN_1.pdf}
 \caption{Gráfico de los pares entrainment-valor de variable a/p, junto a la regresión lineal obtenida}
 \end{figure}
+
+Sea entonces una variable acústica/prosódica (por ejemplo, el pitch o la intensidad), y una variable social de las que acabamos de enumerar en \ref{sec:panel_data}. Sean $E_1, \ldots, E_n$ los valores de entrainment para el set de datos que definimos en \ref{sec:panel_data}, y sean $V_1, V_2, \ldots V_n$ los valores de la variable social de cada conversación.
+
+Sobre éstas variables es que planteamos nuestro modelo de regresión lineal clásica: queremos ver qué relación hay tomando como variable ``fija'' al entrainment, y como variable dependiente a la variable social. Queremos hallar, entonces $\widehat{\beta_1}, \widehat{\beta_2} \in \mathbb{R}$
+
+\begin{equation}
+  V_i \simeq \widehat{\beta_1} + \widehat{\beta_2} E_i
+\end{equation}
+
+
+Uno esperaría que un alto \emph{entrainment} se relacione con un alto valor de ciertas variables sociales \cite{BRE1996}, por ejemplo la compenetración con el juego, el ayudar a terminarlo; y se relacione con bajos valores de otras, como el aburrimiento, o el rechazo percibido hacia el compañero.
+
+
 
 
