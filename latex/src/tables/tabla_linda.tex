@@ -1,23 +1,43 @@
 \begin{figure}[ht]
 \centering
+% psl is "Positive Slope"
+\newcommand{\psl} { $+$ }
+% nsl stands for "Negative SLope"
+\newcommand{\nsl} { $-$ }
+
+
+\begin{tabular}{| c | c | c | c | c | c |}
+  \hline
+ & ENG\_MAX & ENG\_MEAN & F0\_MEAN & F0\_MAX & NOISERATIO  \\
+  \hline
+contributes  &      &  & \psl &  & \psl \\ \hline
+  making     & \psl &  & \psl &  & \psl \\ \hline
+  engaged    &      &  & \psl &  &      \\ \hline
+  planning   &      &  &      &  &      \\ \hline
+  encourages &      &  &      &  &      \\ \hline
+  difficult  & \nsl &  &      &  &      \\ \hline
+  bored      &      &  & \nsl &  &      \\ \hline
+  dislikes   &      &  &      &  &      \\ \hline
+   \hline
+\end{tabular}
 
 \adjustbox{max width=\textwidth}{
-\begin{tabular}{llllllllllll}
+\begin{tabular}{| c | c | c | c | c | c | c |}
   \hline
- & ENG\_MAX & ENG\_MEAN & F0\_MEAN & F0\_MAX & NOISERATIO & PHON\_AVG & PHON\_COUNT & LOCAL\_SHIMMER & SYL\_AVG & SYL\_COUNT & VCD2TOT\_FRAMES \\
+& PHON\_AVG & PHON\_COUNT & LOCAL\_SHIMMER & SYL\_AVG & SYL\_COUNT & VCD2TOT \\
   \hline
-contributes &  &  & 1 &  & 1 &  &  &  &  &  &  \\
-  making\_clear & 1 &  & 1 &  & 1 &  &  &  &  & 1 &  \\
-  engaged &  &  & 1 &  &  &  &  &  &  &  &  \\
-  planning &  &  &  &  &  &  &  &  &  &  &  \\
-  encourages &  &  &  &  &  &  &  &  &  &  &  \\
-  difficult\_to\_speak & -1 &  &  &  &  &  &  &  &  &  &  \\
-  bored &  &  & -1 &  &  &  &  &  &  &  &  \\
-  dislikes &  &  &  &  &  &  &  &  &  &  &  \\
-   \hline
+contributes  &      &  &  &  &      &  \\ \hline
+  making     & \psl &  &  &  & \psl &  \\ \hline
+  engaged    &      &  &  &  &      &  \\ \hline
+  planning   &      &  &  &  &      &  \\ \hline
+  encourages &      &  &  &  &      &  \\ \hline
+  difficult  &      &  &  &  &      &  \\ \hline
+  bored      &      &  &  &  &      &  \\ \hline
+  dislikes   &      &  &  &  &      &  \\ \hline
+  \hline
 \end{tabular}
 }
 
-\caption{Tablas con los resultados de la regresión de efectos fijos para \ENGMAX, \FOMEAN y \NOISETOHARMONICS. En la segunda columna se cita el valor de $\estslope$, la desviación estándar calculada, el t-valor obtenido y la significancia. Las columnas resaltadas corresponden a aquellas significantes}\label{regresion_efectos_fijos_tabla}
+\caption{Tabla hermosa}
 
 \end{figure}
