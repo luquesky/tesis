@@ -1,4 +1,8 @@
-\subsection{Modelo agrupado o \emph{pooled}}
+En esta sección, mostraremos el primer experimento que hicimos. Éste consistió en aplicar un modelo de regresión lineal de cada variable social sobre el \entrainment.
+
+Una variación que usaremos en éste experimento (y en el posterior) es utilizar como variable dependiente el valor absoluto del \entrainment, en base a estudios que sugieren que los interlocutores pueden diferenciarse para ajustar
+
+\section{Modelo agrupado o \emph{pooled}}
 
 En el modelo agrupado o \emph{pooled}, no distinguimos entre datos provenientes de distintos ``grupos'' \cite{gujarati1999} y sobre éstos calculamos la regresión lineal, agrupando todos los datos disponibles.
 
@@ -11,6 +15,18 @@ AGREGAR GRAFICO DE EJEMPLO PARA ESTO
 \caption{Gráfico de los pares entrainment-variable a/p, junto a la regresión lineal obtenida \label{regresion_clasica} para \emph{F0\_MEAN}}
 \end{figure}
 
-En el modelo clásico dio resultados con baja significancia. En \ref{regresion_clasica} puede verse el gráfico de \emph{F0\_MEAN} y 4 variables sociales y en \ref{regresion_clasica_tabla} pueden verse los valores de las estimaciones de $\estslope$ junto a sus p-valores.
+\section{Resultados}
+
+Este modelo dio resultados con baja significancia. En \ref{regresion_clasica} puede verse el gráfico de \emph{F0\_MEAN} y 4 variables sociales y en \ref{regresion_clasica_tabla} pueden verse los valores de las estimaciones de $\estslope$ junto a sus p-valores.
 
 \input{tables/classic_regression_table}
+
+\section{Absolute \entrainment, o \disentrainment}
+
+En nuestra definición de \entrainment en el contexto de series de tiempo, la definimos como el valor de la correlación cruzada (en un sentido de los lags) con mayor valor absoluto. Ésto puede dar, como resultado, valores positivos entre 0 y 1 a los cuales consideramos como \entrainment; o bien valores negativos entre -1 y 0, éstos considerados como anti-\entrainment: la divergencia de las features a/p medidas a través del tiempo.
+
+Este fenómeno de anti-\entrainment o antimimicry \cite{CHAR1999} refiere al proceso por el cual uno de los interlocutores no imita al otro sino más bien todo lo contrario, acentúa alguna diferencia. Si bien estudios de larga data como \cite{bourhis1973language} o \cite{dabbs1969similarity} lo emparentan con una connotación negativa, \cite{healey2014divergence} y \cite{levitan2015acoustic} sugieren que puede entenderse este fenómeno como una conducta de adaptación cooperativa. No sólo éso, sino que este fenómeno de mimetización complementaria es más prevalente que la mimetización a secas \cite{levitan2015acoustic}.
+
+En base a lo recién mencionado es que decidimos probar alguna medida que capture positivamente este fenómeno de igual manera que con el \entrainment definido. Es decir, esperamos que cuando tengamos o bien \entrainment o \entrainment complementario (valores significativos de éste) ocurra que tenemos valores altos de variables sociales de carácter positivo. Mutatis mutandis con las variables sociales de connotación negativa.
+
+Con este fin, en vez de utilizar sólo el valor de \entrainment como variable explicativa, efectuaremos el mismo análisis pero utilizando el valor absoluto del \entrainment como tal. Ésto permite captar y valorar el \entrainment complementario de la misma manera que el ``positivo'' y valorar su relación con las variables sociales medidas.
