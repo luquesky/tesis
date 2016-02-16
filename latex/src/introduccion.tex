@@ -1,28 +1,40 @@
-
 \section{Sistemas de diálogo}
 
 Los sistemas de diálogo humano-computadora son cada vez más frecuentes, y sus aplicaciones comprenden una amplia gama de rubros: desde aplicaciones móviles, motores de búsqueda, juegos, o tecnologías de asistencia para ancianos y discapacitados.
 
+\nota{Agregar más ejemplos y referencias}
+
 Si bien es cierto que estos sistemas logran captar la dimensión lingüística de la comunicación humana, tienen un déficit importante a la hora de procesar y transmitir el aspecto superestructural de la comunicación, que radica en el intercambio de afecto, emociones, actitudes y otras intenciones de los participantes. La habilidad de los participantes de poder expresar, comprender, y reaccionar de acuerdo a estas señales sociales es necesaria para el entendimiento mutuo y una comunicación exitosa.
+
+\nota{Agregar ejemplos: HAL, sistemas telefónicos}
 
 Un aspecto particular de la comunicación es el fenómeno de \emph{entrainment}(arrastre, mimetización, efecto camaleón), que comprende la adaptación inconsciente de las variables acústicas/prosódicas(a/p) (por ejemplo, el tono de la voz, la velocidad del habla, etc) de manera dinámica en el transcurso de una o varias interacciones. Este fenómeno ha sido introducido por \emph{Brennan et al}\cite{BRE1996} en 1996, y se ha observado que la convergencia de los participantes en estas variables ocurre en conjunto con una interacción más fluída y un mayor sentimiento de simpatía por sus interlocutores \cite{CHAR1999}.
 
+
 Poder medir esta mimetización de los interlocutores no es una tarea fácil, sin embargo. En primer lugar, un diálogo no es una sucesión de turnos, sino que es una serie de tiempo dinámica, llena de interrupciones. Más aún, la mimetización no tiene un carácter instantáneo, sino que se sucede a lo largo de la interacción entre los participantes. Estos factores dificultan ostensiblemente poder modelar este fenómeno.
+
+\nota{Reescribir este último párrafo}
 
 \section{Mimetización}
 
-En la literatura de Psicología del Comportamiento se ha observado con frecuencia que, bajo ciertas condiciones, cuando una persona mantiene una conversación, modifica su manera de actuar, aproximándola a la de su interlocutor. En una reseña de este tema se describe a este fenómeno como una ``imitación no conciente de posturas, maneras, expresiones faciales y otros comportamientos del compañero interaccional'' \cite[p. 893]{CHAR1999} , y conjeturan que es más fuerte en individuos con empatía disposicional. En otras palabras, personas con predisposición a buscar la
-aceptación social modifican su comportamiento en forma más marcada para aproximarlo a sus interlocutores
+En la literatura de Psicología del Comportamiento se ha observado con frecuencia que, bajo ciertas condiciones, cuando una persona mantiene una conversación, ésta modifica su manera de actuar aproximándola a la de su interlocutor. En una reseña de este tema se describe a este fenómeno como una ``imitación no consciente de posturas, maneras, expresiones faciales y otros comportamientos del compañero interaccional'' \cite[p. 893]{CHAR1999} , y conjeturan que es más fuerte en individuos con empatía disposicional. En otras palabras, personas con predisposición a buscar la aceptación social modifican su comportamiento en forma más marcada para aproximarlo a sus interlocutores
 
-Esta modificación del comportamiento ha sido observada también en la manera de hablar. Por ejemplo, los interlocutores adoptan las mismas formas léxicas para referirse a las cosas, negociando tácitamente descripciones compartidas, en especial para cosas que resulten poco familiares \cite{BRE1996}. Estudios más recientes sugieren que esto también es cierto para el uso de estructuras sintácticas \cite{REI2006}. Este fenómeno subconsciente es conocido como mimetización, alineamiento, adaptación o convergencia, y también con el término inglés \emph{entrainment}, y se ha mostrado que juega un rol importante en la coordinación de diálogos, facilitando tanto la producción como la comprensión del habla en los seres humanos.
+\nota{Mencionar CAT, fenómeno ubícuo -en teoría-}
+
+Esta modificación del comportamiento ha sido observada también en la manera de hablar. Por ejemplo, los interlocutores adoptan las mismas formas léxicas para referirse a las cosas, negociando tácitamente descripciones compartidas, en especial para cosas que resulten poco familiares \cite{BRE1996}. Estudios más recientes sugieren que esto también es cierto para el uso de estructuras sintácticas \cite{REI2006}. Este fenómeno subconsciente es conocido como mimetización, alineamiento, adaptación o convergencia, y también con el término inglés \entrainment, y se ha mostrado que juega un rol importante en la coordinación de diálogos, facilitando tanto la producción como la comprensión del habla en los seres humanos.
 
 \section{Midiendo la mimetización}
 
 Muchos estudios han examinado la mimetización del habla, listados en \cite{DEL2013}. Por ejemplo, \cite{LEV2012} propone un método basado en el cálculo de la media de la feature para cada hablante; sin embargo, estos modelos no capturan la esencia dinámica del proceso de \emph{entrainment}.
 
-A la hora de hacer comparaciones razonables entre dos interlocutores, surgen dos problemas \cite{KOU2008}. En primer lugar, las curvas tienen diferentes escalas y deben ser normalizadas (por ejemplo, el \emph{pitch} entre un interlocutor masculino y uno femenino), aunque en algunos casos
-las comparaciones desnormalizadas tienen sentido (volumen). En segundo lugar, surge el problema del alineamiento. ¿Qué partes del diálogo de un interlocutor deberían compararse con qué otras partes? Un approach de comparar interlocuciones uno a uno es demasiado simple y no captura situaciones de diálogo reales.
+\nota{Mencionar Gravano, o medidas no automáticas}
+
+A la hora de hacer comparaciones razonables entre dos interlocutores, surgen dos problemas \cite{KOU2008}. En primer lugar, considerando a las interlocuciones como ``curvas'' éstas diferentes escalas y deben ser normalizadas: por ejemplo, el \emph{pitch} entre un interlocutor masculino y uno femenino tienen diferentes rangos. En segundo lugar, surge el problema del alineamiento. ¿Qué partes del diálogo de un interlocutor deberían compararse con qué otras partes? Un approach de comparar interlocuciones uno a uno es demasiado simple y no captura situaciones de diálogo reales, mucho más dinámicas y con solapamiento casi constante.
 
 Para atacar estos inconvenientes, utilizamos el método TAMA (Time Aligned Moving Average), que consiste en separar en ventanas de tiempo el diálogo, y promediar los valores de las variables prosódicas dentro de cada una. Este método es muy similar a aplicar un filtro de Promedio Móvil (Moving Average), lo que da el nombre a la técnica.
 
+\nota{Mencionar algo más de \cite{KOU2008}}
+
 Al separar el diálogo en ventanas de tiempo, podemos construir dos series de tiempo en base a cada interlocutor. Estas abstracciones son mucho más tratables que tener una secuencia de elocuciones de parte de cada hablante, y nos permiten efectuar análisis bien conocidos. El entrainment podría entonces pensarse, en primera instancia, como la correlación cruzada entre estas series generadas \cite{CHATFIELD}.
+
+\nota{Bajar un poco a tierra el tema del entrainment con las series de tiempo. Mencionar el hecho de que queremos medir si se relaciona positivamente con ciertas variables sociales}
