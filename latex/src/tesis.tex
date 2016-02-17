@@ -10,7 +10,7 @@
 \usepackage{amsthm}
 \usepackage{booktabs}
 \usepackage[tables]{xcolor}
-\usepackage{easy-todo}
+\usepackage[obeyFinal]{easy-todo}
 \usepackage{colortbl}
 \usepackage[utf8]{inputenc}
 \usepackage[spanish]{babel}
@@ -34,8 +34,11 @@
 %%%% ABSTRACTS, AGRADECIMIENTOS Y DEDICATORIA
 \frontmatter
 \pagestyle{empty}
-\input{abs_esp.tex}
-\input{abs_en.tex}
+
+\include{abs_esp}
+\include{abs_en}
+
+\listoftodos
 
 \tableofcontents
 
@@ -54,12 +57,7 @@
 \include{antecedentes}
 
 \chapter{Método y materiales}
-\include{corpus}
-\include{window_selection}
-\include{time_plots}
-%\include{metodo}
-\include{panel_data}
-\include{regresion}
+\include{metodo}
 
 \chapter{Regresión Lineal Agrupada}
 \include{pooled_ols}
@@ -68,10 +66,13 @@
 \include{fixed_effects_ols}
 
 \chapter{Conclusiones y trabajo futuro}
+\nota{Escribir conclusiones!}
 
 %%%% BIBLIOGRAFIA
 \chapter{Bibliografía}
+\nota{Arreglar los problemas que tiene la bibliografía}
 \backmatter
+
 \bibliographystyle{alpha}
 \bibliography{tesis}
 \end{document}
