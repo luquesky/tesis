@@ -48,7 +48,7 @@ def tama(speech, feature, frame_step=None, frame_length=None, interpolate=False,
 
 
 def normalize(T, mean):
-    return pd.Series((T - mean) / T.std(), dtype=float)
+    return pd.Series((T - T.mean()) / T.std(), dtype=float)
 
 
 def normalized_tama(speech, feature, frame_step=None, frame_length=None, interpolate=False, interval=None):
