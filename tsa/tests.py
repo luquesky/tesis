@@ -35,3 +35,9 @@ class CrossCorrelationTest(TestCase):
         y = pd.Series([2, 0, 3, 1])
 
         self.assertTrue(not np.isnan(cross_correlation(x, y, lag=1, min_threshold=2)))
+
+    def test_it_should_return_nan_when_intersection_less_than_min_threshold(self):
+        x = pd.Series([1, np.nan, 3, 4, np.nan])
+        y = pd.Series([1, np.nan, 3, 4, 5])
+
+        self.assertTrue(np.isnan(cross_correlation(x, y, lag=1, min_threshold=2)))

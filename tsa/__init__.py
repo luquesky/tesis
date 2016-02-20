@@ -44,6 +44,7 @@ def cross_correlation(X, Y, lag, min_threshold=None):
         # Here we take...
         # x_lag, x_{lag+1}, ..., x_n and
         # y_1, y_2, ... y_lag
+        # Here we use values to ignore the indices
         xprod = X.values[lag:] - xm
         yprod = Y.values[:-lag] - ym
 
@@ -52,12 +53,12 @@ def cross_correlation(X, Y, lag, min_threshold=None):
 
     # If less than min_threshold...
 
-    if count_not_nan(xprod) < min_threshold or count_not_nan(yprod) < min_threshold:
+    prod = pd.Series(xprod * yprod)
+
+    if count_not_nan(prod) < min_threshold:
         return np.nan
 
-    # Here we use values to ignore the indices
-    # .. and create a new Series to sum ignoring
-    num = pd.Series(xprod * yprod).sum()
+    num = prod.sum()
     denom = sqrt(((X - xm) ** 2).sum() * ((Y - ym) ** 2).sum())
 
     return num / denom
@@ -103,7 +104,6 @@ def autocorrelation(X, lag):
 
     return num / denom
 
-
 def autocorrelogram(X, lags=None):
     n = len(X)
 
@@ -112,24 +112,19 @@ def autocorrelogram(X, lags=None):
 
     return pd.Series({lag: autocorrelation(X, lag) for lag in lags})
 
-
 def autoregressive(Z, *alphas):
     X = pd.Series(index=range(len(Z)))
     for i in X.index:
         X[i] = Z[i]
-
         for j, alpha in enumerate(alphas):
             index = i - (j+1)
 
             if index > 0:
                 X[i] = alpha * X[index] + Z[i]
-
     return X
-
 
 # Returns rX, rY, residuals of X and Y
 def autoregressive_prewhitening(X, Y):
-
     estimator_alpha = autocorrelation(X, 1)
     mu = X.mean()
 
