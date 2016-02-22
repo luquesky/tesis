@@ -5,6 +5,7 @@ import os
 from distutils.spawn import find_executable
 import logging
 import subprocess
+import config
 
 logger = logging.getLogger('main')
 
@@ -44,15 +45,18 @@ class ScriptExtractor(object):
         return (self.path_to_praat, self.path_to_script, self.path_to_wav, str(interval.inf), str(interval.sup), "75", "500")
 
 def StandardAcousticsExtractor(path_to_wav):
+    path_to_script = os.path.join(config.ROOT_DIR, "scripts/extractStandardAcoustics.praat")
     return ScriptExtractor(
-        path_to_script = os.path.abspath("scripts/extractStandardAcoustics.praat"),
+        path_to_script = path_to_script,
         path_to_praat = find_executable("praat"),
         path_to_wav=path_to_wav
     )
 
 def VoiceAnalysisExtractor(path_to_wav):
+    path_to_script = os.path.join(config.ROOT_DIR, "scripts/voice-analysis.praat")
+
     return ScriptExtractor(
-        path_to_script = os.path.abspath("scripts/voice-analysis.praat"),
+        path_to_script = path_to_script,
         path_to_praat = find_executable("praat"),
         path_to_wav=path_to_wav
     )

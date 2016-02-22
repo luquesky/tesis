@@ -1,6 +1,8 @@
 #! coding: utf-8
 import re
+import os
 import social
+import config
 import pandas as pd
 
 
@@ -55,7 +57,9 @@ def remove_a_b_variables(social_dataframe):
     return ret
 
 
-def get_social_variables(path):
+def get_social_variables(path=None):
+    path = path or os.path.join(config.DATA_DIR, "social-variables.csv")
+
     dataframe = pd.DataFrame.from_csv(path)
     dataframe = remove_a_b_variables(remove_yes_no_variables(dataframe))
 

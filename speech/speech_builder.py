@@ -1,12 +1,11 @@
 #! coding: utf-8
 import os
 import csv
+import config
 from distutils.spawn import find_executable
 from word_interval import WordInterval
 from features import StandardAcousticsExtractor, VoiceAnalysisExtractor, CachedExtractor, CompositeExtractor, SyllabeExtractor, PhonemeExtractor
 from speech import Speech
-
-DATA_DIR = "speech/tests/integration/data"
 
 
 class SpeechBuilder(object):
@@ -59,7 +58,9 @@ class SpeechBuilder(object):
 
 
     def build_syllabe_extractor(self):
-        with open("data/sylcounts.txt") as f:
+        syllabes_path = os.path.join(config.DATA_DIR, "sylcounts.txt")
+
+        with open(syllabes_path) as f:
             rows = csv.reader(f, delimiter='\t')
             syllabe_count = {k.lower():int(v) for k,v in rows}
             return SyllabeExtractor(
@@ -68,7 +69,8 @@ class SpeechBuilder(object):
             )
 
     def build_phoneme_extractor(self):
-        with open("data/phonetic-dictionary-games.txt") as f:
+        phonetic_dict_path = os.path.join(config.DATA_DIR, "phonetic-dictionary-games.txt")
+        with open(phonetic_dict_path) as f:
             rows = csv.reader(f, delimiter=" ")
             mapping = {'#': 0}
 
