@@ -26,9 +26,9 @@ def init_logging():
 ROOT_DIR = project_dir()
 DATA_DIR = os.path.join(ROOT_DIR, "data")
 LOG_DIR = os.path.join(ROOT_DIR, "log")
+TABLES_DIR = os.path.join(ROOT_DIR, "tables")
 
 TASK_LENGTH_THRESHOLD = 40
-
 SERIES_FRAME_STEP = 8
 SERIES_FRAME_LENGTH = 16
 
