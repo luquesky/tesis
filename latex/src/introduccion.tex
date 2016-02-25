@@ -26,9 +26,8 @@ Sin embargo, este enfoque de la mimetización niega su faceta dinámica: los int
 
 Un problema que surge a la hora de calcular estas métricas es el hecho de que las conversaciones no están alineadas en el tiempo, ni se dan en turnos. Nos preguntamos entonces qué partes del diálogo de un interlocutor deberían compararse con qué otras partes. Un enfoque de comparar interlocuciones uno a uno es demasiado simple y no captura situaciones de diálogo reales, mucho más dinámicas y con solapamiento casi constante.
 
-Para atacar estos inconvenientes, utilizamos el método TAMA (Time Aligned Moving Average), que consiste en separar en ventanas de tiempo el diálogo, y promediar los valores de las variables prosódicas dentro de cada una. Este método es muy similar a aplicar un filtro de Promedio Móvil (Moving Average), lo que da el nombre a la técnica.
+Para atacar estos inconvenientes, utilizamos el método TAMA (Time Aligned Moving Average) \cite{KOU2008}, que consiste en separar en ventanas de tiempo el diálogo, y promediar los valores de las variables prosódicas dentro de cada una. Este método es muy similar a aplicar un filtro de Promedio Móvil (Moving Average), lo que da el nombre a la técnica.
 
-
-Al separar el diálogo en ventanas de tiempo, podemos construir dos series de tiempo en base a cada interlocutor. Estas abstracciones son mucho más tratables que tener una secuencia de elocuciones de parte de cada hablante, y nos permiten efectuar análisis bien conocidos. El entrainment podría entonces pensarse, en primera instancia, como la correlación cruzada entre estas series generadas \cite{CHATFIELD}.
+Al separar el diálogo en ventanas de tiempo, podemos construir dos series de tiempo en base a cada interlocutor. Estas abstracciones son mucho más tratables que tener una secuencia de elocuciones de parte de cada hablante, y nos permiten efectuar análisis bien conocidos \cite{CHATFIELD}, uno de los cuáles nos permite tener una medida del \entrainment.
 
 \nota{Bajar un poco a tierra el tema del entrainment con las series de tiempo. Mencionar el hecho de que queremos medir si se relaciona positivamente con ciertas variables sociales}
