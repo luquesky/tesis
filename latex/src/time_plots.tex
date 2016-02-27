@@ -9,9 +9,13 @@
 
 Usando la técnica descripta, generamos dos series de tiempo para cada tarea. Como antes mencionamos, la ventana elegida es de $16''$ con un step de $8''$ lo cual da un overlap del 50\%.
 
-Dada una ventana, puede ocurrir que alguno de los interlocutores no haya hablado, o su interacción haya sido demasiado breve como para medir sus variables a/p. En ese caso, y a diferencia de \cite{KOU2008}, construimos las series sin ese punto, y sin interpolarlo tampoco. (¿por qué no estamos interpolando en vez de dejar los puntos vacíos?)
+Dada una ventana, puede ocurrir que alguno de los interlocutores no haya hablado, o su interacción haya sido demasiado breve como para medir sus variables a/p. En ese caso, y a diferencia de \cite{KOU2008}, construimos las series sin ese punto, y sin interpolarlo tampoco.
 
-De estas tareas, sólo nos quedamos con aquellas que tengan al menos 5 puntos definidos para cada serie, de manera que tenga sentido poder calcular la correlación cruzada más adelante (¿podemos justificar un poco más ésto?). Con ésto, no sólo nos interesa la duración de la charla, sino cierta calidad de las series generadas. En \ref{time_series_table} pueden verse las tareas que tuvimos en consideración, a la vez que su duración.
+\nota{¿por qué no estamos interpolando en vez de dejar los puntos vacíos? -> información falsa, y posible correlación espúrea}
+
+De estas tareas, sólo nos quedamos con aquellas que tengan al menos 5 puntos definidos para cada serie, de manera que tenga sentido poder calcular la correlación cruzada más adelante. Con ésto, no sólo nos interesa la duración de la charla, sino cierta calidad de las series generadas. En \ref{time_series_table} pueden verse las tareas que tuvimos en consideración, a la vez que su duración.
+
+\nota{¿podemos justificar un poco más ésto lo del número mágico 5?}
 
 \begin{figure}
 \centering
@@ -20,5 +24,5 @@ De estas tareas, sólo nos quedamos con aquellas que tengan al menos 5 puntos de
 \caption{Tabla de tareas seleccionadas y sus duraciones}
 \end{figure}
 
-Los autocorrelogramas de las series bajan rápidamente a cero, un indicio (necesario pero no suficiente) de que las series son estacionarias \emph{¿necesitamos hacer algún chequeo más fuerte de ésto? En \cite{KOU2009} ni se calientan en hacerlo}
+Los autocorrelogramas de las series bajan rápidamente a cero, un indicio (necesario pero no suficiente) de que las series son estacionarias.
 
