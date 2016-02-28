@@ -51,3 +51,48 @@ Varios aspectos del comportamiento de los jugadores durante los juegos de objeto
 
 entre otras. Cada uno de estos clips fue puntuado por cinco anotadores, que respondieron por sí o por no. El puntaje que recibe cada una de las preguntas (a las cuales llamaremos a partir de ahora \emph{variables sociales}) consiste en la cantidad de respuestas afirmativas que recibió, teniendo un rango de 0 a 5.
 
+\subsection{Extracción de variables acústico/prosódicas}
+
+El set de herramientas \emph{Praat} fue utilizado para extraer automáticamente las variables acústico/prosódicas del corpus, para cada tarea de éste. Las variables que medimos fueron el tono, la intensidad, la proporción de vocalizaciones, jitter, shimmer, cantidad de sílabas, cantidad de fonemas, y la proporción de ruido sobre armónicos. Éstos atributos fueron medidos en cada uno de los segmentos de habla del corpus.
+
+Repasemos algunos conceptos que necesitamos para definir las variables acústicas.
+
+\begin{itemize}
+  \item \emph{f0} refiere a la frecuencia fundamental de una onda, que es el recíproco del período de ésta. El \emph{tono} o \emph{pitch} es la percepción que tenemos de la frecuencia fundamental, que nos marca cuán agudos o graves son los sonidos.
+  \item \emph{ENG} refiere al volumen o intensidad de la onda. Ésta se mide por la amplitud de la onda, y es la percepción de cuán fuerte es el sonido.
+  \item \emph{jitter} se refiere a los desplazamientos de la onda de la verdadera periodicidad.
+  \item \emph{shimmer} se refiere, de manera similar al jitter, a la variación de la onda pero respecto de la amplitud
+  \item Un \emph{fonema} es la articulación mínima de un sonido, tanto de vocales como de consonantes. Ejemplos de fonemas son los sonidos de las letras u, a, s, k en español.
+  \item El \emph{noise-to-harmonics} ratio puede considerarse como una medida de calidad de la voz, que cuantifica la proporción de ruido que hay en ésta.
+\end{itemize}
+
+
+En la siguiente tabla describimos más detalladamente cada una de ellas. Recordemos nuevamente que estas features son medidas en un intervalo.
+
+\begin{figure}[h!]
+\centering
+\begin{tabular} {|c|c|}
+  \hline
+  Variable a/p & Descripción \\
+  \hline
+  \hline
+  \FOMEAN & Valor medio de la frecuencia fundamental \\\hline
+  \FOMAX  & Valor máximo de la frecuencia fundamental \\\hline
+  \ENGMEAN & Valor medio de la intensidad \\\hline
+  \ENGMAX & Valor máximo de la intensidad \\\hline
+  \TOTFRAMES & Proporción de frames vocalizados sobre totales \\\hline
+  \NOISETOHARMONICS & Noise-to-harmonics descripto anteriormente \\\hline
+  \LOCALSHIMMER & Shimmer medido \\\hline
+  \SYLCOUNT & Cantidad de sílabas \\\hline
+  \SYLAVG & Cantidad de sílabas sobre la longitud del intervalo \\\hline
+  \PHONCOUNT & Cantidad de fonemas \\\hline
+  \PHONAVG & Cantidad de fonemas sobre la longitud del intervalo \\\hline
+\end{tabular}
+\end{figure}
+
+\nota{En los lugares donde digo frame, ¿puedo decir fonemas? No explico bien a qué me refiero con frame}
+\nota{Cuál es la relación entre NHR y VCD2TOTFRAMES? Uno es 1 -<el otro>?}
+\nota{Agustín, pasame más tela para cortar de jitter, shimmer y NHR}
+
+
+
