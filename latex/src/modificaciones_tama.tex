@@ -1,0 +1,11 @@
+\section{Modificaciones a TAMA}
+
+Al método TAMA descripto en \ref{sec:ant_tama} le hemos aplicado algunas variaciones, que pasaremos a detallar.
+
+En primer lugar, \cite{KOU2008.2} discute la disyuntiva de elegir un tamaño de ventana y step para el método: ventanas demasiado chicas pueden causar que no hayan segmentos de habla en ellas, mientras que un tamaño de ventana demasiado grande suavizaría en exceso la serie de tiempo. A colación de ésto, menciona posibles soluciones para el problema de los puntos faltantes: o bien una interpolación (también mencionado en \cite{DEL2013}) o repetir el punto anterior de la serie.
+
+Estos enfoques, sin embargo, pueden dar lugar a correlaciones artificialmente altas por la construcción misma de la serie. Por otro lado, descartar aquellas conversaciones que tengan puntos faltantes puede ser demasiado restrictivo y eliminar de nuestro corpus una gran cantidad de datos valiosos. Teniendo estas cosas en mente, decidimos aceptar series de tiempo con datos faltantes, que pueden ser producto de ventanas sin segmentos de habla o con algunos demasiado pequeños que imposibilitan la medición de los parámetros (por ej, interjecciones o backchanneling).
+
+\nota{Agustín, hay alguna traducción de backchanneling?}
+
+\input{window_selection}

@@ -1,12 +1,14 @@
-\section{Selección de Ventana}
+\subsection{Selección de Ventana}
 \label{sec:window_selection}
-En \cite{KOU2008.2} se menciona una elección de \emph{frame step} y \emph{frame length} de 10s y 20s respectivamente. En el caso de nuestro corpus, quisimos buscar los parámetros que mejor se ajustaban a éste, manteniendo la superposición del 50\% entre ventanas sucesivas. Con lo que nos queda que $FL = 2 * FS$
 
-¿Qué queremos optimizar? La métrica que elegimos para ésto es encontrar un balance entre un frame no tan grande (para no suavizar en exceso la curva) y que nos reduzca considerablemente la cantidad de indefiniciones; es decir, aquellas ventanas que tomamos en un interlocutor que no tienen ninguna interacción de su parte. Para ver ésto, graficamos la cantidad de indefiniciones en función del step tomado.
+Otro parámetro de la técnica es el tamaño y step de la ventana, que discutiremos en esta sección. En el trabajo \cite{KOU2008.2} se menciona una elección de \emph{frame step} y \emph{frame length} de 10s y 20s respectivamente. En el caso de nuestro corpus, queremos buscar los parámetros que mejor se ajustan a éste, manteniendo la superposición del 50\% entre ventanas sucesivas.
+
+¿Qué queremos optimizar? La métrica que elegimos para ésto es encontrar un balance entre una ventana no tan grande (para no suavizar en exceso la curva) y que nos reduzca considerablemente la cantidad de indefiniciones; es decir, aquellas ventanas que tomamos en un interlocutor que no tienen ninguna interacción de su parte. Para ver ésto, graficamos la cantidad de indefiniciones en función del step tomado, para ver qué forma tenían estas curvas.
 
 \begin{figure}
 \centering
-\includegraphics[width=10cm]{images/window_selection.png}
+\includegraphics[width=15cm]{images/window_selection_for_session.png}
+\caption{Cantidad de puntos indefinidos en función del step para una sesión en particular, tanto para un interlocutor como para el otro. En rojo se grafica la curva de los promedios. }
 \end{figure}
 
 
@@ -20,5 +22,7 @@ OBS: podríamos cambiar ésto a un boxplot!
 
 \begin{figure}
 \centering
-\includegraphics[height=5cm]{images/window_selection_for_session.png}
+\includegraphics[width=15cm]{images/window_selection.png}
 \end{figure}
+
+
