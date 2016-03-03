@@ -21,7 +21,7 @@ En \cite{KOU2008.2} se continúa el trabajo en series de tiempo, y se efectúan 
 
 Una posible medida del \entrainment se podría dar midiendo cuánto influye una serie sobre otra, considerándolas a ambas como parte de un sistema donde ambas interactúan. Éste \entrainment, entonces, sería direccional: queremos medir cuánto influye el interlocutor $A$ al interlocutor $B$ y viceversa. Puede darse el caso en que ambos tengan fuerte interacción, en tal caso hablamos de \emph{feedback}. En \cite{gravano2015backward} este concepto es definido como \emph{forward influence}.
 
-\nota{Agustín, chequea si ésto que puse está bien}
+\nota{Agustín, chequea si esto que puse está bien}
 
 Para medir cuánto se mimetizan las dos series, utilizaremos la función de correlación cruzada (c.c.f)\cite{CHATFIELD}, que mide cuánto se parecen la serie $X$ e $Y$ aplicando un desplazamiento $k$, dándonos un valor entre $-1$ y $1$ (similar a la correlación de la estadística clásica). Podemos aproximar la c.c.f. mediante la fórmula de la correlación cruzada muestral.
 
@@ -39,9 +39,9 @@ Para medir cuánto se mimetizan las dos series, utilizaremos la función de corr
 Podemos ver que, si $k \geq 0$, lo que hacemos es, a grandes rasgos, calcular la correlación de Pearson entre $A_{t+k}$ e $B_t$. Si $k < 0$, lo hacemos entre $A_t$ e $B_{t+k}$. Viéndolo de otra forma, si $k \geq 0$, estamos midiendo cuánto influye $B$ sobre $A$ contemplando un desplazamiento de $k$ puntos; si $k \leq 0$ medimos la influencia de $A$ sobre $B$ a misma distancia.
 
 
-Para cada conversación, se grafica entonces el correlograma cruzado, considerando lags tanto positivos como negativos. Hecho ésto, en el estudio \cite{KOU2008.2} sólo analizan la significancia de los resultados de la correlación cruzada, enumerando aquellos lags en los cuales ésto ocurrió. En la sección \ref{sec:method_entrainment} comentaremos cómo utilizamos la técnica descripta para la medición del entrainment direccional.
+Para cada conversación, se grafica entonces el correlograma cruzado, considerando lags tanto positivos como negativos. Hecho esto, en el estudio \cite{KOU2008.2} sólo analizan la significancia de los resultados de la correlación cruzada, enumerando aquellos lags en los cuales esto ocurrió. En la sección \ref{sec:method_entrainment} comentaremos cómo utilizamos la técnica descripta para la medición del entrainment direccional.
 
-\nota{Kousidis menciona algo acerca de los problemas que se dan cuando hay feedback...¿qué deberíamos considerar al respecto de ésto?}
+\nota{Kousidis menciona algo acerca de los problemas que se dan cuando hay feedback...¿qué deberíamos considerar al respecto de esto?}
 
 
 \begin{figure}

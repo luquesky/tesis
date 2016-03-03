@@ -9,7 +9,7 @@
 
 Llegado a este punto, dada una variable a/p, nos interesaría evaluar la relación entre el entrainment y las distintas variables sociales. Con esto en mente, planteamos un modelo de regresión lineal donde nuestra variable \emph{explicativa} será la mimetización o entrainment, y la variable \emph{dependiente} será la variable social.
 
-En base a ésto, podremos observar cuál es la variación conjunta de ellas. Es esperable que, al aumentar la mimetización (por ejemplo, en la intensidad o en el pitch), aumenten ciertas variables sociales (por ejemplo, la compenetración en el juego) y que otras desciendan (el aburrimiento).
+En base a esto, podremos observar cuál es la variación conjunta de ellas. Es esperable que, al aumentar la mimetización (por ejemplo, en la intensidad o en el pitch), aumenten ciertas variables sociales (por ejemplo, la compenetración en el juego) y que otras desciendan (el aburrimiento).
 
 
 \subsection{Modelo clásico de Regresión Lineal}
@@ -47,7 +47,7 @@ Sobre éstas variables es que planteamos nuestro modelo de regresión lineal cl�
 \end{equation}
 
 
-Para ello, calcularemos los estimadores $\widehat{\beta_1}, \widehat{\beta_2} \in \mathbb{R}$ mediante el método \emph{QR} (insertar referencia aquí) que nos provee el lenguaje R. A su vez, luego de ésto efectuaremos un análisis de significancia sobre $\beta_2$ para verificar que sean distintos de 0.
+Para ello, calcularemos los estimadores $\widehat{\beta_1}, \widehat{\beta_2} \in \mathbb{R}$ mediante el método \emph{QR} (insertar referencia aquí) que nos provee el lenguaje R. A su vez, luego de esto efectuaremos un análisis de significancia sobre $\beta_2$ para verificar que sean distintos de 0.
 
 
 Uno esperaría que un alto \emph{entrainment} se relacione con un alto valor de ciertas variables sociales \cite{BRE1996}, por ejemplo la compenetración con el juego, el ayudar a terminarlo. Esto significa esperar que el valor de $\widehat{\beta_2}$; y se relacione con bajos valores de otras, como el aburrimiento, o el rechazo percibido hacia el compañero.
