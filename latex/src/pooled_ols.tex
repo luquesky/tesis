@@ -1,6 +1,22 @@
-En esta sección, mostraremos el primer experimento que hicimos. Éste consistió en aplicar un modelo de regresión lineal de cada variable social sobre el \entrainment.
+En esta sección, mostraremos el primer experimento que realizamos. Éste consistió en aplicar un modelo de regresión lineal de cada variable social sobre el \entrainment, sin desagregar los datos por sesión y hablante.
 
-Una variación que usaremos en el presente experimento (y en el posterior) es utilizar como variable dependiente el valor absoluto del \entrainment, en base a estudios que sugieren que los interlocutores pueden también diferenciarse como un rasgo positivo en la conversación.
+Una variación que usamos en el presente experimento (y en el posterior) es utilizar como variable dependiente el valor absoluto del \entrainment, en base a estudios que sugieren que los interlocutores pueden también diferenciarse como un rasgo positivo en la conversación.
+
+\section{Nuestro modelo de regresión}
+
+Sea entonces una variable acústica/prosódica (por ejemplo, el pitch o la intensidad), y una variable social de las enumeradas en la tabla \ref{sec:panel_data}. Sean $E_1, \ldots, E_n$ los valores de entrainment para el set de datos que definimos en \ref{sec:panel_data}, y sean $V_1, V_2, \ldots V_n$ los valores de la variable social de cada conversación.
+
+Sobre éstas variables es que planteamos nuestro modelo de regresión lineal clásica: queremos ver qué relación hay tomando como variable ``fija'' al \entrainment, y como variable dependiente a la variable social. Queremos hallar, entonces $\widehat{\beta_1}, \widehat{\beta_2} \in \mathbb{R}$
+
+\begin{equation}
+  V_i \simeq \widehat{\beta_1} + \widehat{\beta_2} E_i
+\end{equation}
+
+
+Para ello, calculamos los estimadores $\widehat{\beta_1}, \widehat{\beta_2} \in \mathbb{R}$ mediante el método \emph{QR} que nos provee el lenguaje R. A su vez, luego de esto efectuamos un análisis de significancia sobre $\beta_2$ para verificar que sean estadísticamente distintos de 0.
+
+Uno esperaría que un alto \emph{entrainment} se relacione con un alto valor de ciertas variables sociales \cite{BRE1996}, por ejemplo la compenetración con el juego, el ayudar a terminarlo. Esto significa esperar que el valor de $\widehat{\beta_2}$; y se relacione con bajos valores de otras, como el aburrimiento, o el rechazo percibido hacia el compañero.
+
 
 \section{Modelo agrupado o \emph{pooled}}
 

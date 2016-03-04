@@ -1,5 +1,5 @@
 
-\begin{figure}[h]
+\begin{figure}[h!]
 \centering
 \includegraphics[width=10cm]{images/linear_regression.jpg}
 \caption{Ejemplo de Regresión Lineal}
@@ -7,9 +7,9 @@
 
 \section{Análisis de regresión}
 
-Llegado a este punto, dada una variable a/p, nos interesaría evaluar la relación entre el entrainment y las distintas variables sociales. Con esto en mente, planteamos un modelo de regresión lineal donde nuestra variable \emph{explicativa} será la mimetización o entrainment, y la variable \emph{dependiente} será la variable social.
+Llegado a este punto, dada una variable acústico-prosódica, nos interesó evaluar la relación entre el entrainment y las distintas variables sociales. Con esto en mente, planteamos un modelo de regresión lineal tomando como nuestra variable \emph{explicativa} la mimetización o \entrainment, y la variable \emph{dependiente} será la variable social elegida. Este análisis de regresión nos permitió observar cuál es la variación conjunta de ellas.
 
-En base a esto, podremos observar cuál es la variación conjunta de ellas. Es esperable que, al aumentar la mimetización (por ejemplo, en la intensidad o en el pitch), aumenten ciertas variables sociales (por ejemplo, la compenetración en el juego) y que otras desciendan (el aburrimiento).
+Nuestra hipotesis consistió en que la mimetización (por ejemplo, en la intensidad o pitch) se relacionaría de manera directa con ciertas variables sociales de connotación positiva (por ejemplo, la compenetración en el juego) y que se relacionaría de manera inversa con aquellas de carácter negativo (el aburrimiento o el desagrado por su compañero).
 
 
 \subsection{Modelo clásico de Regresión Lineal}
@@ -36,21 +36,8 @@ obtenemos que
 
 Nuestro objetivo es poder entonces conseguir estimadores $\widehat{\beta_1}, \widehat{\beta_2}$ que nos permitan analizar y predecir el comportamiento conjunto de estas variables.
 
-\subsection{Nuestro modelo}
+En la siguiente sección se describe el primer experimento, en el cual utilizamos el modelo ``pooled'' o agrupado, en el cual utilizamos todos los datos juntos indistintamente de la sesión y hablante del que provengan.
 
-Sea entonces una variable acústica/prosódica (por ejemplo, el pitch o la intensidad), y una variable social de las que acabamos de enumerar en \ref{sec:panel_data}. Sean $E_1, \ldots, E_n$ los valores de entrainment para el set de datos que definimos en \ref{sec:panel_data}, y sean $V_1, V_2, \ldots V_n$ los valores de la variable social de cada conversación.
-
-Sobre éstas variables es que planteamos nuestro modelo de regresión lineal clásica: queremos ver qué relación hay tomando como variable ``fija'' al entrainment, y como variable dependiente a la variable social. Queremos hallar, entonces $\widehat{\beta_1}, \widehat{\beta_2} \in \mathbb{R}$
-
-\begin{equation}
-  V_i \simeq \widehat{\beta_1} + \widehat{\beta_2} E_i
-\end{equation}
-
-
-Para ello, calcularemos los estimadores $\widehat{\beta_1}, \widehat{\beta_2} \in \mathbb{R}$ mediante el método \emph{QR} (insertar referencia aquí) que nos provee el lenguaje R. A su vez, luego de esto efectuaremos un análisis de significancia sobre $\beta_2$ para verificar que sean distintos de 0.
-
-
-Uno esperaría que un alto \emph{entrainment} se relacione con un alto valor de ciertas variables sociales \cite{BRE1996}, por ejemplo la compenetración con el juego, el ayudar a terminarlo. Esto significa esperar que el valor de $\widehat{\beta_2}$; y se relacione con bajos valores de otras, como el aburrimiento, o el rechazo percibido hacia el compañero.
 
 
 
