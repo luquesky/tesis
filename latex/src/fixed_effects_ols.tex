@@ -1,11 +1,19 @@
 \section{Modelo de Efectos Fijos}
 
-\nota{Agregar gráfico de ejemplo de efectos fijos}
+\begin{figure}[t]
+\centering
+\includegraphics[scale=1]{images/fixed_effects_example.pdf}
+\caption{Ejemplo de efectos fijos}
+\label{fig:efectos_fijo}
+\end{figure}
+
+
 
 \newcommand{\slopeestim}[1] { $\estslope \sim #1$ }
 
-El modelo de efectos fijos agrega el concepto de heterogeneidad permitiendo que cada sujeto tenga su propio valor de ordenada al origen. En el caso concreto de nuestro corpus, dicha heterogeneidad puede deberse a multiplicidad de factores no medidos en él. Por ejemplo, la personalidad de los sujetos es un factor no medido y que puede influír en la dinámica de la interacción entre estos.
+El modelo agrupado o pooled que vimos en el anterior capítulo posee un problema, ya que niega la posibilidad de heterogeneidad no observada, que son variables no medidas que afectan al sistema. En el caso concreto de nuestro corpus, dicha heterogeneidad puede deberse a multiplicidad de factores no medidos en él, como por ejemplo: la personalidad de los sujetos es un factor no medido y que puede influír en la dinámica de la interacción entre estos.
 
+Los modelos de efectos fijos nos ayudan a controlar la heterogeneidad no observada cuando ésta es constante en el tiempo.
 Como el entrainment que medimos mediante el proceso TAMA es un proceso direccional (es decir, medimos tanto la influencia de un interlocutor sobre el otro y viceversa), definimos los ``grupos'' como las observaciones de entrainment y sus variables sociales de una sesión y el interlocutor sobre el cual consideramos la direccionalidad, tal y cual lo definimos en una sección anterior. esto nos arroja la cantidad de 24 grupos de observaciones
 
 
