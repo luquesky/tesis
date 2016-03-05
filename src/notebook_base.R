@@ -4,6 +4,7 @@ options(repos="http://cran.us.r-project.org")
 library(xtable)
 
 if (!require("plm")) install.packages("plm")
+if (!require("plm")) install.packages("xtable")
 if (!require("lmtest")) install.packages("lmtest")
 if (!require("sandwich")) install.packages("sandwich")
 if (!require("sqldf")) install.packages("sqldf")
