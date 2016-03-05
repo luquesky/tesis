@@ -1,57 +1,58 @@
-En esta sección, mostraremos el primer experimento que realizamos. Éste consistió en aplicar un modelo de regresión lineal de cada variable social sobre el \entrainment, sin desagregar los datos por sesión y hablante.
+En esta sección, mostraremos el primer experimento realizado. Este consistió en aplicar un modelo de regresión lineal de cada variable social sobre el \entrainment, sin desagregar los datos por sesión y hablante.
 
 Una variación que usamos en el presente experimento (y en el posterior) es utilizar como variable dependiente el valor absoluto del \entrainment, en base a estudios que sugieren que los interlocutores pueden también diferenciarse como un rasgo positivo en la conversación.
 
 \section{Nuestro modelo de regresión}
 
-Sea entonces una variable acústica/prosódica (por ejemplo, el pitch o la intensidad), y una variable social de las enumeradas en la tabla \ref{sec:panel_data}. Sean $E_1, \ldots, E_n$ los valores de entrainment para el set de datos que definimos en \ref{sec:panel_data}, y sean $V_1, V_2, \ldots V_n$ los valores de la variable social de cada conversación.
+Dada una variable acústica/prosódica (por ejemplo, el pitch o la intensidad), queremos investigar la relación entre entrainment y las distintas variables sociales medidas. Sea $V$ una variable social de las enumeradas en la tabla \ref{sec:panel_data}. Sean $E_1, \ldots, E_n$ los valores de entrainment para el set de datos que definimos en la sección \ref{sec:panel_data}, y sean $V_1, V_2, \ldots V_n$ los valores de la variable social de cada conversación.
 
-Sobre éstas variables es que planteamos nuestro modelo de regresión lineal clásica: queremos ver qué relación hay tomando como variable ``fija'' al \entrainment, y como variable dependiente a la variable social. Queremos hallar, entonces $\widehat{\beta_1}, \widehat{\beta_2} \in \mathbb{R}$
+Sobre éstas variables es que planteamos nuestro modelo de regresión lineal clásica, para analizar qué relación hay tomando como variable ``fija'' al \entrainment, y como variable dependiente a la variable social. El problema, entonces, es hallar estimadores $\widehat{\beta_1}, \widehat{\beta_2} \in \mathbb{R}$ de modo que 
 
 \begin{equation}
-  V_i \simeq \widehat{\beta_1} + \widehat{\beta_2} E_i
+  V_i \simeq \estintercept + \estslope E_i
+  \label{eq:my_model}
 \end{equation}
 
 
-Para ello, calculamos los estimadores $\widehat{\beta_1}, \widehat{\beta_2} \in \mathbb{R}$ mediante el método \emph{QR} que nos provee el lenguaje R. A su vez, luego de esto efectuamos un análisis de significancia sobre $\beta_2$ para verificar que sean estadísticamente distintos de 0.
+Para ello, calculamos los estimadores mediante el método \emph{QR} que nos provee el lenguaje R. A su vez, luego de esto efectuamos un análisis de significancia sobre $\estslope$ para verificar que sea estadísticamente distintos de 0.
 
-Uno esperaría que un alto \emph{entrainment} se relacione con un alto valor de ciertas variables sociales \cite{BRE1996}, por ejemplo la compenetración con el juego, el ayudar a terminarlo. Esto significa esperar que el valor de $\widehat{\beta_2}$; y se relacione con bajos valores de otras, como el aburrimiento, o el rechazo percibido hacia el compañero.
+Uno esperaría que un alto \emph{entrainment} se relacione con un alto valor de ciertas variables sociales, por ejemplo la compenetración con el juego, el ayudar a terminarlo. En términos de la ecuación \ref{eq:my_model}, esperamos que $\estslope \geq 0$. De manera inversa, cuando las variables sociales tienen un carácter negativo de la conversación, esperamos que $\estslope \leq 0$. 
 
 
-\section{Modelo agrupado o \emph{pooled}}
-
-En el modelo agrupado o \emph{pooled}, no distinguimos entre datos provenientes de distintos ``grupos'' \cite{gujarati1999} y sobre estos calculamos la regresión lineal, agrupando todos los datos disponibles.
+El modelo de regresión que usamos en este primer experimento se denomina agrupado o \emph{pooled}, ya no distinguimos entre datos provenientes de distintos ``grupos'' \cite{gujarati1999} y sobre estos calculamos la regresión lineal, agrupando todos los datos disponibles.
 
 Un problema que surge con este tipo de regresión es que niega todo tipo de \emph{heterogeneidad} de los datos: estos pueden provenir de interlocutores más o menos empáticos, o cuya interacción en el juego se vio influída por factores no medidos en el experimento. Todo esto es descartado, aún cuando puede afectar seriamente  el resultado obtenido.
 
-\nota{Gráfico de ejemplo de pooled ols}
-
-\begin{figure}[b!]
-\includegraphics[width=15cm]{images/regression_F0_MEAN_1.pdf}
-\caption{Gráfico de los pares entrainment-variable a/p, junto a la regresión lineal obtenida \label{regresion_clasica} para \emph{F0\_MEAN}}
-\end{figure}
+En el siguiente capítulo ahondaremos un poco más en cómo definimos los grupos en nuestro trabajo.
 
 \section{Resultados sobre \entrainment}
 
-Este modelo dio resultados con baja significancia. En \ref{regresion_clasica} puede verse el gráfico de \emph{F0\_MEAN} y 4 variables sociales y en \ref{regresion_clasica_tabla} pueden verse los valores de las estimaciones de $\estslope$ junto a sus p-valores.
+Los resultados de este experimento no fueron interesantes ya que dieron valores de $\estslope$ con muy baja signifcancia. En \ref{fig:regresion_clasica} puede verse el gráfico de regresión lineal del \entrainment contra distintas variables sociales, tomando como variable acústico-prosódica a \FOMEAN. En las figuras \ref{fig:regresion_clasica_tabla_1} y \ref{fig:regresion_clasica_tabla_2} podemos observar la tabla de las regresiones, con las estimaciones obtenidas y sus valores de significancia para todas las variables sociales. Se observa que no sólo las pendientes tienen un muy bajo valor absoluto, sino que además ni siquiera tienen los signos que esperábamos en un principio.
+
+En base a lo arrojado por este análisis de regresión, intentamos introducir variaciones del experimento. La primera, es cambiar la variable explicativa por el valor absoluto del entrainment.
+
+
+\begin{figure}[b!]
+\includegraphics[width=15cm]{images/regression_F0_MEAN_1.pdf}
+\caption{Gráfico de los pares entrainment-variable a/p, junto a la regresión lineal obtenida para \emph{F0\_MEAN}}
+\label{fig:regresion_clasica}
+\end{figure}
+
 
 \input{tables/classic_regression_table}
 
 \nota{Mover esto a antecedentes}
-\section{Absolute \entrainment, o \disentrainment}
+\section{Valor absoluto de \entrainment}
 
-En nuestra definición de \entrainment en el contexto de series de tiempo, la definimos como el valor de la correlación cruzada (en un sentido de los lags) con mayor valor absoluto. esto puede dar, como resultado, valores positivos entre 0 y 1 a los cuales consideramos como \entrainment; o bien valores negativos entre -1 y 0, estos considerados como anti-\entrainment: la divergencia de las features a/p medidas a través del tiempo.
+En nuestra definición de \entrainment en el contexto de series de tiempo, la definimos como el valor de la correlación cruzada (en un sentido de los lags) con mayor valor absoluto. Esto puede dar, como resultado, valores positivos entre 0 y 1 a los cuales consideramos como \entrainment; o bien valores negativos entre -1 y 0, estos considerados como anti-\entrainment: la divergencia de las features a/p medidas a través del tiempo.
 
 Este fenómeno de anti-\entrainment o antimimicry \cite{CHAR1999} refiere al proceso por el cual uno de los interlocutores no imita al otro sino más bien todo lo contrario, acentúa alguna diferencia. Si bien estudios de larga data como \cite{bourhis1973language} o \cite{dabbs1969similarity} lo emparentan con una connotación negativa, \cite{healey2014divergence} y \cite{levitan2015acoustic} sugieren que puede entenderse este fenómeno como una conducta de adaptación cooperativa. No sólo éso, sino que este fenómeno de mimetización complementaria es más prevalente que la mimetización a secas \cite{levitan2015acoustic}.
 
-En base a lo recién mencionado es que decidimos probar alguna medida que capture positivamente el fenómeno de igual manera que con el \entrainment definido. Es decir, esperamos que cuando tengamos o bien \entrainment o \entrainment complementario (valores significativos de éste) ocurra que tenemos valores altos de variables sociales de carácter positivo. Mutatis mutandis con las variables sociales de connotación negativa.
+En base esto es que decidimos probar alguna medida que capture positivamente el fenómeno de la anti-mimetización de igual manera que con el \entrainment antes definido. Es decir, esperamos que cuando tengamos o bien \entrainment o \entrainment complementario ocurra que tenemos valores altos de variables sociales de carácter positivo. Mutatis mutandis con las variables sociales de connotación negativa.
 
-Con este fin, en vez de utilizar sólo el valor de \entrainment como variable explicativa, efectuaremos el mismo análisis pero utilizando el valor absoluto del \entrainment como tal. esto permite captar y valorar el \entrainment complementario de la misma manera que el ``positivo'' y valorar su relación con las variables sociales medidas.
+Con este fin, en vez de utilizar sólo el valor de \entrainment como variable explicativa, efectuamos el mismo análisis pero utilizando el valor absoluto del \entrainment como tal. Usar esto permite captar y valorar el \entrainment complementario de la misma manera que el ``positivo'' y valorar su relación con las variables sociales medidas.
 
 \section{Resultados sobre \absentrainment}
 
 \nota{Escribir acá, y poner tablas sobre \absentrainment en pooled}
 
-\section{Discusión}
-
-\nota{Vale la pena escribir discusión en pooled?}
