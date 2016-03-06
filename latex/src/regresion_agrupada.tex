@@ -39,20 +39,24 @@ En base a lo arrojado por este análisis de regresión, intentamos introducir va
 \end{figure}
 
 
-\input{tables/classic_regression_table}
+\input{tables/pooled_entrainment}
 
 \nota{Mover esto a antecedentes}
 \section{Valor absoluto de \entrainment}
 
-En nuestra definición de \entrainment en el contexto de series de tiempo, la definimos como el valor de la correlación cruzada (en un sentido de los lags) con mayor valor absoluto. Esto puede dar, como resultado, valores positivos entre 0 y 1 a los cuales consideramos como \entrainment; o bien valores negativos entre -1 y 0, estos considerados como anti-\entrainment: la divergencia de las features a/p medidas a través del tiempo.
+En la sección \ref{sec:method_entrainment}, definimos el \entrainment como el valor de la correlación cruzada (en un sentido de los lags) con mayor valor absoluto. Esto puede dar, como resultado, valores positivos entre 0 y 1 a los cuales consideramos como \entrainment; o bien valores negativos entre -1 y 0, estos considerados como anti-\entrainment: la divergencia de las features a/p medidas a través del tiempo.
 
-Este fenómeno de anti-\entrainment o antimimicry \cite{CHAR1999} refiere al proceso por el cual uno de los interlocutores no imita al otro sino más bien todo lo contrario, acentúa alguna diferencia. Si bien estudios de larga data como \cite{bourhis1973language} o \cite{dabbs1969similarity} lo emparentan con una connotación negativa, \cite{healey2014divergence} y \cite{levitan2015acoustic} sugieren que puede entenderse este fenómeno como una conducta de adaptación cooperativa. No sólo éso, sino que este fenómeno de mimetización complementaria es más prevalente que la mimetización a secas \cite{levitan2015acoustic}.
+Este fenómeno de anti-\entrainment o antimimicry \cite{CHAR1999} refiere al proceso por el cual uno de los hablantes no imita al otro sino más bien todo lo contrario, acentúa alguna diferencia. Si bien estudios de larga data como \cite{bourhis1973language} o \cite{dabbs1969similarity} lo emparentan con una connotación negativa, \cite{healey2014divergence} y \cite{levitan2015acoustic} sugieren que puede entenderse este fenómeno como una conducta de adaptación cooperativa. No sólo éso, sino que este fenómeno de mimetización complementaria es más prevalente que la mimetización a secas \cite{levitan2015acoustic}.
 
 En base esto es que decidimos probar alguna medida que capture positivamente el fenómeno de la anti-mimetización de igual manera que con el \entrainment antes definido. Es decir, esperamos que cuando tengamos o bien \entrainment o \entrainment complementario ocurra que tenemos valores altos de variables sociales de carácter positivo. Mutatis mutandis con las variables sociales de connotación negativa.
 
 Con este fin, en vez de utilizar sólo el valor de \entrainment como variable explicativa, efectuamos el mismo análisis pero utilizando el valor absoluto del \entrainment como tal. Usar esto permite captar y valorar el \entrainment complementario de la misma manera que el ``positivo'' y valorar su relación con las variables sociales medidas.
 
 \section{Resultados sobre \absentrainment}
+
+
+
+\input{tables/pooled_abs_entrainment}
 
 \nota{Escribir acá, y poner tablas sobre \absentrainment en pooled}
 
