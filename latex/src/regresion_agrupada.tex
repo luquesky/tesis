@@ -27,7 +27,7 @@ En el siguiente capítulo ahondaremos un poco más en cómo definimos los grupos
 
 \section{Resultados sobre \entrainment}
 
-Los resultados de este experimento no fueron interesantes ya que dieron valores de $\estslope$ con muy baja signifcancia. En \ref{fig:regresion_clasica} puede verse el gráfico de regresión lineal del \entrainment contra distintas variables sociales, tomando como variable acústico-prosódica a \FOMEAN. En las figuras \ref{fig:regresion_clasica_tabla_1} y \ref{fig:regresion_clasica_tabla_2} podemos observar la tabla de las regresiones, con las estimaciones obtenidas y sus valores de significancia para todas las variables sociales. Se observa que no sólo las pendientes tienen un muy bajo valor absoluto, sino que además ni siquiera tienen los signos que esperábamos en un principio.
+Los resultados de este experimento no fueron interesantes ya que dieron muy pocos valores de $\estslope$ significantes. En \ref{fig:regresion_clasica} puede verse el gráfico de regresión lineal del \entrainment contra distintas variables sociales, tomando como variable acústico-prosódica a \FOMEAN. En las figuras \ref{fig:regresion_clasica_tabla_1} y \ref{fig:regresion_clasica_tabla_2} podemos observar la tabla de las regresiones, con las estimaciones obtenidas y sus valores de significancia para todas las variables sociales. Se observa que no sólo las pendientes tienen un muy bajo valor absoluto, sino que además ni siquiera tienen los signos que esperábamos en un principio.
 
 En base a lo arrojado por este análisis de regresión, intentamos introducir variaciones del experimento. La primera, es cambiar la variable explicativa por el valor absoluto del entrainment.
 
@@ -54,6 +54,11 @@ Con este fin, en vez de utilizar sólo el valor de \entrainment como variable ex
 
 \section{Resultados sobre \absentrainment}
 
+Utilizando esta variable explicativa, los resultados son bastante distintos. En las tablas \ref{fig:pooled_abs_entrainment_1} y \ref{fig:pooled_abs_entrainment_2} podemos observar que hubo al menos un resultado significativo para todas las variables \ap, exceptuando \PHONAVG. 
+
+Casi todos los resultados significantes y positivos de $\estslope$ son respecto de variables sociales de carácter positivo, como \svclear, \svengaged y \svencourages; la notable excepción es \svdifficult, que tiene un carácter negativo pero a su vez $\estslope > 0$ en varios casos. El único caso significativo donde $\estslope < 0$ es para \svbored, que era algo justamente esperado.
+
+Habiendo reformulado anteriormente nuestra hipótesis, estos resultados dan indicio de que el valor absoluto del \entrainment se relaciona con las variables sociales medidas, de manera positiva para aquellas favorables para la conversación, y de manera inversa para aquellas contrarias. Sin embargo, consideramos que en esta asociación influyen factores no medidos dentro de cada conversación, por lo cual planteamos un segundo experimento que contemple esta \emph{heterogeneidad} para analizar mejor cómo interactúan el \entrainment con los rasgos sociales. 
 
 
 \input{tables/pooled_abs_entrainment}
