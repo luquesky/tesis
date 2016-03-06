@@ -11,19 +11,25 @@
 
 \newcommand{\slopeestim}[1] { $\estslope \sim #1$ }
 
-El modelo agrupado o pooled que vimos en el anterior capítulo posee un problema, ya que niega la posibilidad de heterogeneidad no observada; esto es, variables no medidas que afectan al sistema. En el caso concreto de nuestro corpus, dicha heterogeneidad puede deberse a multiplicidad de factores no medidos en él, como por ejemplo: la personalidad de los sujetos es un factor no medido y que puede influír en la dinámica de la interacción entre estos.
+El modelo agrupado o pooled que vimos en el anterior capítulo niega la posibilidad de heterogeneidad no observada; esto es, variables no medidas que afectan al sistema planteado. En el caso concreto de nuestro corpus, dicha heterogeneidad puede deberse a multiplicidad de factores: la personalidad de los sujetos, el sexo, las elecciones gramaticales, etc.
 
-Los modelos de efectos fijos nos ayudan a controlar la heterogeneidad no observada cuando ésta es constante en el tiempo, dado un sujeto del sistema. Para nuestro experimento, definimos los sujetos (en el lenguaje del modelo estadístico) como cada uno de los interlocutores y sus respectivas sesiones. No nos importa si el mismo sujeto se repite en otra sesión: cada hablante de una sesión es un sujeto distinto para el modelo de efectos fijos. 
+\nota{Agustín, chequeá esto por favor}
+
+Los modelos de efectos fijos nos ayudan a controlar la heterogeneidad no observada cuando ésta es constante en el tiempo, dado un sujeto del sistema. Asumimos que estos factores son inherentes a la conversación entre el hablante y su par. Para nuestro experimento, definimos los sujetos (en el lenguaje del modelo estadístico) como cada uno de los interlocutores y sus respectivas sesiones. No nos importa si el mismo sujeto se repite en otra sesión: cada hablante de una sesión es un sujeto distinto para el modelo de efectos fijos. 
 
 Recordemos que el entrainment medido mediante el proceso TAMA es un proceso direccional: medimos tanto la influencia de un interlocutor sobre el otro y viceversa. Así que el \entrainment de cada ``fila'' de nuestro set de datos (definido en la sección \ref{sec:panel_data}) corresponde al valor de mimetización direccional del actual hablante sobre su par.
 
 
-\section{Definición Formal de Efectos Fijos}
+\section{Modelo de efectos fijos \emph{within group}}
+
+Existen (al menos) dos variantes del modelo de efectos fijos: el modelo de variables ficticias y el modelo ``dentro del grupo'' (\emph{within group}). Ambas técnicas son matemática equivalentes, pero utilizaremos la segunda que nos provee el estimador de la pendiente, que es lo único que nos interesa.
+
+La técnica utilizada consiste en, dentro de cada grupo, restarle tanto a la variable ``dependiente'' y a la ``independiente'' las medias dentro de cada grupo (de aquí proviene el nombre del método). Ésto resulta en ``sacarle'' los efectos fijos no-temporales: en nuestro caso, estos están contemplados dentro de la ordenada al origen. Luego de efectuar esta transformación, se aplica regresión lineal ``pooled'', como en el experimento anterior. Producto del pre-proceso de los datos, la ordenada al origen es negligible. En \cite[chap 16]{gujarati1999} se describe extensivamente este procedimiento.
 
 
 \section{Resultados}
 
-Utilizando como variable explicativa el \entrainment, los resultados no son son significativos. En  podemos observar la tabla de coeficientes de esta regresión de efectos fijos.
+Utilizando como variable explicativa el \entrainment, los resultados no son son significativos. En \ref{caca} podemos observar la tabla de coeficientes de esta regresión de efectos fijos.
 
 \nota{agregar referencia a tablas de efectos fijos sobre entrainment}
 
@@ -40,6 +46,8 @@ Con respecto a las variables sociales, podemos observar que:
   \item La variable \svbored se comporta de idéntica manera, sólo que con \FOMEAN.
   \item \svdislikes no presenta valores significativos
 \end{itemize}
+
+Esto confirma la hipotesis de que el valor absoluto del \entrainment se relaciona de manera positiva con atributos sociales de características positivas, mientras que lo hace de manera inversa con los que tienen connotaciones negativas.
 
 \input{tables/regresion_efectos_fijos_significantes_tabla}
 \input{tables/sign_table}
