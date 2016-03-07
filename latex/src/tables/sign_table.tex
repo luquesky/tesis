@@ -2,22 +2,27 @@
 \centering
 % psl is "Positive Slope"
 \newcommand{\psl} { $+$ }
+\newcommand{\ppsl} { $++$ }
+\newcommand{\pppsl} { $+++$ }
+
 % nsl stands for "Negative SLope"
 \newcommand{\nsl} { $-$ }
+\newcommand{\nnsl} { $--$ }
+\newcommand{\nsl} { $---$ }
 
 
 \begin{tabular}{| c | c | c | c | c | c |}
   \hline
- & ENG\_MAX & ENG\_MEAN & F0\_MEAN & F0\_MAX & NOISERATIO  \\
+               &\ENGMAX  & \ENGMEAN  & \FOMEAN  & \FOMAX  & NOISERATIO  \\
   \hline
-contributes  &      &  & \psl &  & \psl \\ \hline
-  clear     & \psl &  & \psl &  & \psl \\ \hline
-  engaged    &      &  & \psl &  &      \\ \hline
-  planning   &      &  &      &  &      \\ \hline
-  encourages &      &  &      &  &      \\ \hline
-  difficult  & \nsl &  &      &  &      \\ \hline
-  bored      &      &  & \nsl &  &      \\ \hline
-  dislikes   &      &  &      &  &      \\ \hline
+  contributes  &         &           & \psl     &         & \psl        \\ \hline
+  clear        & \pppsl  &           & \psl     &         & \psl        \\ \hline
+  engaged      &         &           & \psl     &         &             \\ \hline
+  planning     &         &           &          &         &             \\ \hline
+  encourages   &         &           &          &         &             \\ \hline
+  difficult    & \nsl    &           &          &         &             \\ \hline
+  bored        &         &           & \nsl     &         &             \\ \hline
+  dislikes     &         &           &          &         &             \\ \hline
   \hline
 & PHON\_AVG & PHON\_COUNT & SHIMMER & SYL\_AVG & SYL\_COUNT \\
   \hline

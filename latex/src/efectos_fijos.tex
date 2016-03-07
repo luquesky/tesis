@@ -28,12 +28,9 @@ La técnica utilizada consiste en, dentro de cada grupo, restarle tanto a la var
 
 
 \section{Resultados}
+\nota{agrego referencia a tablas de efectos fijos sobre entrainment pelado?}
 
-Utilizando como variable explicativa el \entrainment, los resultados no son son significativos. En \ref{caca} podemos observar la tabla de coeficientes de esta regresión de efectos fijos.
-
-\nota{agregar referencia a tablas de efectos fijos sobre entrainment}
-
-Por otro lado, este modelo utilizando como variable independiente al valor absoluto del \entrainment dio valores sustancialmente apreciables. Las variables a/p \ENGMAX, \FOMEAN y \NOISETOHARMONICS poseen valores altamente significativos ( p-valor menor a 0.05) para al menos 2 variables sociales. En la tabla \ref{regresion_efectos_fijos_tabla} podemos ver la tabla del test de coeficientes con las variables sociales significativas resaltadas. Una versión simplificada tabla la podemos ver en \ref{sign_table} que grafica mediante tabla de doble entrada aquellos pares de variables a/p y variables sociales con coeficientes significativos y su signo.
+Este modelo, utilizando como variable independiente al valor absoluto del \entrainment dio valores sustancialmente apreciables. Casi todas las variables \ap poseen al menos un valor significativo de $\estslope$, destacándose \ENGMEAN, \NOISETOHARMONICS \FOMEAN  con 3, 3 y 4 valores significativos respectivamente. En las figuras \ref{fig:efectos_fijos_tabla1} y \ref{fig:efectos_fijos_tabla2} podemos ver el test de coeficientes con las variables sociales significativas resaltadas en distintas tonalidades según su nivel de significancia. Una versión simplificada tabla la podemos ver en \ref{sign_table} que grafica mediante tabla de doble entrada aquellos pares de variables a/p y variables sociales con coeficientes significativos y su signo.
 
 Con respecto a las variables sociales, podemos observar que:
 
@@ -47,7 +44,9 @@ Con respecto a las variables sociales, podemos observar que:
   \item \svdislikes no presenta valores significativos
 \end{itemize}
 
-Esto confirma la hipotesis de que el valor absoluto del \entrainment se relaciona de manera positiva con atributos sociales de características positivas, mientras que lo hace de manera inversa con los que tienen connotaciones negativas.
+Esto da fuertes indicios en favor de la hipotesis de que el valor absoluto del \entrainment se relaciona de manera positiva con atributos sociales de características positivas, mientras que lo hace de manera inversa con los que tienen connotaciones negativas.
 
-\input{tables/regresion_efectos_fijos_significantes_tabla}
+Un hecho a destacar es que esta medida del entrainment es consistente con otras métricas definidas en otros trabajos, como las construídas en \cite{gravano2015backward} sobre anotaciones ToBI.
+
+\input{tables/fixed_effects_abs_entrainment}
 \input{tables/sign_table}
