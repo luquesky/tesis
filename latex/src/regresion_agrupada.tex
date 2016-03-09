@@ -24,7 +24,7 @@ Asumiendo que $E[Y|X_i]$ es una función lineal de $X_i$; es decir, que existen 
   Y_i = \beta_1 + \beta_2 X_i + u_i
 \end{equation}
 
-Nuestro objetivo es poder entonces conseguir estimadores $\widehat{\beta_1}, \widehat{\beta_2}$ que nos permitan analizar y predecir el comportamiento conjunto de estas variables.
+Nuestro objetivo es poder entonces conseguir estimadores $\widehat{\beta_1}, \widehat{\beta_2}$ que nos permitan analizar y predecir el comportamiento conjunto de estas variables. A su vez, nos interesa analizar la significancia estadística de estos estimadores: más concretamente, a qué nivel de certeza podemos afirmar que son distintos de 0.
 
 
 \section{Nuestro modelo de regresión}
@@ -39,7 +39,7 @@ Sobre estas variables es que planteamos nuestro modelo de regresión lineal clá
 \end{equation}
 
 
-Para ello, calculamos los estimadores mediante el método \emph{QR} que nos provee el lenguaje R. A su vez, luego de esto efectuamos un análisis de significancia sobre $\estslope$ para verificar que sea estadísticamente distinto de 0.
+Para ello, calculamos los estimadores y efectuamos un análisis de significancia sobre $\estslope$ para verificar que sea estadísticamente distinto de 0. Esto fue realizado con las funciones que provee el lenguaje \emph{R}\footnote{https://www.r-project.org/}.
 
 Uno esperaría que un alto \emph{entrainment} se relacione con un alto valor de ciertas variables sociales, por ejemplo la compenetración con el juego o el ayudar a terminarlo. En términos de la ecuación \ref{eq:my_model}, esperamos que $\estslope \geq 0$. De manera inversa, cuando las variables sociales tienen un carácter negativo de la conversación, esperamos que $\estslope \leq 0$.
 
