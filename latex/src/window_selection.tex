@@ -1,22 +1,22 @@
 \subsection{Selección de Ventana}
 \label{sec:window_selection}
 
-Otro parámetro de la técnica es el tamaño y step de la ventana, que discutiremos en esta sección. En el trabajo \cite{KOU2008.2} se menciona una elección de \emph{frame step} y \emph{frame length} de 10s y 20s respectivamente. En el caso de nuestro corpus, queremos buscar los parámetros que mejor se ajustan a éste, manteniendo la superposición del 50\% entre ventanas sucesivas.
+En esta sección discutiremos los parámetros \emph{tamaño de ventana} o \emph{frame size} y el \emph{frame step}. En el trabajo \cite{KOU2008.2} se menciona una elección de \emph{frame step} y \emph{frame length} de 10s y 20s respectivamente. En el caso de nuestro corpus, queremos buscar los parámetros que mejor se ajustan a éste, manteniendo la superposición del 50\% entre ventanas sucesivas.
 
-¿Qué queremos optimizar? La métrica que elegimos para esto es encontrar un balance entre una ventana no tan grande (para no suavizar en exceso la curva) y que nos reduzca considerablemente la cantidad de indefiniciones; es decir, aquellas ventanas que tomamos en un interlocutor que no tienen ninguna interacción de su parte. Para ver esto, graficamos la cantidad de indefiniciones en función del step tomado, para ver qué forma tenían estas curvas. En \ref{fig:window_selection_session} podemos ver las indefiniciones en función de los steps para una sesión. Cada tarea tiene su propia curva, y además graficamos el promedio de todas ellas.
+¿Qué queremos optimizar? La métrica que elegimos para esto es encontrar un balance entre una ventana no tan grande (para no suavizar en exceso la curva) y que nos reduzca considerablemente la cantidad de indefiniciones; es decir, aquellas ventanas que tomamos en un hablante que no tienen ninguna participación medible de su parte. Para ver esto, graficamos la cantidad de indefiniciones en función del step tomado, para ver qué forma tenían estas curvas. En la figura\ref{fig:window_selection_session} podemos ver las indefiniciones en función de los steps para una sesión del corpus. Cada tarea tiene su propia curva, y además graficamos el promedio de todas ellas.
 
 \begin{figure}
 \centering
 \includegraphics[width=15cm]{images/window_selection_for_session.png}
-\caption{Cantidad de puntos indefinidos en función del step para una sesión en particular, tanto para un interlocutor como para el otro. En rojo se grafica la curva de los promedios. }
+\caption{Cantidad de puntos indefinidos en función del step para una sesión en particular, tanto para un interlocutor como para el otro. En rojo se grafica la curva de los promedios}
 \label{fig:window_selection_session}
 \end{figure}
 
-Finalmente, y para tener una visión general de lo que ocurría, graficamos una curva promedio de todas las sesiones, que graficamos en \ref{fig:window_selection_average}. Dada ésa curva, intentamos aplicar el ``método del codo'' para ver si podemos encontrar el valor en el cual la pendiente de las indefiniciones se estanca. Si bien es poco preciso hacer esto, puede observarse que hasta $8''-10''$ hay un fuerte descenso de las indefiniciones, que luego se atenúa. Dado que en general tenemos tareas cortas, preferimos tomar $8''$ como step, y por ende $16''$ como largo de ventana.
+Finalmente, para tener una visión general de lo que ocurría, graficamos una curva promedio de todas las sesiones, que se ilustra en la figura \ref{fig:window_selection_average}. Dada esa curva, intentamos aplicar el ``método del codo'' para ver si podemos encontrar el valor en el cual la pendiente de las indefiniciones se estanca. Si bien es poco preciso hacer esto, puede observarse que hasta $8''-10''$ hay un fuerte descenso de las indefiniciones, que luego se atenúa. Dado que en general tenemos tareas cortas, preferimos tomar $8''$ como step, y por ende $16''$ como largo de ventana.
 
-\begin{figure}
+\begin{figure}[bh!]
 \centering
-\includegraphics[width=12.5cm]{images/window_selection.png}
+\includegraphics[scale=0.75]{images/window_selection.png}
 \caption{Promedio de cantidad de puntos indefinidos en función del step}
 \label{fig:window_selection_average}
 \end{figure}
