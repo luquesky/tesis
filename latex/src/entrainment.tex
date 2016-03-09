@@ -8,7 +8,7 @@
 \label{fig:time_plot_with_bivariate}
 \end{figure}
 
-Considerando todo lo mencionado en la sección \ref{sec:analisis_bivariado}, procedimos a definir una medida de \entrainment basándonos en el cálculo de la correlación cruzada muestral. Recordemos que, bajo la definición dada en la ecuación \ref{cross_correlation_definition} de $r_{AB}(k)$, al tomar $k \geq 0$ medíamos cuánto influía $B$ sobre los futuros valores de $A$, y viceversa cuando $k \leq 0$.
+Considerando todo lo mencionado en la sección \ref{sec:analisis_bivariado}, procedimos a definir una medida de \entrainment basándonos en el cálculo de la correlación cruzada muestral. Recordemos que, bajo la definición dada en la ecuación \ref{cross_correlation_definition} de $r_{AB}(k)$, al tomar $k \geq 0$ medíamos cuánto influía $B$ sobre los futuros valores de $A$, y viceversa cuando $k \leq 0$. Se tomó la decisión de que este cálculo sólo se realice cuando el desplazamiento resulta en al menos 4 puntos que se solapan; si esto no ocurre, dejamos indefinido el valor en el correlograma cruzado.
 
 Con esto en mente, definimos $\fwentrainment{AB}$ como el valor de $r_{AB}(k)$ con mayor valor absoluto, dado $k \leq 0$. Análogamente lo definimos para $\fwentrainment{BA}$. En \ref{fig:time_plot_with_bivariate} podemos observar en el lag -3 y 6 los valores de \entrainment elegidos del correlograma.
 
