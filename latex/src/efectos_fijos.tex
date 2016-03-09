@@ -1,0 +1,56 @@
+\section{Modelo de Efectos Fijos}
+
+\begin{figure}[t]
+\centering
+\includegraphics[scale=1]{images/fixed_effects_example.pdf}
+\caption{Ejemplo de datos de diferentes sujetos}
+\label{fig:efectos_fijo}
+\end{figure}
+
+
+
+\newcommand{\slopeestim}[1] { $\estslope \sim #1$ }
+
+El modelo agrupado o pooled que vimos en el anterior capítulo ignora la posibilidad de heterogeneidad no observada; esto es, variables no medidas que afectan al sistema planteado. En el caso concreto de nuestro corpus, dicha heterogeneidad puede deberse a factores como la identidad o el género de los hablantes.
+
+Los modelos de efectos fijos nos ayudan a controlar la heterogeneidad no observada cuando ésta es constante en el tiempo, dado un sujeto del sistema. Asumimos que estos factores son inherentes a la conversación entre el hablante y su interlocutor. Para nuestro experimento, definimos los sujetos (en el lenguaje del modelo estadístico) como cada uno de los hablantes y sus respectivas sesiones. No nos importa si el mismo sujeto se repite en otra sesión: cada hablante de una sesión es un sujeto distinto para el modelo de efectos fijos.
+
+Recordemos que el entrainment medido mediante el proceso TAMA es un proceso direccional: medimos la influencia de un hablante sobre el otro y viceversa. Así que el \entrainment de cada fila de nuestro set de datos (definido en la sección \ref{sec:panel_data}) corresponde al valor de mimetización direccional del actual hablante sobre su par.
+
+
+\section{Modelo de efectos fijos \emph{within group}}
+
+Existen (al menos) dos variantes del modelo de efectos fijos: el modelo de variables ficticias y el modelo ``dentro del grupo'' (\emph{within group}). Ambas técnicas son matemáticamente equivalentes, pero utilizaremos la segunda que nos provee el estimador de la pendiente, que es lo único que nos interesa.
+
+La técnica utilizada consiste en, dentro de cada grupo, restarle tanto a la variable ``dependiente'' como a la ``independiente'' las medias dentro de cada grupo (de aquí proviene el nombre del método). Esto resulta en ``sacarle'' los efectos fijos no-temporales: en nuestro caso, estos están contemplados dentro de la ordenada al origen. Luego de efectuar esta transformación, se aplica regresión lineal ``pooled'', como en el experimento anterior. Producto del pre-procesamiento de los datos, la ordenada al origen es negligible. En \cite[chap 16]{gujarati1999} se describe extensamente este procedimiento.
+
+
+\section{Resultados}
+
+
+\begin{table}[t!]
+\input{tables/sign_table}
+\caption{Tabla que representa los resultados significantes del experimento. En una de las entradas, tenemos los nombres abreviados de las variables sociales, y en la otra las variables a/p. El símbolo \psl representa valor significante y positivo de la pendiente de la regresión de efectos fijos, mientras que \nsl representa significante y negativo }
+\label{sign_table}
+\end{table}
+
+Este modelo, utilizando como variable independiente al valor absoluto del \entrainment dio valores sustancialmente apreciables. Casi todas las variables \ap poseen al menos un valor significativo de $\estslope$, destacándose \ENGMEAN, \NOISETOHARMONICS y \FOMEAN  con 3, 3 y 4 valores significativos respectivamente. En las figuras \ref{fig:efectos_fijos_tabla1} y \ref{fig:efectos_fijos_tabla2} podemos ver el test de coeficientes con las variables sociales significativas resaltadas en distintas tonalidades según su nivel de significancia. Una versión simplificada tabla la podemos ver en la tabla \ref{sign_table} que grafica mediante tabla de doble entrada aquellos pares de variables \ap y variables sociales con coeficientes significativos y su signo.
+
+Con respecto a las variables sociales, podemos observar que:
+
+\begin{itemize}
+  \item \svcontributes se relaciona positivamente con el \absentrainment cuando la variable acústico-prosódica medida es \FOMEAN o bien \NOISETOHARMONICS. Esto significa que, cuando sube el valor absoluto del \entrainment, esta variable positiva también lo hace con buena probabilidad. Esto es un efecto esperable: cuando hay mimetización, hay colaboración para el éxito en el juego.
+  \item \svclear, otra variable que refleja una visión positiva del juego, también se relaciona positivamente con el \absentrainment para las variables \FOMEAN, \NOISETOHARMONICS, \ENGMAX como a su vez para \PHONAVG
+  \item \svengaged, de la misma manera que las dos anteriores, relaciona positivamente pero sólo con \FOMEAN
+  \item \svdifficult, se relaciona de la manera esperada con el \absentrainment cuando la variable acústico prosódica es \ENGMAX; esto es, con $\estslope < 0$. Esto tiene sentido, ya que a mayor mimetización de los interlocutores, la dificultad de estos para hablar debería disminuir. Por otro lado, $\estslope > 0$ cuando la variable acústico-prosódica es \ENGMEAN, lo cual no era un resultado esperado, pero bien puede ser parte del error estadístico.
+  \item La variable \svbored se comporta de idéntica manera, sólo que con \FOMEAN.
+  \item \svplanning y \svencourages, otras variables positivas, no presentan valores significativos.
+  \item \svdislikes no presenta valores significativos
+\end{itemize}
+
+
+En resumen, encontramos fuerte evidencia empírica en favor de la hipótesis de que el valor absoluto del \entrainment se relaciona de manera positiva con atributos sociales de características positivas, mientras que lo hace de manera inversa con los que tienen connotaciones negativas.
+
+Un hecho a destacar es que esta medida del entrainment es consistente con otras métricas definidas en otros trabajos, como las construídas en \cite{gravano2015backward} sobre anotaciones discretas de los patrones entonacionales usando la convención ToBI\cite{pitrelli1994evaluation}.
+
+\input{tables/fixed_effects_abs_entrainment}

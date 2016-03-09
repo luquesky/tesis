@@ -1,40 +1,26 @@
-\begin{figure}[ht]
 \centering
 % psl is "Positive Slope"
 \newcommand{\psl} { $+$ }
+\newcommand{\ppsl} { $++$ }
+\newcommand{\pppsl} { $+++$ }
+
 % nsl stands for "Negative SLope"
 \newcommand{\nsl} { $-$ }
+\newcommand{\nnsl} { $--$ }
+\newcommand{\nnnsl} { $---$ }
 
+\adjustbox{max width=\textwidth}{
 
-\begin{tabular}{| c | c | c | c | c | c |}
+\begin{tabular}{| c | c | c | c | c | c | c | c | c | c |}
   \hline
- & ENG\_MAX & ENG\_MEAN & F0\_MEAN & F0\_MAX & NOISERATIO  \\
-  \hline
-contributes  &      &  & \psl &  & \psl \\ \hline
-  clear     & \psl &  & \psl &  & \psl \\ \hline
-  engaged    &      &  & \psl &  &      \\ \hline
-  planning   &      &  &      &  &      \\ \hline
-  encourages &      &  &      &  &      \\ \hline
-  difficult  & \nsl &  &      &  &      \\ \hline
-  bored      &      &  & \nsl &  &      \\ \hline
-  dislikes   &      &  &      &  &      \\ \hline
-  \hline
-& PHON\_AVG & PHON\_COUNT & SHIMMER & SYL\_AVG & SYL\_COUNT \\
-  \hline
-contributes  &      &  &  &  &        \\ \hline
-  clear      & \psl &  &  &  & \psl   \\ \hline
-  engaged    &      &  &  &  &        \\ \hline
-  planning   &      &  &  &  &        \\ \hline
-  encourages &      &  &  &  &        \\ \hline
-  difficult  &      &  &  &  &        \\ \hline
-  bored      &      &  &  &  &        \\ \hline
-  dislikes   &      &  &  &  &        \\ \hline
-  \hline
-\end{tabular}
+               &\ENGMAX  & \ENGMEAN  & \FOMEAN  & \FOMAX  & NHR      &  Fon/seg  & Sil/seg     & SHIMMER  & JITTER  \\ \hline
+  contributes  &         &  \psl     & \pppsl   & \psl    & \ppsl    &           &             &          &         \\ \hline
+  clear        & \pppsl  &           & \psl     &         & \pppsl   &           &  \psl       &          &         \\ \hline
+  engaged      &         &  \psl     & \ppsl    &         &          &           &             &          &  \psl   \\ \hline
+  planning     &         &           &          &         &          &           &             &          &         \\ \hline
+  encourages   &         &           &          &         &          &           &             &  \psl    &         \\ \hline
+  difficult    & \nnsl   &  \psl     &          &         &          &  \nsl     &             &          &         \\ \hline
+  bored        &         &           & \nnsl    &         & \psl     &           &             &          &         \\ \hline
+  dislikes     &         &           &          &         &          &           &             &          &         \\ \hline
+\end{tabular}}
 
-
-\caption{Tabla que representa los resultados significantes del experimento. En una de las entradas, tenemos los nombres abreviados de las variables sociales, y en la otra las variables a/p. El símbolo \psl representa valor significante y positivo de la pendiente de la regresión de efectos fijos, mientras que \nsl representa significante y negativo }
-
-\label{sign_table}
-
-\end{figure}

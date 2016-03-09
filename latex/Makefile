@@ -1,4 +1,4 @@
-options= -auxdir="../tmp" -output-directory="../tmp"
+options= -interaction=nonstopmode -auxdir="../tmp" -output-directory="../tmp"
 all: tesis
 tesis:
 	cd src/ && \

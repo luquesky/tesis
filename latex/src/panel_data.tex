@@ -1,49 +1,48 @@
 \section{Panel de datos}
 \label{sec:panel_data}
 
-Para condensar todos nuestros datos, armamos una tabla por cada variable a/p. Esta tabla contiene información definida para cada interlocutor, tarea y sesión de nuestro corpus.
+Luego de construir las series de tiempo para cada una de las conversaciones que seleccionamos anteriormente, pasamos a construir una gran tabla que se utilizó en los experimentos de regresión detallados en la siguiente sección. Para condensar todos nuestros datos, armamos una tabla por cada variable acústico-prosódica que contiene información definida para cada interlocutor y tarea de nuestro corpus.
 
-\begin{enumerate}
-  \item session: número de sesión
-  \item speaker: 0 si corresponde al interlocutor A; B en otro caso
-  \item task: número de tarea
-  \item count: La cantidad de puntos definidos que tiene la serie
-  \item entrainment: Si $speaker=0$, es $A\rightarrow B$; $B \rightarrow A$ en otro caso
-  \item best\_lag: el lag del cross-correlogram donde se logra el \emph{entrainment}
-  \item tama\_mean: el promedio de la variable
-\end{enumerate}
+Cada fila de esta tabla representa los datos de un hablante dentro de una tarea. Este hecho lo usamos fuertemente a la hora de definir los grupos en nuestro modelo de Efectos Fijos. En la tabla \ref{tab:panel_data} se describen las columnas generadas.
 
-Además, agregamos las variables sociales (relativas al interlocutor) para cada fila:
+\begin{table}[b!]
+\centering
+\adjustbox{max width=\textwidth}{
+\begin{tabular}{|c|c|}
+  \hline
+  \hl \emph{Campo} & \emph{Descripción} \\\hline
+  session & número de sesión del corpus (1-12)\\\hline
+  speaker & 0 si corresponde al interlocutor A; B en otro caso \\\hline
+  task & número de tarea en la sesión (1-14) \\\hline
+  count & La cantidad de puntos definidos que tiene la serie \\\hline
+  entrainment & Si $speaker=0$, es $\fwentrainment{AB}$; $\fwentrainment{BA}$ en otro caso \\\hline
+  best\_lag & el lag del cross-correlogram donde se logra el \emph{entrainment} \\\hline
 
-\begin{enumerate}
-\item contributes\_to\_successful\_completion
-\item making\_self\_clear
-\item engaged\_in\_game
-\item planning\_what\_to\_say
-\item gives\_encouragement
-\item difficult\_for\_partner\_to\_speak
-\item bored\_with\_game
-\item dislikes\_partner
-\end{enumerate}
+  engaged\_in\_game & ¿el sujeto parece comprometido con el juego? \\\hline
+  difficult\_for\_partner\_to\_speak & ¿al interlocutor se le dificulta hablar? \\\hline
+  contributes\_to\_successful\_completion & ¿el sujeto contribuye para el éxito del equipo? \\\hline
+  gives\_encouragement & ¿el sujeto alienta a su compañero?\\\hline
+  making\_self\_clear & ¿el sujeto se expresa con claridad?\\\hline
 
-El corpus original cuenta con más variables pero éstas son las únicas que tomaremos en cuenta (citar algo acá!)
-
-En el corpus original, cada variable estaba replicada por cada interlocutor, y por sí o por no, de manera que teníamos:
-
-\begin{enumerate}
-  \item $conversation\_awkward\_A\_yes$
-  \item $conversation\_awkward\_A\_no$
-  \item $conversation\_awkward\_B\_yes$
-  \item $conversation\_awkward\_B\_no$
-\end{enumerate}
+  planning\_what\_to\_say & ¿el sujeto piensa lo que va a decir? \\\hline
+  bored\_with\_game & ¿el sujeto se muestra aburrido? \\\hline
+  dislikes\_partner &  ¿al sujeto no le agrada su compañero? \\\hline
+\end{tabular}
+}
+\caption{Columnas de la tabla generada para ser utilizada en los experimentos de regresión lineal}
+\label{tab:panel_data}
+\end{table}
 
 
-Ésto nos da una tabla de 210 filas, y 21 columnas. Para cada sesión y speaker, podemos pensar que tenemos una serie de tiempo donde el tiempo es cada tarea, y los datos son el entrainment y las variables sociales. En la jerga econométrica, llamamos a este tipo de datos \emph{de panel}\cite{gujarati1999}: un conjunto de mediciones temporales sobre un mismo sujeto a lo largo del tiempo. En este caso el sujeto es un interlocutor en una sesión, el tiempo son las tareas, y las mediciones son los entrainments
+
+La tabla generada tuvo una dimensión de 210 x 14, siendo 210 la cantidad de tareas (contadas dos veces por cada hablante) y 14 las columnas mencionadas en la tabla \ref{tab:panel_data}. Una forma de ver esta tabla es que, para cada sesión y hablante, tenemos una serie de tiempo sobre las tareas   siendo los datos el grado del \entrainment y las variables sociales. En la jerga econométrica, llamamos a este tipo de datos \emph{de panel}\cite{gujarati1999}: un conjunto de mediciones temporales sobre un mismo sujeto a lo largo del tiempo. En este caso el sujeto es un hablante en una sesión, el tiempo son las tareas, y las mediciones son los valores medidos de \entrainment y las diferentes variables sociales.
+
+En la tabla \ref{tab:panel_data_example} tenemos una sección de la tabla. Los sujetos que tenemos en este ejemplo son 3: $speaker = 0$ y $session=1$, $speaker = 1$ y $session=1$, y $speaker = 0$ y $session=2$. También tenemos cinco series de tiempo para cada sujeto: \entrainment, \emph{bored}, \emph{engaged}, \emph{encourages} y \emph{clear}. Vale la pena remarcar que estas series de tiempo, al igual que las que consideramos en la construcción de TAMA, pueden tener datos faltantes ya que, como fue descripto en la sección \ref{sec:time_plots}, no tomamos todas las tareas de todas las sesiones sino aquellas que tienen cierta calidad de diálogo.
 
 
 \begin{figure}
 \centering
 \input{tables/panel}
-\caption{Panel de datos}
-\label{panel_data}
+\caption{Extracto de la tabla generada para \FOMEAN}
+\label{tab:panel_data_example}
 \end{figure}

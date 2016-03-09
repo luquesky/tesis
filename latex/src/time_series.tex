@@ -1,6 +1,5 @@
 \section{Series de Tiempo}
-
-\nota{Mandar ésto a un apéndice!}
+\label{sec:time_series}
 
 \theoremstyle{definition}
 \newtheorem{definicion}{Definición}
@@ -25,11 +24,11 @@ Ejemplos de series de tiempo:
 
 \subsection*{¿Para qué queremos series de tiempo?}
 
-Hay varios motivos por los cuales uno querría efectuar un análisis de una serie de tiempo.
+Hay varios motivos por los cuales uno querría efectuar un análisis de una serie de tiempo \cite{CHATFIELD}.
 
 \emph{1) Descripción} Usualmente, lo primero que se hace al obtener la serie de tiempo es graficarla y obtener las características más notorias de ésta. Por ejemplo, en \ref{desocupacion} puede notarse que hay una tendencia decreciente del $2003$ hasta el $2012$. En otras (como en el volumen de lluvias) podrá observarse cierta estacionalidad en la serie.
 
-Si bien ésto no requiere técnicas avanzadas de análisis, es el primer paso fundamental para comprender una serie de tiempo.
+Si bien esto no requiere técnicas avanzadas de análisis, es el primer paso fundamental para comprender una serie de tiempo.
 
 
 \emph{2) Explicación} Cuando analizamos dos o más series de tiempo, podemos querer ver cómo se comportan en conjunto. Una variación en una serie de tiempo puede producir un cambio en otra. Por ejemplo, podemos intentar buscar como varían en conjunto la temperatura diaria con la cantidad de mL de lluvia caídos.
@@ -52,9 +51,7 @@ Podemos entender un proceso estocástico como un conjunto de variables ordenadas
 
 \subsection{Estacionariedad}
 
-Un concepto importante en series de tiempo es el de estacionariedad. En lenguaje coloquial, una serie de tiempo estacionaria es aquella en la que no observamos cambios sistemáticos de ésta en el tiempo: si tomamos una parte de la serie, y observamos otro parte distinta de la serie, las propiedades de ésta se mantienen.
-
-Ejemplos de series de tiempo estacionarias son las de ruido blanco, y ejemplos de no estacionarias aquellas que tienen una tendencia. (mejorar esto...)
+Un concepto importante en series de tiempo es el de estacionariedad. En lenguaje coloquial, una serie de tiempo estacionaria es aquella en la que no observamos cambios sistemáticos de ésta en el tiempo: si tomamos una parte de la serie, y observamos otro parte distinta de la serie, las propiedades de ésta se mantienen. Ejemplos de series de tiempo estacionarias son las de ruido blanco, y ejemplos de no estacionarias aquellas que tienen una tendencia.
 
 \begin{definicion}
 Un proceso estocástico $X_i, i \in \mathbb{N}$ se dice fuertemente estacionario si, para todo conjunto de índices $t_1, \ldots , t_n$ y para un desplazamiento $\tau \in \mathbb{N}$ tenemos que
@@ -83,3 +80,16 @@ Las ecuaciones \ref{eq:1} y \ref{eq:2} nos dicen que tanto la media como la vari
 
 A partir de aquí, cuando hablemos de series estacionarias estaremos hablando de series débilmente estacionarias
 
+\subsection{Autocorrelación y autocorrelograma}
+
+Una herramienta importante para el análisis de las series de tiempo es la función de autocorrelación \cite[p22]{CHATFIELD}. Esta función mide la correlación entre las observaciones a diferentes distancias o lags. Estos coeficientes son de ayuda para analizar el modelo probabilístico de la serie de tiempo.
+
+Dado un conjunto observaciones $x_1, \ldots , x_N$, la fórmula de la función de autocorrelación muestral se define como:
+
+\begin{equation}
+  r_k =  \frac
+  {\sum\limits_{t=1}^{N-k} (x_t - \bar{x}) (x_{t+k} - \bar{x}) }
+  {\sum\limits_{t=1}^{N} (x_t - \bar{x})^2}
+\end{equation}
+
+Una ayuda importante a la hora de evaluar estos coeficientes es graficar $r_k$ en función de $k$: a este gráfico lo llamaremos autocorrelograma. En \cite[p25]{CHATFIELD} se enumeran consejos a la hora de interpretar este gráfico. Vale destacar que el hecho de que $r_k$ descienda rápidamente a 0 es un indicio de estacionariedad de la serie, requisito indispensable para efectuar el análisis bivariado del presente trabajo.

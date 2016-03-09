@@ -1,22 +1,29 @@
-\newcommand{\absentrainment} {\emph{absolute entrainment}}
-\newcommand{\entrainment} {\emph{entrainment}}
-\newcommand{\disentrainment} {\emph{disentrainment}}
+\newcommand{\absentrainment} {\emph{absolute value entrainment}\xspace}
+\newcommand{\fwentrainment}[1] {\mathcal{E}_{#1}}
+
+\newcommand{\entrainment} {\emph{entrainment}\xspace}
+\newcommand{\disentrainment} {\emph{disentrainment}\xspace}
+\newcommand{\ap} {acústico-prosódicas\xspace}
+
+
+\newcommand{\TAMA} {\emph{TAMA}\xspace}
 %%% Variables A/P
-\newcommand{\ENGMAX} {ENG\_MAX}
-\newcommand{\ENGMEAN} {ENG\_MEAN}
-\newcommand{\FOMAX} {F0\_MAX}
-\newcommand{\FOMEAN} {F0\_MEAN}
-\newcommand{\TOTFRAMES} {VCD2TOT\_FRAMES}
-\newcommand{\NOISETOHARMONICS} {NOISE\_TO\_HARMONICS\_RATIO}
-\newcommand{\SYLCOUNT} {SYLLABES\_COUNT}
-\newcommand{\SYLAVG} {SYLLABES\_COUNT}
-\newcommand{\LOCALSHIMMER} {SOUND\_VOICED\_LOCAL\_SHIMMER}
-\newcommand{\PHONCOUNT} {PHONEMES\_COUNT}
-\newcommand{\PHONAVG} {PHONEMES\_AVERAGE}
+\newcommand{\apvar}[1]{\emph{#1}\xspace}
+
+\newcommand{\ENGMAX} {\apvar{Int Max}}
+\newcommand{\ENGMEAN} {\apvar{Int Mean}}
+\newcommand{\FOMAX} {\apvar{F0 Max}}
+\newcommand{\FOMEAN} {\apvar{F0 Mean}}
+\newcommand{\NOISETOHARMONICS} {\apvar{NHR}}
+\newcommand{\SYLAVG} {\apvar{Sílabas/seg}}
+\newcommand{\PHONAVG} {\apvar{Fonemas/seg}}
+\newcommand{\LOCALSHIMMER} {\apvar{Shimmer}}
+\newcommand{\LOCALJITTER} {\apvar{Jitter}}
+
 
 %%% variables sociales
 
-\newcommand{\socialvariable}[1] {\emph{#1}}
+\newcommand{\socialvariable}[1] {\emph{#1}\xspace}
 \newcommand{\svcontributes} {\socialvariable{contributes-to-completion}}
 \newcommand{\svclear} {\socialvariable{making-self-clear}}
 \newcommand{\svengaged} {\socialvariable{engaged-with-game}}
@@ -26,9 +33,18 @@
 \newcommand{\svbored} {\socialvariable{bored-with-game}}
 \newcommand{\svdislikes} {\socialvariable{dislikes-partner}}
 
+%%% Time series
+
+\newcommand{\varnorm}[1] {
+    (#1_t - \mu_{#1})
+}
+
 %%% Regresión and stuff
 \newcommand{\estslope} {\widehat{\beta_2}}
-\newcommand{\myhighlight} {\rowcolor[gray]{.75}}
-
+\newcommand{\estintercept} {\widehat{\beta_1}}
+\newcommand{\softhl} {\rowcolor[gray]{.88}}
+\newcommand{\hl} {\rowcolor[gray]{.80}}
+\newcommand{\stronghl} {\rowcolor[gray]{.75}}
 %%% Nota
 \newcommand{\nota}[1]{\todo{#1}}
+

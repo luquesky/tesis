@@ -4,6 +4,7 @@ options(repos="http://cran.us.r-project.org")
 library(xtable)
 
 if (!require("plm")) install.packages("plm")
+if (!require("plm")) install.packages("xtable")
 if (!require("lmtest")) install.packages("lmtest")
 if (!require("sandwich")) install.packages("sandwich")
 if (!require("sqldf")) install.packages("sqldf")
@@ -26,11 +27,9 @@ ap_vars <- c(
     "F0_MAX",
     "NOISE_TO_HARMONICS_RATIO",
     "PHONEMES_AVG",
-    "PHONEMES_COUNT",
-    "SOUND_VOICED_LOCAL_SHIMMER",
     "SYLLABES_AVG",
-    "SYLLABES_COUNT",
-    "VCD2TOT_FRAMES"
+    "SOUND_VOICED_LOCAL_JITTER",
+    "SOUND_VOICED_LOCAL_SHIMMER"
 )
 
 
