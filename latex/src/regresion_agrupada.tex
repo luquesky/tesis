@@ -29,7 +29,7 @@ Nuestro objetivo es poder entonces conseguir estimadores $\widehat{\beta_1}, \wi
 
 \section{Nuestro modelo de regresión}
 
-Dada una variable acústico-prosódica (por ejemplo, el pitch o la intensidad), queremos investigar la relación entre entrainment y las distintas variables sociales medidas. Sea $V$ una variable social de las enumeradas en la tabla \ref{tab:panel_data}. Sean $E_1, \ldots, E_n$ los valores de entrainment para el set de datos que definimos en la sección \ref{sec:panel_data}, y sean $V_1, V_2, \ldots V_n$ los valores de la variable social de cada conversación.
+Dada una variable acústico-prosódica (por ejemplo, el pitch o la intensidad), queremos investigar la relación entre entrainment y las distintas variables sociales medidas. Sea $V$ una variable social de las enumeradas en la Tabla \ref{tab:panel_data}. Sean $E_1, \ldots, E_n$ los valores de entrainment para el set de datos que definimos en la Sección \ref{sec:panel_data}, y sean $V_1, V_2, \ldots V_n$ los valores de la variable social de cada conversación.
 
 Sobre estas variables es que planteamos nuestro modelo de regresión lineal clásica, para analizar qué relación hay tomando como variable ``fija'' al \entrainment, y como variable dependiente a la variable social. El problema, entonces, es hallar estimadores $\widehat{\beta_1}, \widehat{\beta_2} \in \mathbb{R}$ de modo que
 
@@ -52,7 +52,7 @@ En el siguiente capítulo ahondaremos un poco más en cómo definimos los grupos
 
 \section{Resultados sobre \entrainment}
 
-Los resultados de este análisis no fueron interesantes ya que dieron muy pocos valores de $\estslope$ significativos. En la figura \ref{fig:regresion_clasica} puede verse el gráfico de regresión lineal del \entrainment contra distintas variables sociales, tomando como variable acústico-prosódica a \FOMEAN. En las figuras \ref{fig:regresion_clasica_tabla_1} y \ref{fig:regresion_clasica_tabla_2} podemos observar la tabla de las regresiones, con las estimaciones obtenidas y sus valores de significancia para todas las variables sociales. Se observa que no sólo las pendientes tienen un muy bajo valor absoluto, sino que además ni siquiera tienen los signos que esperábamos en un principio.
+Los resultados de este análisis no fueron interesantes ya que dieron muy pocos valores de $\estslope$ significativos. En la Figura \ref{fig:regresion_clasica} puede verse el gráfico de regresión lineal del \entrainment contra distintas variables sociales, tomando como variable acústico-prosódica a \FOMEAN. En las Tablas \ref{fig:regresion_clasica_tabla_1} y \ref{fig:regresion_clasica_tabla_2} podemos observar las pendientes obtenidas de la regresión, con las estimaciones obtenidas y sus valores de significancia para todas las variables sociales. Se observa que no sólo las pendientes tienen un muy bajo valor absoluto, sino que además ni siquiera tienen los signos que esperábamos en un principio.
 
 En base a lo arrojado por este análisis de regresión, intentamos introducir variaciones en el modelo planteado. La primera, es cambiar la variable explicativa por el valor absoluto del entrainment.
 
@@ -69,7 +69,7 @@ En base a lo arrojado por este análisis de regresión, intentamos introducir va
 \section{Valor absoluto de \entrainment}
 \label{sec:abs_entrainment}
 
-En la sección \ref{sec:method_entrainment}, definimos una primer métrica del \entrainment como el valor de la correlación cruzada (en un sentido de los lags) con mayor valor absoluto. Esto puede dar, como resultado, valores positivos entre 0 y 1 a los cuales consideramos como \entrainment; o bien valores negativos entre -1 y 0, estos considerados como dis-\entrainment: la divergencia de las variables \ap medidas a través del tiempo.
+En la Sección \ref{sec:method_entrainment}, definimos una primer métrica del \entrainment como el valor de la correlación cruzada (en un sentido de los lags) con mayor valor absoluto. Esto puede dar, como resultado, valores positivos entre 0 y 1 a los cuales consideramos como \entrainment; o bien valores negativos entre -1 y 0, estos considerados como dis-\entrainment: la divergencia de las variables \ap medidas a través del tiempo.
 
 Este fenómeno de dis-\entrainment o antimimicry \cite{CHAR1999} refiere al proceso por el cual uno de los hablantes no imita al otro sino más bien todo lo contrario, acentúa alguna diferencia. Si bien estudios de larga data como \cite{bourhis1973language} o \cite{dabbs1969similarity} lo emparentan con una connotación negativa, \cite{healey2014divergence} y \cite{levitan2015acoustic} sugieren que puede entenderse este fenómeno como una conducta de adaptación cooperativa. No sólo eso, sino que este fenómeno de mimetización complementaria podría ser incluso más prevalente que la mimetización a secas \cite{levitan2015acoustic}.
 

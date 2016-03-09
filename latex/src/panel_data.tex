@@ -12,7 +12,7 @@
 
 Luego de construir las series de tiempo para cada una de las conversaciones que seleccionamos anteriormente, pasamos a construir una gran tabla que se utilizó en los análisis de regresión detallados en la siguiente sección. Para condensar todos nuestros datos, armamos una tabla por cada variable acústico-prosódica que contiene información definida para cada interlocutor y tarea de nuestro corpus.
 
-Cada fila de esta tabla representa los datos de un hablante dentro de una tarea. Este hecho lo usamos fuertemente a la hora de definir los grupos en nuestro modelo de Efectos Fijos. En la tabla \ref{tab:panel_data} se describen las columnas generadas.
+Cada fila de esta tabla representa los datos de un hablante dentro de una tarea. Este hecho lo usamos fuertemente a la hora de definir los grupos en nuestro modelo de Efectos Fijos. En la Tabla \ref{tab:panel_data} se describen las columnas generadas.
 
 \begin{table}[b!]
 \centering
@@ -44,8 +44,8 @@ Cada fila de esta tabla representa los datos de un hablante dentro de una tarea.
 
 
 
-La tabla generada tuvo una dimensión de 210 x 14, siendo 210 la cantidad de tareas (contadas dos veces por cada hablante) y 14 las columnas mencionadas en la tabla \ref{tab:panel_data}. Una forma de ver esta tabla es que, para cada sesión y hablante, tenemos una serie de tiempo sobre las tareas   siendo los datos el grado del \entrainment y las variables sociales. En la jerga econométrica, llamamos a este tipo de datos \emph{de panel}\cite{gujarati1999}: un conjunto de mediciones temporales sobre un mismo sujeto a lo largo del tiempo. En este caso el sujeto es un hablante en una sesión, el tiempo son las tareas, y las mediciones son los valores medidos de \entrainment y las diferentes variables sociales.
+La tabla generada tuvo una dimensión de 210 x 14, siendo 210 la cantidad de tareas (contadas dos veces por cada hablante) y 14 las columnas mencionadas en la Tabla \ref{tab:panel_data}. Una forma de ver esta tabla es que, para cada sesión y hablante, tenemos una serie de tiempo sobre las tareas   siendo los datos el grado del \entrainment y las variables sociales. En la jerga econométrica, llamamos a este tipo de datos \emph{de panel}\cite{gujarati1999}: un conjunto de mediciones temporales sobre un mismo sujeto a lo largo del tiempo. En este caso el sujeto es un hablante en una sesión, el tiempo son las tareas, y las mediciones son los valores medidos de \entrainment y las diferentes variables sociales.
 
-En la tabla \ref{tab:panel_data_example} tenemos una sección de la tabla. Los sujetos que tenemos en este ejemplo son 3: $speaker = 0$ y $session=1$, $speaker = 1$ y $session=1$, y $speaker = 0$ y $session=2$. También tenemos cinco series de tiempo para cada sujeto: \entrainment, \emph{bored}, \emph{engaged}, \emph{encourages} y \emph{clear}. Vale la pena remarcar que estas series de tiempo, al igual que las que consideramos en la construcción de TAMA, pueden tener datos faltantes ya que, como fue descripto en la sección \ref{sec:time_plots}, no tomamos todas las tareas de todas las sesiones sino aquellas que tienen cierta calidad de diálogo.
+En la Tabla \ref{tab:panel_data_example} tenemos una sección de la tabla. Los sujetos que tenemos en este ejemplo son 3: $speaker = 0$ y $session=1$, $speaker = 1$ y $session=1$, y $speaker = 0$ y $session=2$. También tenemos cinco series de tiempo para cada sujeto: \entrainment, \emph{bored}, \emph{engaged}, \emph{encourages} y \emph{clear}. Vale la pena remarcar que estas series de tiempo, al igual que las que consideramos en la construcción de TAMA, pueden tener datos faltantes ya que, como fue descripto en la Sección \ref{sec:time_plots}, no tomamos todas las tareas de todas las sesiones sino aquellas que tienen cierta calidad de diálogo.
 
 

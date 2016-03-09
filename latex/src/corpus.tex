@@ -12,7 +12,7 @@ En cada sesión, se sentó a dos participantes (quienes no se conocían previame
 
 \subsection{Juego de Objetos}
 
-En el juego de objetos, la pantalla de cada jugador mostró un tablero con varios objetos, entre 5 y 7, como se ve en la figura \ref{objects_game}.
+En el juego de objetos, la pantalla de cada jugador mostró un tablero con varios objetos, entre 5 y 7, como se ve en la Figura \ref{objects_game}.
 Para uno de los jugadores (el Descriptor) el objeto \emph{Objetivo} aparecía en una posición aleatoria entre otros objetos. Para el otro jugador, a quien llamaremos el Seguidor, el objetivo aparecía en la parte baja de la pantalla. Entonces, al Descriptor se le encargaba describir la posición del Objetivo de manera que el Seguidor pudiera mover su representación del objeto a la misma posición en su pantalla. Luego de una negociación entre ambos jugadores para decidir la mejor posición del objeto, se les asignó a los jugadores una puntuación entre 1 y 100 puntos de acuerdo a qué tan acertado fue el posicionamiento del objetivo por parte del Seguidor.
 
 \begin{figure}
@@ -30,14 +30,14 @@ Cada sesión consistió de 14 tareas como ésta, cambiando los objetos y sus ubi
 Varios aspectos del comportamiento de los jugadores durante los juegos de objetos fueron anotados mediante la herramienta de crowdsourcing \emph{Amazon Mechanical Turk}\footnote{https://www.mturk.com}. Cada anotador escuchó el audio correspondiente a una tarea del juego y tuvo que responder a varias preguntas sobre cada uno de los sujetos, entre las que se encuentran:
 
 \begin{itemize}
-  \item ¿el sujeto parece comprometido con el juego?
-  \item ¿el sujeto dirige la conversación?
-  \item ¿el sujeto contribuye para el éxito del equipo?
-  \item ¿el sujeto alienta a su compañero?
-  \item ¿el sujeto se expresa correctamente?
-  \item ¿al sujeto no le agrada su compañero?
-  \item ¿el sujeto le hace difícil hablar a su compañero?
-  \item ¿el sujeto intenta acaparar la conversación?
+  \item ¿el sujeto contribuye para el éxito del equipo?  (\svcontributes)
+  \item ¿el sujeto parece comprometido con el juego? (\svengaged)
+  \item ¿el sujeto se expresa correctamente? (\svclear)
+  \item ¿el sujeto piensa lo que va a decir? (\svplanning)
+  \item ¿el sujeto alienta a su compañero? (\svencourages)
+  \item ¿el sujeto le hace difícil hablar a su compañero? (\svdifficult)
+  \item ¿el sujeto está aburrido con el juego? (\svbored)
+  \item ¿al sujeto no le agrada su compañero? (\svdislikes)
 \end{itemize}
 
 \noindent Cada uno de estos audios fue puntuado por cinco anotadores, que respondieron por sí o por no para cada una de las preguntas. El puntaje que recibe cada una de las preguntas (a las cuales llamaremos a partir de ahora \emph{variables sociales}) consiste en la cantidad de respuestas afirmativas que recibió, teniendo un rango de 0 a 5. Por ejemplo, una tarea dada podría tener puntaje 3 para la variable social `el sujeto A se expresa correctamente' o puntaje 5 para la variable `el sujeto B dirige la conversación'.
