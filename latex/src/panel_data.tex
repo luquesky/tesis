@@ -1,6 +1,15 @@
 \section{Panel de datos}
 \label{sec:panel_data}
 
+
+\begin{figure}[t!]
+\centering
+\input{tables/panel}
+\caption{Extracto de la tabla generada para \FOMEAN}
+\label{tab:panel_data_example}
+\end{figure}
+
+
 Luego de construir las series de tiempo para cada una de las conversaciones que seleccionamos anteriormente, pasamos a construir una gran tabla que se utilizó en los análisis de regresión detallados en la siguiente sección. Para condensar todos nuestros datos, armamos una tabla por cada variable acústico-prosódica que contiene información definida para cada interlocutor y tarea de nuestro corpus.
 
 Cada fila de esta tabla representa los datos de un hablante dentro de una tarea. Este hecho lo usamos fuertemente a la hora de definir los grupos en nuestro modelo de Efectos Fijos. En la tabla \ref{tab:panel_data} se describen las columnas generadas.
@@ -40,9 +49,3 @@ La tabla generada tuvo una dimensión de 210 x 14, siendo 210 la cantidad de tar
 En la tabla \ref{tab:panel_data_example} tenemos una sección de la tabla. Los sujetos que tenemos en este ejemplo son 3: $speaker = 0$ y $session=1$, $speaker = 1$ y $session=1$, y $speaker = 0$ y $session=2$. También tenemos cinco series de tiempo para cada sujeto: \entrainment, \emph{bored}, \emph{engaged}, \emph{encourages} y \emph{clear}. Vale la pena remarcar que estas series de tiempo, al igual que las que consideramos en la construcción de TAMA, pueden tener datos faltantes ya que, como fue descripto en la sección \ref{sec:time_plots}, no tomamos todas las tareas de todas las sesiones sino aquellas que tienen cierta calidad de diálogo.
 
 
-\begin{figure}
-\centering
-\input{tables/panel}
-\caption{Extracto de la tabla generada para \FOMEAN}
-\label{tab:panel_data_example}
-\end{figure}
