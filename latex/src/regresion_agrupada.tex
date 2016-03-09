@@ -1,6 +1,6 @@
-En esta sección, mostraremos el primer experimento realizado. Este consistió en aplicar un modelo de regresión lineal de cada variable social sobre el \entrainment, sin desagregar los datos por sesión y hablante.
+En esta sección, mostraremos el primer análisis realizado. Este consistió en aplicar un modelo de regresión lineal de cada variable social sobre el \entrainment, sin desagregar los datos por sesión y hablante.
 
-Una variación que usamos en el presente experimento (y en el posterior) es utilizar como variable dependiente el \emph{valor absoluto} del \entrainment, en base a estudios que sugieren que los interlocutores pueden también \emph{diferenciarse} como un rasgo positivo en la conversación.
+Una variación que usamos esta sección es utilizar como variable independiente el \emph{valor absoluto} del \entrainment, en base a estudios que sugieren que los interlocutores pueden también \emph{diferenciarse} como un rasgo positivo en la conversación.
 
 \section{Nuestro modelo de regresión}
 
@@ -19,7 +19,7 @@ Para ello, calculamos los estimadores mediante el método \emph{QR} que nos prov
 Uno esperaría que un alto \emph{entrainment} se relacione con un alto valor de ciertas variables sociales, por ejemplo la compenetración con el juego o el ayudar a terminarlo. En términos de la ecuación \ref{eq:my_model}, esperamos que $\estslope \geq 0$. De manera inversa, cuando las variables sociales tienen un carácter negativo de la conversación, esperamos que $\estslope \leq 0$.
 
 
-El modelo de regresión que usamos en este primer experimento se denomina agrupado o \emph{pooled} ya que no distinguimos entre datos provenientes de distintos ``grupos'' \cite{gujarati1999} y calculamos la regresión lineal agrupando todos los datos disponibles agrupados.
+El modelo de regresión que usamos en este primer análisis se denomina agrupado o \emph{pooled} ya que no distinguimos entre datos provenientes de distintos ``grupos'' \cite{gujarati1999} y calculamos la regresión lineal agrupando todos los datos disponibles agrupados.
 
 Un problema que surge con este tipo de regresión es que niega todo tipo de \emph{heterogeneidad} de los datos: estos pueden provenir de interlocutores más o menos empáticos, o cuya interacción en el juego se vio influída por factores no medidos en el experimento. Todo esto es descartado, aún cuando puede afectar seriamente  el resultado obtenido.
 
@@ -27,9 +27,9 @@ En el siguiente capítulo ahondaremos un poco más en cómo definimos los grupos
 
 \section{Resultados sobre \entrainment}
 
-Los resultados de este experimento no fueron interesantes ya que dieron muy pocos valores de $\estslope$ significativos. En la figura \ref{fig:regresion_clasica} puede verse el gráfico de regresión lineal del \entrainment contra distintas variables sociales, tomando como variable acústico-prosódica a \FOMEAN. En las figuras \ref{fig:regresion_clasica_tabla_1} y \ref{fig:regresion_clasica_tabla_2} podemos observar la tabla de las regresiones, con las estimaciones obtenidas y sus valores de significancia para todas las variables sociales. Se observa que no sólo las pendientes tienen un muy bajo valor absoluto, sino que además ni siquiera tienen los signos que esperábamos en un principio.
+Los resultados de este análisis no fueron interesantes ya que dieron muy pocos valores de $\estslope$ significativos. En la figura \ref{fig:regresion_clasica} puede verse el gráfico de regresión lineal del \entrainment contra distintas variables sociales, tomando como variable acústico-prosódica a \FOMEAN. En las figuras \ref{fig:regresion_clasica_tabla_1} y \ref{fig:regresion_clasica_tabla_2} podemos observar la tabla de las regresiones, con las estimaciones obtenidas y sus valores de significancia para todas las variables sociales. Se observa que no sólo las pendientes tienen un muy bajo valor absoluto, sino que además ni siquiera tienen los signos que esperábamos en un principio.
 
-En base a lo arrojado por este análisis de regresión, intentamos introducir variaciones del experimento. La primera, es cambiar la variable explicativa por el valor absoluto del entrainment.
+En base a lo arrojado por este análisis de regresión, intentamos introducir variaciones en el modelo planteado. La primera, es cambiar la variable explicativa por el valor absoluto del entrainment.
 
 
 \begin{figure}[b!]
@@ -57,7 +57,7 @@ Utilizando esta variable explicativa, los resultados son bastante distintos. En 
 
 Casi todos los resultados significativos y positivos de $\estslope$ son respecto de variables sociales de carácter positivo, como \svclear, \svengaged y \svencourages; la notable excepción es \svdifficult, que tiene un carácter negativo pero a su vez $\estslope > 0$ en varios casos. El único caso significativo donde $\estslope < 0$ es para \svbored, que era algo justamente esperado.
 
-Habiendo reformulado anteriormente nuestra hipótesis, estos resultados dan indicio de que el valor absoluto del \entrainment se relaciona con las variables sociales medidas, de manera positiva para aquellas favorables para la conversación, y de manera inversa para aquellas contrarias. Sin embargo, consideramos que en esta asociación influyen factores no medidos dentro de cada conversación, por lo cual planteamos un segundo experimento que contemple esta \emph{heterogeneidad} para analizar mejor cómo interactúan el \entrainment con los rasgos sociales.
+Habiendo reformulado anteriormente nuestra hipótesis, estos resultados dan indicio de que el valor absoluto del \entrainment se relaciona con las variables sociales medidas, de manera positiva para aquellas favorables para la conversación, y de manera inversa para aquellas contrarias. Sin embargo, consideramos que en esta asociación influyen factores no medidos dentro de cada conversación, por lo cual planteamos un segundo análisis que contemple esta \emph{heterogeneidad} para analizar mejor cómo interactúan el \entrainment con los rasgos sociales.
 
 
 \input{tables/pooled_abs_entrainment}
