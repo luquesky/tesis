@@ -1,4 +1,4 @@
-En esta sección, mostraremos el primer análisis realizado. Este consistió en aplicar un modelo de regresión lineal de cada variable social sobre el \entrainment, sin desagregar los datos por sesión y hablante.
+En esta sección, mostraremos el primer análisis realizado. Éste consistió en aplicar un modelo de regresión lineal de cada variable social sobre el \entrainment, sin desagregar los datos por sesión y hablante.
 
 Una variación que usamos esta sección es utilizar como variable independiente el \emph{valor absoluto} del \entrainment, en base a estudios que sugieren que los interlocutores pueden también \emph{diferenciarse} como un rasgo positivo en la conversación.
 
@@ -57,7 +57,7 @@ Los resultados de este análisis no fueron interesantes ya que dieron muy pocos 
 En base a lo arrojado por este análisis de regresión, intentamos introducir variaciones en el modelo planteado. La primera, es cambiar la variable explicativa por el valor absoluto del entrainment.
 
 
-\begin{figure}[b!]
+\begin{figure}[t!]
 \includegraphics[width=15cm]{images/regression_F0_MEAN_1.pdf}
 \caption{Gráfico de los pares entrainment-variable a/p, junto a la regresión lineal obtenida para \emph{F0\_MEAN}}
 \label{fig:regresion_clasica}
@@ -67,14 +67,15 @@ En base a lo arrojado por este análisis de regresión, intentamos introducir va
 \input{tables/pooled_entrainment}
 
 \section{Valor absoluto de \entrainment}
+\label{sec:abs_entrainment}
 
-En la sección \ref{sec:method_entrainment}, definimos el \entrainment como el valor de la correlación cruzada (en un sentido de los lags) con mayor valor absoluto. Esto puede dar, como resultado, valores positivos entre 0 y 1 a los cuales consideramos como \entrainment; o bien valores negativos entre -1 y 0, estos considerados como dis-\entrainment: la divergencia de las variables \ap medidas a través del tiempo.
+En la sección \ref{sec:method_entrainment}, definimos una primer métrica del \entrainment como el valor de la correlación cruzada (en un sentido de los lags) con mayor valor absoluto. Esto puede dar, como resultado, valores positivos entre 0 y 1 a los cuales consideramos como \entrainment; o bien valores negativos entre -1 y 0, estos considerados como dis-\entrainment: la divergencia de las variables \ap medidas a través del tiempo.
 
 Este fenómeno de dis-\entrainment o antimimicry \cite{CHAR1999} refiere al proceso por el cual uno de los hablantes no imita al otro sino más bien todo lo contrario, acentúa alguna diferencia. Si bien estudios de larga data como \cite{bourhis1973language} o \cite{dabbs1969similarity} lo emparentan con una connotación negativa, \cite{healey2014divergence} y \cite{levitan2015acoustic} sugieren que puede entenderse este fenómeno como una conducta de adaptación cooperativa. No sólo eso, sino que este fenómeno de mimetización complementaria podría ser incluso más prevalente que la mimetización a secas \cite{levitan2015acoustic}.
 
 En base a esto es que decidimos probar alguna medida que capture positivamente el fenómeno de la anti-mimetización de igual manera que con el \entrainment antes definido. Es decir, esperamos que cuando tengamos o bien \entrainment o \entrainment complementario ocurra que tenemos valores altos de variables sociales de carácter positivo. Mutatis mutandis con las variables sociales de connotación negativa.
 
-Con este fin, en vez de utilizar sólo el valor de \entrainment como variable explicativa, efectuamos el mismo análisis pero utilizando el valor absoluto del \entrainment como tal. Usar esto permite captar y valorar el \entrainment complementario de la misma manera que el ``positivo'' y valorar su relación con las variables sociales medidas. A esta nueva métrica la llamaremos \emph{unsigned entrainment}
+Con este fin, en vez de utilizar sólo el valor de \entrainment como variable explicativa, efectuamos el mismo análisis pero utilizando la métrica $\fwentrainment{AB}^{(2)}$ definida la Sección \ref{sec:method_entrainment}, que es el valor absoluto de la métrica anterior. Usar esto permite captar y valorar el \entrainment complementario de la misma manera que el ``positivo'' y valorar su relación con las variables sociales medidas. A esta nueva métrica la llamaremos \emph{unsigned entrainment}
 
 \section{Resultados sobre \absentrainment}
 
