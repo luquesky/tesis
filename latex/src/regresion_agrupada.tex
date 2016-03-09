@@ -2,6 +2,31 @@ En esta sección, mostraremos el primer análisis realizado. Este consistió en 
 
 Una variación que usamos esta sección es utilizar como variable independiente el \emph{valor absoluto} del \entrainment, en base a estudios que sugieren que los interlocutores pueden también \emph{diferenciarse} como un rasgo positivo en la conversación.
 
+\section{Modelo clásico de Regresión Lineal}
+
+En el modelo clásico de regresión lineal, tenemos un conjunto de valores fijos $X_1, X_2, \\ X_3, \ldots, X_n$, que son llamados variables independientes o variables explicativas. Asociado a cada uno de estos valores fijos, tenemos variables aleatorias $Y_1, \ldots, Y_n$. Asumimos, además, que nuestras variables son de la forma
+
+\begin{equation}
+  Y_i = E[Y|X_i] + u_i
+\end{equation}
+
+\noindent donde a $u_i$ se la conoce como la perturbación estocástica de la variable. Se asume que el conjunto de $u_1, u_2, \ldots, u_n$ son variables aleatorias idénticamente distribuídas $N(0, \sigma)$
+
+Asumiendo que $E[Y|X_i]$ es una función lineal de $X_i$; es decir, que existen $\beta_1, \beta_2 \in \mathbb{R}$ que cumplen
+
+\begin{equation}
+  E[Y|X_i] = \beta_1 + \beta_2 X_i
+\end{equation}
+
+\noindent obtenemos que
+
+\begin{equation}
+  Y_i = \beta_1 + \beta_2 X_i + u_i
+\end{equation}
+
+Nuestro objetivo es poder entonces conseguir estimadores $\widehat{\beta_1}, \widehat{\beta_2}$ que nos permitan analizar y predecir el comportamiento conjunto de estas variables.
+
+
 \section{Nuestro modelo de regresión}
 
 Dada una variable acústico-prosódica (por ejemplo, el pitch o la intensidad), queremos investigar la relación entre entrainment y las distintas variables sociales medidas. Sea $V$ una variable social de las enumeradas en la tabla \ref{tab:panel_data}. Sean $E_1, \ldots, E_n$ los valores de entrainment para el set de datos que definimos en la sección \ref{sec:panel_data}, y sean $V_1, V_2, \ldots V_n$ los valores de la variable social de cada conversación.
