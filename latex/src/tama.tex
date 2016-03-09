@@ -12,17 +12,17 @@ Como producto de esto, nuestro corpus queda dividido en una sucesión ventanas s
 \begin{figure}[h!]
 \centering
 \includegraphics[width=10cm]{images/tama.png}
-\caption{Gráfico de la separación del diálogo en ventanas}
+\caption{Gráfico de la separación del diálogo en ventanas (Fuente \cite{KOU2008.2}})
 \label{tama}
 \end{figure}
 
-Una vez que la conversación se ha partido en ventanas mediante el proceso descripto, se calculan los valores de la serie de tiempo para cada hablante y cada variable acustico-prosódicas (por ejemplo el pitch)mediante el siguiente cálculo:
+Una vez que la conversación se ha partido en ventanas mediante el proceso descripto, se calculan los valores de la serie de tiempo para cada hablante y cada variable acustico-prosódicas (por ejemplo el pitch) mediante el siguiente cálculo:
 
 \begin{equation}
     \mu = \sum\limits_{i=1}^N f_i d_i^\prime \label{eq:tama_mean}\\
 \end{equation}
 
-\noindent donde $i$ itera sobre las elocuciones dentro del \emph{frame}, $d_i^\prime$ es la duración relativa del segmento (respecto del tiempo total hablado en toda la ventana) y $f_i$ es el valor de la \emph{variable} que estamos midiendo. $d_i^\prime$ se calcula con la fórmula
+\noindent donde $i$ itera sobre las elocuciones dentro del \emph{frame}, $d_i^\prime$ es la duración relativa del segmento (respecto del tiempo total hablado en toda la ventana) y $f_i$ es el valor de la \emph{variable acústico-prosódica} que estamos midiendo. $d_i^\prime$ se calcula con la fórmula
 
 \begin{equation}
 d_i^\prime = \frac{d_i}{\sum\limits_{i=1}^N d_i}
