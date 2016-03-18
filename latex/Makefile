@@ -1,10 +1,19 @@
 options= -interaction=nonstopmode -auxdir="../tmp" -output-directory="../tmp"
-all: tesis
+all: tesis presentacion
+
 tesis:
 	cd src/ && \
-	latexmk -pdf tesis.tex $(options)
+	latexmk -pdf $@.tex $(options)
 	cd tmp/ && \
-	mv tesis.pdf ..
+	mv $@.pdf ..
+
+presentacion:
+	cd src/ && \
+	latexmk -pdf $@.tex $(options)
+	cd tmp/ && \
+	mv $@.pdf ..
+
 clean:
 	cd src/ && \
 	latexmk -c tesis.tex $(options)
+	rm -f tesis.pdf presentacion.pdf
