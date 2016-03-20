@@ -3,14 +3,6 @@
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{lmodern}
-
-\uselanguage{spanish}
-\languagepath{spanish}
-
-\def\tituloTesis{Métricas de mimetización acústico-prosódica en hablantes y su relación con rasgos sociales de diálogos}
-
-\title{\tituloTesis}
-\author{Juan Manuel Pérez}
 \usepackage{amssymb}
 \usepackage{graphicx}
 \usepackage{amsthm}
@@ -18,6 +10,14 @@
 \usepackage{mathtools}
 
 
+\uselanguage{spanish}
+\languagepath{spanish}
+
+
+\def\tituloTesis{Métricas de mimetización acústico-prosódica en hablantes y su relación con rasgos sociales de diálogos}
+
+\title{\tituloTesis}
+\author{Juan Manuel Pérez}
 
 \usetheme{Madrid}
 
@@ -27,10 +27,26 @@
 \frame{\titlepage}
 
 
+\section{Abstract}
+
+\begin{frame}
+  \frametitle{¿Cómo dijo?}
+
+
+\begin{itemize}[<+->]
+  \item Sistemas de diálogo humano-computadora son cada vez más frecuentes, y sus aplicaciones comprenden una amplia gama de rubros
+  \item Bien en la dimensión lingüística, mal en todo lo superestructural: emociones, actitudes, intenciones.
+  \item Mimetización: Fenómeno insconsciente que se manifiesta a través de la adaptación de los hablantes. Fuertemente emparentada con el sentimiento de empatía.
+  \item Objetivo del trabajo: Explorar y refinar una métrica de la mimetización acústico-prosódica, y validar que capture ciertas percepciones sociales en un corpus de diálogos en inglés.
+\end{itemize}
+
+\end{frame}
+
+
 \section{Introducción}
 
 \begin{frame}
-  \frametitle{Lo que voy a contar hoy}
+  \frametitle{Temario de la tesis}
   \centering{}
   \begin{itemize}
     \item Sistemas de diálogo Humano-Computadora
@@ -43,57 +59,7 @@
 \end{frame}
 
 
-\begin{frame}
-  \frametitle{Sistemas de diálogo Humano-Computadora}
-
-  \begin{enumerate}
-    \item Sistemas actuales
-    \item Bien en la parte lingüística de la comunicación
-    \item Mal en la parte superestructural, intercambio de emociones y prosodia
-  \end{enumerate}
-\end{frame}
-
-
-\begin{frame}
-  \frametitle{Ejemplos}
-  \begin{enumerate}
-    \item HAL
-    \item Sistemas de llamadas
-    \item otros
-  \end{enumerate}
-\end{frame}
-
-
-\begin{frame}
-  \frametitle{Prosodia}
-  \framesubtitle{Definir acá qué es la prosodia aproximadamente}
-
-\end{frame}
-
-
-
-\begin{frame}
-  \frametitle{Entrainment}
-
-  \begin{enumerate}
-    \item Fenómeno ubícuo en la comunicación
-    \item Ocurre a varios niveles
-    \item Largamente estudiado en psicología de comportamiento (referencias)
-    \item (ya está, la próxima conversación que tengan afuera de acá van a chequear ésto)
-  \end{enumerate}
-\end{frame}
-
-\begin{frame}
-  \frametitle{¿Y cómo lo medimos?}
-  La definición de entrainment hasta acá vista es heurística! ¿Cómo definimos una medida para esto?
-
-  Vamos a explorar una métrica definida en trabajos anteriores, pulirla un poco, y verificar que efectivamente capture ciertas características del entrainment.
-
-  ¿Cómo? Usando un corpus con anotaciones sociales
-
-
-\end{frame}
-
+\input{presentacion/introduccion.tex}
 
 \section{Antecedentes}
 
