@@ -8,7 +8,8 @@
 \usepackage{amsthm}
 \usepackage{amsmath}
 \usepackage{mathtools}
-
+\usepackage{xspace}
+\usepackage{adjustbox}
 
 \uselanguage{spanish}
 \languagepath{spanish}
@@ -88,13 +89,48 @@
 \end{frame}
 
 
+
+%%% variables sociales
+
+\newcommand{\socialvariable}[1] {\emph{#1}\xspace}
+\newcommand{\svcontributes} {\socialvariable{contributes-to-completion}}
+\newcommand{\svclear} {\socialvariable{making-self-clear}}
+\newcommand{\svengaged} {\socialvariable{engaged-with-game}}
+\newcommand{\svplanning} {\socialvariable{planning-what-to-say}}
+\newcommand{\svencourages} {\socialvariable{gives-encouragement}}
+\newcommand{\svdifficult} {\socialvariable{difficult-for-partner-to-speak}}
+\newcommand{\svbored} {\socialvariable{bored-with-game}}
+\newcommand{\svdislikes} {\socialvariable{dislikes-partner}}
+
+
 \begin{frame}
   \frametitle{Columbia Games Corpus}
-  \framesubtitle{Detalles y Anotaciones sociales}
+  \framesubtitle{Anotaciones sociales}
 
+  Cinco anotadores escucharon el audio correspondiente a una tarea del juego y respondieron a varias preguntas sobre los sujetos:
+
+
+\begin{table}
+\adjustbox{max width=0.8\textwidth}{
+\begin{tabular}{|l|l|}
+  \hline
+
+  \textbf{Nombre} & \textbf{Pregunta} \\
+  \hline
+
+  \svcontributes &  ¿el sujeto contribuye para el éxito del equipo?  \\ \hline
+  \svengaged &  ¿el sujeto parece comprometido con el juego? \\ \hline
+  \svclear &  ¿el sujeto se expresa correctamente? \\ \hline
+  \svplanning &  ¿el sujeto piensa lo que va a decir? \\ \hline
+  \svencourages &  ¿el sujeto alienta a su compañero? \\ \hline
+  \svdifficult &  ¿el sujeto le hace difícil hablar a su compañero? \\ \hline
+  \svbored &  ¿el sujeto está aburrido con el juego? \\ \hline
+  \svdislikes &  ¿al sujeto no le agrada su compañero? \\ \hline
+\end{tabular}
+}
+\end{table}
+
+De cada una de estas preguntas obtenemos un puntaje de 0 a 5, para cada hablante de cada tarea.
 \end{frame}
-
-
-
 
 \end{document}
