@@ -29,6 +29,7 @@
 
 \frame{\titlepage}
 
+\input{my_macros.tex}
 
 
 \input{presentacion/abstract.tex}
@@ -43,94 +44,8 @@
 
 
 \section{Materiales y Métodos}
-
-\subsection{Corpus}
-\begin{frame}
-  \frametitle{Columbia Games Corpus}
-  \framesubtitle{Descripción}
-  \begin{columns}
-    \column{0.35\textwidth}
-      \begin{figure}
-        \includegraphics[width=\textwidth]{images/columbia_games_color.jpg}
-      \end{figure}
-
-    \column{0.65\textwidth}
-
-    \begin{itemize}
-      \item Corpus de conversaciones diádicas en Inglés Americano Estándar
-      \item 12 sesiones con 14 tareas/juegos cada una.
-      \item En cada sesión, se sentó a dos participantes en una cabina profesional de grabación, y una cortina opaca colgando entre ellos para evitar la comunicación visual.
-      \item Los participantes contaron con computadoras a través de las cuales interactuaban mediante juegos.
-    \end{itemize}
-  \end{columns}
-
-\end{frame}
+\input{presentacion/metodo.tex}
 
 
-\begin{frame}
-  \frametitle{Columbia Games Corpus}
-  \framesubtitle{Juegos de objeto}
-  \begin{columns}
-    \column{0.35\textwidth}
-      \begin{figure}
-        \includegraphics[width=\textwidth]{images/columbia_games_color.jpg}
-      \end{figure}
-
-    \column{0.65\textwidth}
-
-    \begin{itemize}
-      \item Dos roles: Descriptor y Seguidor
-      \item En la pantalla, se ven entre 5 y 7 objetos en posiciones aleatorias
-      \item El Descriptor ve uno más, titilante, del cual debe describir su posición
-      \item El Seguidor debe mover la representación del objeto a la misma posición de la pantalla
-      \item Finalmente, se puntúa de 1 a 100 el posicionamiento del objeto
-    \end{itemize}
-  \end{columns}
-\end{frame}
-
-
-
-%%% variables sociales
-
-\newcommand{\socialvariable}[1] {\emph{#1}\xspace}
-\newcommand{\svcontributes} {\socialvariable{contributes-to-completion}}
-\newcommand{\svclear} {\socialvariable{making-self-clear}}
-\newcommand{\svengaged} {\socialvariable{engaged-with-game}}
-\newcommand{\svplanning} {\socialvariable{planning-what-to-say}}
-\newcommand{\svencourages} {\socialvariable{gives-encouragement}}
-\newcommand{\svdifficult} {\socialvariable{difficult-for-partner-to-speak}}
-\newcommand{\svbored} {\socialvariable{bored-with-game}}
-\newcommand{\svdislikes} {\socialvariable{dislikes-partner}}
-
-
-\begin{frame}
-  \frametitle{Columbia Games Corpus}
-  \framesubtitle{Anotaciones sociales}
-
-  Cinco anotadores escucharon el audio correspondiente a una tarea del juego y respondieron a varias preguntas sobre los sujetos:
-
-
-\begin{table}
-\adjustbox{max width=0.8\textwidth}{
-\begin{tabular}{|l|l|}
-  \hline
-
-  \textbf{Nombre} & \textbf{Pregunta} \\
-  \hline
-
-  \svcontributes &  ¿el sujeto contribuye para el éxito del equipo?  \\ \hline
-  \svengaged &  ¿el sujeto parece comprometido con el juego? \\ \hline
-  \svclear &  ¿el sujeto se expresa correctamente? \\ \hline
-  \svplanning &  ¿el sujeto piensa lo que va a decir? \\ \hline
-  \svencourages &  ¿el sujeto alienta a su compañero? \\ \hline
-  \svdifficult &  ¿el sujeto le hace difícil hablar a su compañero? \\ \hline
-  \svbored &  ¿el sujeto está aburrido con el juego? \\ \hline
-  \svdislikes &  ¿al sujeto no le agrada su compañero? \\ \hline
-\end{tabular}
-}
-\end{table}
-
-De cada una de estas preguntas obtenemos un puntaje de 0 a 5, para cada hablante de cada tarea.
-\end{frame}
 
 \end{document}
