@@ -5,9 +5,9 @@
     \item La mimetización es un fenómeno tanto lineal: se va acentuando a lo largo de la conversación
     \item Pero también es un fenómeno dinámico: va variando localmente a lo largo de la conversación.
     \item Muchas métricas sólo toman la parte global, dividiendo la conversación en 2 o más partes y luego calculando la diferencia entre las medias de las diferentes variables acústicas en cada sección.
+
     \item Otros problema que tienen algunas métricas es que no son automáticas: requieren de anotaciones manuales sobre las conversaciones, por ejemplo patrones de entonación.
   \end{itemize}
-
 
 \end{frame}
 
@@ -26,21 +26,14 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}
-  \frametitle{Problema de la escala}
-
-  Otro problema que podemos tener es de escalas: por ejemplo, si un hablante es de sexo femenino, su tono será más alto que el de un hombre.
-
-\end{frame}
-
-
 
 \begin{frame}
   \frametitle{Método TAMA}
   \begin{itemize}
+    \item Introducido en Kousidis et al (2008).
     \item El método TAMA (Time aligned moving average) ataca estos problemas recién mencionados para la medición de entrainment acústico/prosódico
     \item ¿Cómo? Construye en primer lugar series de tiempo para cada uno de los hablantes, dada una variable acústico/prosódica.
-    \item Luego aplica herramientas de análisis de series de tiempo para definir alguna medida de entrainment
+    \item Luego aplica herramientas de análisis de series de tiempo para definir alguna medida de entrainment.
   \end{itemize}
 \end{frame}
 
@@ -72,11 +65,11 @@
 
   \begin{enumerate}
     \item Partimos la conversación en ventanas solapadas.
-    \item Calculamos un promedio ponderado del valor de la variable acústico-prosódica en cada segmento de habla
+    \item Para cada ventana: calculamos un promedio ponderado del valor de la variable acústico-prosódica en cada segmento de habla
   \end{enumerate}
 
   \begin{align*}
-    \mu = \frac{\sum\limits_{i=1}^N f_i d_i}{\sum\limits_{i=1}^N d_i}
+    \mu = \sum\limits_{i=1}^N f_i \frac{d_i}{D} \text{ con } D = \sum\limits_{i=1}^N d_i
   \end{align*}
 \end{frame}
 
@@ -99,6 +92,8 @@
     \item Función de correlación cruzada: mide la influencia de una serie sobre otra.
     \item Similar a la correlación, pero aplicando un desplazamiento en alguna de las dos series.
     \item Los valores significativos de esta son los que se consideran los valores de \emph{entrainment} (si es que los hay)
+    \item Si el valor es positivo, lo consideramos entrainment
+    \item Si el valor es negativo, lo consideramos disentrainment o antimimetización.
   \end{enumerate}
 
   \end{columns}
