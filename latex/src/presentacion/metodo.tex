@@ -101,5 +101,61 @@ Usando el software Praat \footnote{http://www.fon.hum.uva.nl/praat/} se extrajer
 \end{tabular}
 }
 \end{table}
+\end{frame}
 
+
+
+\subsection{Modificaciones a TAMA}
+
+\begin{frame}
+\frametitle{TAMA}
+\framesubtitle{Nuestras modificaciones}
+
+\begin{itemize}
+  \item Usamos un step de 8s y un tamaño de ventana de 16s, manteniendo el solapamiento del 50\%.
+  \item A diferencia del trabajo original de Kousidis, utilizamos series con datos faltantes.
+  \item Pero sólo nos quedamos con aquellas que tengan 5 o más puntos definidos.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{TAMA}
+\framesubtitle{Cálculo de series de tiempo}
+
+\begin{figure}
+\centering
+\includegraphics[height=3cm]{images/time_plot_with_autocorrelation.png}
+\end{figure}
+
+
+
+Para cada una de las variables acústico/prosódicas
+
+\begin{itemize}
+  \item Calculamos la serie de tiempo para ambos interlocutores por cada tarea
+  \item Calculamos autocorrelogramas, y verificamos su estacionariedad
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{TAMA}
+\framesubtitle{¿Y el entrainment?}
+
+  \begin{columns}
+    \column{0.33\textwidth}
+    \begin{figure}[t]
+      \includegraphics[scale=0.33]{images/cross_correlogram_2.png}
+    \end{figure}
+    \column{0.66\textwidth}
+
+    Definimos dos medidas de entrainment
+
+    \begin{align*}
+      \fwentrainment{AB}^{(1)} &= r_s \text{ con s maximizando } |r_k|,  k > 0  \\
+      \fwentrainment{BA}^{(2)} &= |\fwentrainment{BA}^{(1)}|
+    \end{align*}
+
+    Segunda métrica motivada por estudios sobre el disentrainment.
+  \end{columns}
 \end{frame}
