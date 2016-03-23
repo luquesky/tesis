@@ -1,4 +1,4 @@
-options= -interaction=nonstopmode -auxdir="../tmp" -output-directory="../tmp"
+options= -bibtex -interaction=nonstopmode -auxdir="../tmp" -output-directory="../tmp"
 all: tesis presentacion
 
 tesis:

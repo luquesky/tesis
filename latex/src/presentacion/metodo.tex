@@ -11,14 +11,13 @@
     \column{0.65\textwidth}
 
     \begin{itemize}
-      \item Desarrollado por Gravano
+      \item Desarrollado por Agustín Gravano para su tesis doctoral.
       \item Corpus de conversaciones diádicas en Inglés Norteamericano
       \item 12 sesiones con 14 tareas/juegos cada una.
       \item En cada sesión, se sentó a dos participantes en una cabina profesional de grabación, y una cortina opaca colgando entre ellos para evitar la comunicación visual.
       \item Los participantes contaron con computadoras a través de las cuales interactuaban mediante juegos.
     \end{itemize}
   \end{columns}
-
 \end{frame}
 
 
@@ -97,52 +96,40 @@ Usando el software Praat \footnote{http://www.fon.hum.uva.nl/praat/} se extrajer
 
 \begin{frame}
 \frametitle{TAMA}
-\framesubtitle{Cálculo de series de tiempo}
-
-\begin{figure}
-\centering
-\includegraphics[height=3cm]{images/time_plot_with_autocorrelation.png}
-\end{figure}
-
-
-
-Para cada una de las variables acústico/prosódicas
-
-\begin{itemize}
-  \item Calculamos la serie de tiempo para ambos interlocutores por cada tarea
-  \item Calculamos autocorrelogramas, y verificamos su estacionariedad
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{TAMA}
-\framesubtitle{¿Y el entrainment?}
+\framesubtitle{Nuestra medida de mimetización}
 
   \begin{columns}
     \column{0.33\textwidth}
     \begin{figure}[t]
-      \includegraphics[scale=0.33]{images/cross_correlogram_2.png}
+      \includegraphics[scale=0.28]{images/time_plot.png}
     \end{figure}
+
+    \begin{figure}[t]
+      \includegraphics[scale=0.28]{images/cross_correlogram_2.png}
+    \end{figure}
+
     \column{0.66\textwidth}
 
-    Definimos dos medidas de entrainment
+    Definimos dos medidas de mimetización
 
     \begin{align*}
       \fwentrainment{AB}^{(1)} &= r_s \text{ con s maximizando } |r_k|,  k <= 0  \\
       \fwentrainment{BA}^{(1)} &= r_s \text{ con s maximizando } |r_k|,  k >= 0  \\
-      \fwentrainment{AB}^{(2)} &= |\fwentrainment{AB}^{(1)}|
+      \fwentrainment{XY}^{(2)} &= |\fwentrainment{XY}^{(1)}|
     \end{align*}
 
-    Segunda métrica motivada por estudios sobre el disentrainment. Healey et al (2014) sugiere que puede ser una conducta de adaptación cooperativa.
+    Segunda métrica motivada por estudios sobre la antimimetización. Healey et al (2014) sugiere que puede ser una conducta de adaptación cooperativa.
 
     Levitan et al (2015) da más indicios en esa dirección.
   \end{columns}
 \end{frame}
 
-\begin{frame}
-\frametitle{Entrainment y relación con variables sociales}
+\subsection{Análisis de la relación con variables sociales}
 
-  Para analizar la relación entre las variables sociales ($V$) y el \emph{entrainment} ($\mathcal{E}$), planteamos un modelo de regresión lineal.
+\begin{frame}
+\frametitle{Mimetización y relación con variables sociales}
+
+  Para analizar la relación entre las variables sociales ($V$) y nuestras medidas de \emph{mimetización} ($\mathcal{E}$), planteamos un modelo de regresión lineal.
 
     \begin{equation}
       V_i \sim \beta_1 + \beta_2 \mathcal{E}_i
@@ -151,7 +138,7 @@ Para cada una de las variables acústico/prosódicas
   Nuestra hipótesis es
 
   \begin{enumerate}
-    \item Si $SV$ es una variable de carácter positivo, entonces $\beta_2 > 0$
-    \item Si $SV$ es una variable de carácter negativo, entonces $\beta_2 < 0$
+    \item Si $V$ es una variable de carácter positivo, entonces $\beta_2 > 0$
+    \item Si $V$ es una variable de carácter negativo, entonces $\beta_2 < 0$
   \end{enumerate}
 \end{frame}
