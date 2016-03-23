@@ -1,27 +1,13 @@
 
-\begin{frame}
-  \frametitle{Otras métricas}
-  \framesubtitle{de entrainment prosódico}
-  \begin{itemize}
-    \item La mimetización es un fenómeno tanto lineal: se va acentuando a lo largo de la conversación
-    \item Pero también es un fenómeno dinámico: va variando localmente a lo largo de la conversación.
-    \item Muchas métricas sólo toman la parte global, dividiendo la conversación en 2 o más partes y luego calculando la diferencia entre las medias de las diferentes variables acústicas en cada sección.
-
-    \item Otros problema que tienen algunas métricas es que no son automáticas: requieren de anotaciones manuales sobre las conversaciones, por ejemplo patrones de entonación.
-  \end{itemize}
-
-\end{frame}
-
+\subsection{Otras Métricas }
 
 \begin{frame}
   \frametitle{Otras métricas}
-  \framesubtitle{de entrainment prosódico}
+  \framesubtitle{de mimetización prosódico}
   \begin{itemize}
-    \item La mimetización es un fenómeno tanto lineal: se va acentuando a lo largo de la conversación
-    \item Pero también es un fenómeno dinámico: va variando localmente a lo largo de la conversación.
-    \item Muchas métricas sólo toman la parte global, dividiendo la conversación en 2 o más partes y luego calculando la diferencia entre las medias de las diferentes variables acústicas en cada sección.
-
-    \item Otros problema que tienen algunas métricas es que no son automáticas: requieren de anotaciones manuales sobre las conversaciones, por ejemplo patrones de entonación.
+    \item Algunas métricas captan sólo la convergencia de los factores
+    \item Otras capturan la sincronía: la variación turno a turno.
+    \item Algunas métricas requieren de anotaciones manuales sobre las conversaciones, por ejemplo patrones de entonación.
   \end{itemize}
 
 \end{frame}
@@ -33,7 +19,7 @@
   \begin{figure}[t]
     \includegraphics[scale=0.40]{images/conversation_turns.pdf}
   \end{figure}
-  Uno de los problemas que tenemos a la hora de construir métricas de entrainment
+  Uno de los problemas que tenemos a la hora de construir métricas de mimetización
 
   \begin{itemize}
     \item ¿Cómo comparamos los diferentes turnos de una conversación?
@@ -42,13 +28,15 @@
 \end{frame}
 
 
+\subsection{Método TAMA}
+
 \begin{frame}
   \frametitle{Método TAMA}
+  \framesubtitle{Time Aligned Moving Average}
   \begin{itemize}
     \item Introducido en Kousidis et al (2008).
-    \item El método TAMA (Time aligned moving average) ataca estos problemas recién mencionados para la medición de entrainment acústico/prosódico
-    \item ¿Cómo? Construye en primer lugar series de tiempo para cada uno de los hablantes, dada una variable acústico/prosódica.
-    \item Luego aplica herramientas de análisis de series de tiempo para definir alguna medida de entrainment.
+    \item Construímos en primer lugar series de tiempo para cada uno de los hablantes, dada una variable acústico/prosódica.
+    \item Mimetización se define como una función de estas dos series.
   \end{itemize}
 \end{frame}
 
@@ -63,7 +51,7 @@
 
   \begin{itemize}
      \item En términos coloquiales, una serie de tiempo es una colección de datos temporales.
-     \item Muy frecuentes en Economía y Ciencias de la Atmósfera.
+     \item El tipo de análisis que vamos a efectuar es propio de Economía y Ciencias de la Atmósfera.
      \item ¡Mucho más manejables que una sucesión de turnos!
    \end{itemize}
 \end{frame}
@@ -73,25 +61,30 @@
 \begin{frame}
   \frametitle{Método TAMA}
   \framesubtitle{Cómo construyo la serie de tiempo (dada una variable a-p)}
-  \begin{figure}[t]
-    \includegraphics[scale=0.25]{images/tama.png}
-  \end{figure}
 
+  \begin{columns}
+    \column{0.50\textwidth}
+    \begin{figure}[t]
+      \includegraphics[width=\textwidth]{images/tama_improved.pdf}
+    \end{figure}
 
-  \begin{enumerate}
-    \item Partimos la conversación en ventanas solapadas.
-    \item Para cada ventana: calculamos un promedio ponderado del valor de la variable acústico-prosódica en cada segmento de habla
-  \end{enumerate}
+    \column{0.50\textwidth}
+    \begin{enumerate}
+      \item Partimos la conversación en ventanas solapadas.
+      \item Para cada ventana: calculamos un promedio ponderado del valor de la variable acústico-prosódica en cada segmento de habla
+    \end{enumerate}
 
-  \begin{align*}
-    \mu = \sum\limits_{i=1}^N f_i \frac{d_i}{D} \text{ con } D = \sum\limits_{i=1}^N d_i
-  \end{align*}
+    \begin{align*}
+      \mu = \sum\limits_{i=1}^N f_i \frac{d_i}{D} \text{ con } D = \sum\limits_{i=1}^N d_i
+    \end{align*}
+  \end{columns}
+
 \end{frame}
 
 
 \begin{frame}
   \frametitle{Método TAMA}
-  \framesubtitle{¿Y el entrainment?}
+  \framesubtitle{¿Y el mimetización?}
   \begin{columns}
   \column{0.33\textwidth}
   \begin{figure}[t]
@@ -106,9 +99,9 @@
     \item ¿Cómo calculamos la mimetización?
     \item Función de correlación cruzada: mide la influencia de una serie sobre otra.
     \item Similar a la correlación, pero aplicando un desplazamiento en alguna de las dos series.
-    \item Los valores significativos de esta son los que se consideran los valores de \emph{entrainment} (si es que los hay)
-    \item Si el valor es positivo, lo consideramos entrainment
-    \item Si el valor es negativo, lo consideramos disentrainment o antimimetización.
+    \item Los valores significativos de esta son los que se consideran los valores de \emph{mimetización} (si es que los hay)
+    \item Si el valor es positivo, lo consideramos mimetización.
+    \item Si el valor es negativo, lo consideramos antimimetización.
   \end{enumerate}
 
   \end{columns}
