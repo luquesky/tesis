@@ -152,8 +152,9 @@ Para cada una de las variables acústico/prosódicas
     Definimos dos medidas de entrainment
 
     \begin{align*}
-      \fwentrainment{AB}^{(1)} &= r_s \text{ con s maximizando } |r_k|,  k > 0  \\
-      \fwentrainment{BA}^{(2)} &= |\fwentrainment{BA}^{(1)}|
+      \fwentrainment{AB}^{(1)} &= r_s \text{ con s maximizando } |r_k|,  k <= 0  \\
+      \fwentrainment{BA}^{(1)} &= r_s \text{ con s maximizando } |r_k|,  k >= 0  \\
+      \fwentrainment{AB}^{(2)} &= |\fwentrainment{AB}^{(1)}|
     \end{align*}
 
     Segunda métrica motivada por estudios sobre el disentrainment. Healey et al (2014) sugiere que puede ser una conducta de adaptación cooperativa.

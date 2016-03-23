@@ -29,18 +29,25 @@
 \beamertemplatenavigationsymbolsempty
 
 
+\AtBeginSection[]
+{
+
+\begin{frame}
+\frametitle{Temario}
+\tableofcontents[
+currentsection,
+]
+\end{frame}
+
+}
+
 \frame{\titlepage}
 
 \input{my_macros.tex}
 
-
-\input{presentacion/abstract.tex}
-
-\section{Introducción}
-
 \input{presentacion/introduccion.tex}
 
-\section{Antecedentes}
+\section{Trabajo Previo}
 
 \input{presentacion/antecedentes.tex}
 
