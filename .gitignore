@@ -27,7 +27,7 @@ papers
 
 latex/tmp/*
 latex/src/llncs2e/*
-latex/src/concurso/*
+
 *.bbl
 *.blg
 .RData
