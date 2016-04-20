@@ -1,0 +1,35 @@
+\section{Descripción del método TAMA}
+\label{sec:ant_tama}
+
+En \cite{KOU2008} se introdujo un método novedoso para el análisis del \entrainment acústico-prosódico. Esta técnica consiste, a grandes rasgos, en armar dos series de tiempo para cada uno de los interlocutores y luego utilizar herramientas de análisis sobre las series construídas. Una serie de tiempo, en términos coloquiales, es una colección cronológica de observaciones, como pueden ser los valores de las acciones de una empresa a lo largo del tiempo, o la cantidad de lluvia medida en milímetros para cada mes de cierto año.
+
+Un problema que resuelve esta técnica es el del alineamiento: si intentásemos comparar cada segmento del habla (\emph{elocución} o \emph{utterance}) con otros, ¿cómo los alinearíamos? Una posibilidad sería alinear cada segmento de un hablante con el próximo de su interlocutor. Esto, sin embargo, es muy simplista y poco representativo de la realidad ya que los diálogos entre humanos no suelen darse en ese formato. Al introducir el concepto de series de tiempo, podemos olvidarnos de los segmentos del habla y simplemente utilizar estas construcciones.
+
+Para construir la serie de tiempo de cada hablante debemos, en primer lugar, dividir el diálogo en ventanas solapadas de igual tamaño. A la diferencia entre ventana y ventana llamaremos \emph{frame step}, y al tamaño de ventana \emph{frame length}. Consideraremos sólo los segmentos de habla que se encuentren dentro de cada ventana; aquellos que atraviesen los límites de las ventanas serán cortados para que se mantengan dentro de éste. En la Figura \ref{tama} se ilustra el proceso: las líneas punteadas marcan los límites de la ventana, los intervalos coloreados en negro los segmentos de habla, y en gris los segmentos cortados.
+
+Como producto de esto, nuestro corpus queda dividido en una sucesión ventanas solapadas. En el trabajo original \cite{KOU2008}, se usa un step de 10 segundos, y un tamaño de ventana de 20 segundos, dando como resultado un solapamiento del 50\%. En la Sección \ref{sec:window_selection}, describimos la elección del tamaño de ventana que hicimos en base al corpus utilizado.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=\textwidth]{images/tama.png}
+\caption{Gráfico de la separación del diálogo en ventanas (Fuente \cite{KOU2008.2}})
+\label{tama}
+\end{figure}
+
+Una vez que la conversación se ha partido en ventanas mediante el proceso descripto, se calculan los valores de la serie de tiempo para cada hablante y cada variable acustico-prosódicas (por ejemplo el pitch) mediante el siguiente cálculo:
+
+\begin{equation}
+    \mu = \sum\limits_{i=1}^N f_i d_i^\prime \label{eq:tama_mean}\\
+\end{equation}
+
+\noindent donde $i$ itera sobre las elocuciones dentro del \emph{frame}, $d_i^\prime$ es la duración relativa del segmento (respecto del tiempo total hablado en toda la ventana) y $f_i$ es el valor de la \emph{variable acústico-prosódica} que estamos midiendo. $d_i^\prime$ se calcula con la fórmula
+
+\begin{equation}
+d_i^\prime = \frac{d_i}{\sum\limits_{i=1}^N d_i}
+\end{equation}
+
+\noindent donde $d_i$ es la longitud en segundos de los segmentos del habla en el frame.
+
+Como se ve en la ecuación \ref{eq:tama_mean}, el valor que calculamos es una media ponderada del valor de la variable por la duración de las elocuciones. Así, por ejemplo, al calcular una serie de tiempo sobre la intensidad, la contribución de interjecciones (\emph{ah!} por ejemplo), que suelen tener altos valores, estará atenuada por sus breves duraciones.
+
+Dada una variable acústico-prosódico y una conversación, una vez obtenidas  dos series de tiempo mediante el cálculo ventana a ventana de la ecuación \ref{eq:tama_mean}, necesitamos efectuar algún tipo de análisis sobre éstas para obtener una medida del \entrainment.
