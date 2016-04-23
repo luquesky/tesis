@@ -1,23 +1,5 @@
-En esta sección, mostraremos el segundo análisis realizado, que consistió en aplicar un modelo de regresión lineal de cada variable social sobre el \absentrainment, pero esta vez utilizando un modelo que contemple la heterogeneidad por sesión y hablante .
-
-\section{Modelo de Efectos Fijos}
-
 
 \newcommand{\slopeestim}[1] { $\estslope \sim #1$ }
-
-El modelo agrupado o \emph{pooled} que vimos en el anterior capítulo ignora la posibilidad de heterogeneidad observada y no observada; esto es, variables no medidas que afectan al sistema planteado. En el caso concreto de nuestro corpus, dicha heterogeneidad puede deberse a factores como la identidad o el género de los hablantes.
-
-Los modelos de efectos fijos nos ayudan a controlar la heterogeneidad no observada cuando ésta es constante en el tiempo, dado un sujeto del sistema. Asumimos que estos factores son inherentes a la conversación entre el hablante y su interlocutor. Para este modelo, definimos los sujetos (en el lenguaje del modelo estadístico) como cada uno de los hablantes y sus respectivas sesiones. No nos importa si el mismo sujeto se repite en otra sesión: cada hablante de una sesión es un sujeto distinto para el modelo de efectos fijos.
-
-
-\section{Modelo de efectos fijos \emph{within group}}
-
-Existen (al menos) dos variantes del modelo de efectos fijos: el modelo de variables ficticias y el modelo ``dentro del grupo'' (\emph{within group}). Ambas técnicas son matemáticamente equivalentes, pero utilizaremos la segunda que nos provee el estimador de la pendiente, que es lo único que nos interesa.
-
-La técnica utilizada consiste en, dentro de cada grupo, restarle tanto a la variable ``dependiente'' como a la ``independiente'' las medias dentro de cada grupo (de aquí proviene el nombre del método). Esto resulta en ``sacarle'' los efectos fijos no-temporales: en nuestro caso, estos están contemplados dentro de la ordenada al origen. Luego de efectuar esta transformación, se aplica regresión lineal ``pooled'', como en el análisis anterior. Producto del pre-procesamiento de los datos, la ordenada al origen es negligible. En \cite[chap 16]{gujarati1999} se describe extensamente este procedimiento.
-
-
-\section{Resultados}
 
 
 Este modelo, utilizando como variable independiente al valor absoluto del \entrainment, dio valores sustancialmente apreciables. Casi todas las variables \ap poseen al menos un valor significativo de $\estslope$, destacándose \ENGMEAN, \NOISETOHARMONICS y \FOMEAN  con 3, 3 y 4 valores significativos respectivamente. Una versión simplificada tabla la podemos ver en la tabla \ref{sign_table} que grafica mediante tabla de doble entrada aquellos pares de variables \ap y variables sociales con coeficientes significativos y su signo.
