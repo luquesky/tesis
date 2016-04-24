@@ -3,7 +3,7 @@
 \newcommand{\objectgame} {\emph{Juego de objetos}}
 
 
-Para el estudio, empleamos el Columbia Game Corpus  \cite{GRAV2009}, que consiste de doce conversaciones diádicas (i.e., con dos participantes) entre trece personas angloparlantes distintas. Todos los participantes reportaron hablar inglés americano estándar, y no tener problemas de audición. La edad de los participantes se encuentra en el rango de los 20 a 50 años. Cada sesión duró aproximadamente 45 minutos, totalizando 9 horas de diálogos. Todas las conversaciones cuentan con transcripciones textuales alineadas temporalmente a la señal de audio, realizadas por personal especialmente entrenado.
+Para el estudio, empleamos el Columbia Game Corpus  \cite{GRAV2009}, que consiste de doce conversaciones diádicas (i.e., con dos participantes) entre trece personas angloparlantes distintas. Todos los participantes reportaron hablar inglés americano estándar, y no tener problemas de audición. La edad de los participantes se encuentra en el rango de los 20 a 50 años. Cada sesión duró aproximadamente 45 minutos, totalizando 9 horas de diálogos, con transcripciones textuales alineadas temporalmente a la señal de audio, realizadas por personal especialmente entrenado.
 
 En cada sesión, se sentó a dos participantes (quienes no se conocían previamente) en una cabina profesional de grabación, cara a cara a ambos lados de una mesa, y con una cortina opaca colgando entre ellos para evitar la comunicación visual. Los participantes contaron con sendas computadoras portátiles conectadas entre sí, en las cuales jugaron una serie de juegos simples que requerían de comunicación verbal. El primero de ellos es un juego de cartas que no consideramos en el presente estudio por tratarse esencialmente de monólogos o diálogos con poca interacción. Luego de esto, pasaron al juego que analizamos, denominado `juego de objetos'.
 
@@ -20,32 +20,45 @@ Para uno de los jugadores (el Descriptor) el objeto \emph{Objetivo} aparecía en
 
 Cada sesión consistió de 14 tareas como ésta, cambiando los objetos y sus ubicaciones. En las primeras cuatro tareas, uno de los sujetos tomó el papel del Descriptor; en los siguientes cuatro invirtieron roles, y en las finales seis fueron alternando los roles de Descriptor y Seguidor.
 
-\subsubsection{Anotaciones sobre comportamiento social}
+\subsubsection{Anotaciones sociales y acústico/prosódicas}
 
-Varios aspectos del comportamiento de los jugadores durante los juegos de objetos fueron anotados mediante la herramienta de crowdsourcing \emph{Amazon Mechanical Turk}\footnote{https://www.mturk.com}. Cada anotador escuchó el audio correspondiente a una tarea del juego y tuvo que responder a varias preguntas sobre cada uno de los sujetos, entre las que se encuentran:
+Varios aspectos del comportamiento de los jugadores durante los juegos de objetos fueron anotados mediante la herramienta de crowdsourcing \emph{Amazon Mechanical Turk}\footnote{https://www.mturk.com}. Cada anotador escuchó el audio correspondiente a una tarea del juego y tuvo que responder a varias preguntas, listadas en la Figura \ref{tab:preguntas}
+
+Cada uno de estos audios fue puntuado por cinco anotadores, que respondieron por sí o por no para cada una de las preguntas. El puntaje que recibe cada una de las preguntas (a las cuales llamaremos a partir de ahora \emph{variables sociales}) consiste en la cantidad de respuestas afirmativas que recibió, teniendo un rango de 0 a 5.
+
+A su vez, los valores de las variables acústico-prosódicas listadas en la Figura \ref{tab:var_acusticas} fueron medidos para cada segmento del habla del corpus. Para entender mejor a qué se refieren estas variables, repasamos a continuación algunos conceptos:
 
 \begin{itemize}
-  \item ¿el sujeto contribuye para el éxito del equipo?  (\svcontributes)
-  \item ¿el sujeto parece comprometido con el juego? (\svengaged)
-  \item ¿el sujeto se expresa correctamente? (\svclear)
-  \item ¿el sujeto piensa lo que va a decir? (\svplanning)
-  \item ¿el sujeto alienta a su compañero? (\svencourages)
-  \item ¿el sujeto le hace difícil hablar a su compañero? (\svdifficult)
-  \item ¿el sujeto está aburrido con el juego? (\svbored)
-  \item ¿al sujeto no le agrada su compañero? (\svdislikes)
+  \item \emph{f0} refiere a la frecuencia fundamental de una onda, que es el recíproco del período de ésta. El \emph{tono} o \emph{pitch} es la percepción que tenemos de la frecuencia fundamental, que nos marca cuán agudos o graves son los sonidos.
+  \item \emph{Intensity} refiere al volumen o intensidad de la onda. Ésta mide la amplitud de la onda, y es la percepción de cuán fuerte es el sonido.
+  \item \emph{jitter y shimmer} se refieren, en un intervalo de tiempo, a los desplazamientos de la onda de la verdadera periodicidad y de la amplitud, respectivamente. Están asociadas con la percepción de la calidad de la voz.
+  \item Un \emph{fonema} es la articulación simple de sonidos del habla, tanto de vocales como de consonantes. Ejemplos de fonemas son los sonidos de las letras u, a, s, k en español.
+  \item El \emph{noise-to-harmonics ratio} (abreviado NHR) puede considerarse como una medida de calidad de la voz, que cuantifica la proporción de ruido que hay en ésta.
 \end{itemize}
 
-\noindent Cada uno de estos audios fue puntuado por cinco anotadores, que respondieron por sí o por no para cada una de las preguntas. El puntaje que recibe cada una de las preguntas (a las cuales llamaremos a partir de ahora \emph{variables sociales}) consiste en la cantidad de respuestas afirmativas que recibió, teniendo un rango de 0 a 5.
 
-\subsection{Extracción de variables acústico/prosódicas}
-
-La herramienta \emph{Praat} \footnote{http://www.fon.hum.uva.nl/praat/} fue utilizada para extraer automáticamente las variables \ap del corpus. Las variables que medimos fueron el tono, la intensidad, la proporción de vocalizaciones, jitter, shimmer, cantidad de sílabas, cantidad de fonemas, y la proporción de ruido sobre armónicos. Estos atributos fueron medidos en cada uno de los segmentos de habla del corpus.
-
-En la siguiente tabla resumimos estas features. Recordemos nuevamente que estas features son medidas en un intervalo de tiempo.
-
-\begin{figure}[h!]
+\begin{table}[t!]
 \centering
+\begin{tabular}{|l|l|}
+  \hline
+  Nombre & Pregunta \\\hline
+  \svcontributes&  ¿el sujeto contribuye para el éxito del equipo?  \\\hline
+  \svengaged    &  ¿el sujeto parece comprometido con el juego? \\\hline
+  \svclear      &  ¿el sujeto se expresa correctamente? \\\hline
+  \svplanning   &  ¿el sujeto piensa lo que va a decir? \\\hline
+  \svencourages &  ¿el sujeto alienta a su compañero? \\\hline
+  \svdifficult  &  ¿el sujeto le hace difícil hablar a su compañero? \\\hline
+  \svbored      &  ¿el sujeto está aburrido con el juego? \\\hline
+  \svdislikes   &  ¿al sujeto no le agrada su compañero? \\\hline
+\end{tabular}
 
+\caption{Preguntas sobre las percepciones sociales realizadas a los anotadores}
+\label{tab:preguntas}
+
+\end{table}
+
+\begin{table}[t]
+\centering
 \begin{tabular} {|c|c|}
   \hline
   Variable & Descripción \\
@@ -61,4 +74,7 @@ En la siguiente tabla resumimos estas features. Recordemos nuevamente que estas 
   \SYLAVG & Cantidad de sílabas por segundo \\\hline
   \PHONAVG & Cantidad de fonemas por segundo \\\hline
 \end{tabular}
-\end{figure}
+\caption{Variables acústico-prosódicas medidas}
+\label{tab:var_acusticas}
+
+\end{table}
