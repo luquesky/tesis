@@ -3,7 +3,7 @@
 
 En \cite{KOU2008} se introdujo un método novedoso para el análisis del \entrainment acústico-prosódico. Esta técnica consiste en armar dos series de tiempo para cada uno de los interlocutores y luego utilizar herramientas de análisis bivariado sobre las series construídas. 
 
-Para construir la serie de tiempo de cada hablante debemos, en primer lugar, dividir el diálogo en ventanas solapadas de igual tamaño. A la diferencia entre ventana y ventana llamaremos \emph{frame step}, y al tamaño de ventana \emph{frame length}. Consideraremos sólo los segmentos de habla que tengan intersección con la ventana dentro de cada ventana. En la Figura \ref{tama} se ilustra el proceso: las líneas punteadas marcan los límites de la ventana, los intervalos coloreados en negro los segmentos de habla, y en gris los segmentos no considerados.
+Para construir la serie de tiempo de cada hablante debemos, en primer lugar, dividir el diálogo en ventanas solapadas de igual tamaño. A la diferencia entre ventana y ventana llamaremos \emph{frame step}, y al tamaño de ventana \emph{frame length}. Consideraremos sólo los segmentos de habla que tengan intersección con la ventana dentro de cada ventana. En la Figura \ref{tama} se ilustra el proceso: las líneas punteadas marcan los límites de la ventana, los intervalos coloreados en negro los segmentos de habla considerados, y en gris los segmentos no considerados.
 
 \begin{figure}[t]
 \centering
@@ -12,7 +12,7 @@ Para construir la serie de tiempo de cada hablante debemos, en primer lugar, div
 \label{tama}
 \end{figure}
 
-Luego se calculan los valores de la serie de tiempo para cada hablante y cada variable acustico-prosódica mediante la siguiente fórmula:
+Luego se calculan los valores de la serie de tiempo para cada hablante y cada variable acústico-prosódica mediante la siguiente fórmula:
 
 \begin{equation}
     \mu = \sum\limits_{i=1}^N f_i d_i^\prime \label{eq:tama_mean}\\
