@@ -26,33 +26,31 @@
 
 \usetheme{Madrid}
 
+
+\DeclareMathOperator*{\argmax}{arg\,max}
+
 \begin{document}
 
 \beamertemplatenavigationsymbolsempty
 
 
-\AtBeginSection[]
-{
+% \AtBeginSection[]
+% {
 
-\begin{frame}
-\frametitle{Temario}
-\tableofcontents[
-currentsection,
-]
-\end{frame}
+% \begin{frame}
+% \frametitle{Temario}
+% \tableofcontents[
+% currentsection,
+% ]
+% \end{frame}
 
-}
+% }
 
 \frame{\titlepage}
 
 \input{my_macros.tex}
 
-\input{presentacion/introduccion.tex}
-
-\section{Trabajo Previo}
-
-\input{presentacion/antecedentes.tex}
-
+\input{eci/introduccion.tex}
 
 \section{Materiales y Métodos}
 \input{eci/metodo.tex}
