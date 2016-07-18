@@ -1,18 +1,18 @@
 \subsection{Método TAMA}
 
-\begin{frame}
-  \frametitle{Problema del alineamiento de tiempo}
+% \begin{frame}
+%   \frametitle{Problema del alineamiento de tiempo}
 
-  \begin{figure}[t]
-    \includegraphics[scale=0.40]{images/conversation_turns.pdf}
-  \end{figure}
-  Uno de los problemas que tenemos a la hora de construir métricas de mimetización
+%   \begin{figure}[t]
+%     \includegraphics[scale=0.40]{images/conversation_turns.pdf}
+%   \end{figure}
+%   Uno de los problemas que tenemos a la hora de construir métricas de mimetización
 
-  \begin{itemize}
-    \item ¿Cómo comparamos los diferentes turnos de una conversación?
-    \item Comparar uno a uno es un enfoque simplista y no representativo de la realidad
-  \end{itemize}
-\end{frame}
+%   \begin{itemize}
+%     \item ¿Cómo comparamos los diferentes turnos de una conversación?
+%     \item Comparar uno a uno es un enfoque simplista y no representativo de la realidad
+%   \end{itemize}
+% \end{frame}
 
 
 
@@ -71,24 +71,22 @@ Proceedings of Interspeech, 2008.}
 
 \begin{frame}
   \frametitle{Método TAMA}
-  \framesubtitle{¿Y el mimetización?}
+  \framesubtitle{¿Y la mimetización?}
   \begin{columns}
   \column{0.33\textwidth}
+
   \begin{figure}[t]
-    \includegraphics[scale=0.28]{images/time_plot.png}
+    \includegraphics[scale=0.33]{images/time_plot.png}
+
+    \includegraphics[scale=0.33]{images/cross_correlogram.png}
   \end{figure}
-  \begin{figure}[t]
-    \includegraphics[scale=0.28]{images/cross_correlogram.png}
-  \end{figure}
+
   \column{0.66\textwidth}
   \begin{enumerate}
     \item Ya tenemos la serie de tiempo
     \item ¿Cómo calculamos la mimetización?
     \item Función de correlación cruzada: mide la influencia de una serie sobre otra.
-    \item Similar a la correlación, pero aplicando un desplazamiento en alguna de las dos series.
     \item Los valores significativos de esta son los que se consideran los valores de \emph{mimetización} (si es que los hay)
-    \item Si el valor es positivo, lo consideramos mimetización.
-    \item Si el valor es negativo, lo consideramos antimimetización.
   \end{enumerate}
 
   \end{columns}
@@ -102,7 +100,7 @@ Proceedings of Interspeech, 2008.}
   \begin{columns}
     \column{0.35\textwidth}
       \begin{figure}
-        \includegraphics[width=\textwidth]{images/columbia_games_color.jpg}
+        \includegraphics[height=100px,width=\textwidth]{images/columbia_games_color.jpg}
       \end{figure}
 
     \column{0.65\textwidth}
@@ -187,11 +185,9 @@ Usando el software Praat \footnote{http://www.fon.hum.uva.nl/praat/} se extrajer
   \begin{columns}
     \column{0.33\textwidth}
     \begin{figure}[t]
-      \includegraphics[scale=0.28]{images/time_plot.png}
-    \end{figure}
+      \includegraphics[scale=0.33]{images/time_plot.png}
 
-    \begin{figure}[t]
-      \includegraphics[scale=0.28]{images/cross_correlogram_2.png}
+      \includegraphics[scale=0.33]{images/cross_correlogram_2.png}
     \end{figure}
 
     \column{0.66\textwidth}
@@ -199,14 +195,16 @@ Usando el software Praat \footnote{http://www.fon.hum.uva.nl/praat/} se extrajer
     Definimos dos medidas de mimetización
 
     \begin{align*}
-      \fwentrainment{AB}^{(1)} &= \argmax_{r_s, k \leq 0} |r_k|  \\
-      \fwentrainment{BA}^{(1)} &= r_s \text{ con s maximizando } |r_k|,  k >= 0  \\
+      \fwentrainment{AB}^{(1)} &= \argmax_{\{r_k, k \leq 0\}} |r_k|  \\
+      \fwentrainment{BA}^{(1)} &= \argmax_{\{r_k, k \geq 0\}} |r_k|  \\
       \fwentrainment{XY}^{(2)} &= |\fwentrainment{XY}^{(1)}|
     \end{align*}
 
-    Segunda métrica motivada por estudios sobre la antimimetización. Healey et al (2014) sugiere que puede ser una conducta de adaptación cooperativa.
+    \begin{itemize}
+      \item  Segunda métrica motivada por estudios sobre la antimimetización. Healey et al (2014) sugiere que puede ser una conducta de adaptación cooperativa.
+      \item  Levitan et al (2015) da más indicios en esa dirección.
+    \end{itemize}
 
-    Levitan et al (2015) da más indicios en esa dirección.
   \end{columns}
 \end{frame}
 
