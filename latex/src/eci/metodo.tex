@@ -1,46 +1,21 @@
 \subsection{Método TAMA}
 
-% \begin{frame}
-%   \frametitle{Problema del alineamiento de tiempo}
-
-%   \begin{figure}[t]
-%     \includegraphics[scale=0.40]{images/conversation_turns.pdf}
-%   \end{figure}
-%   Uno de los problemas que tenemos a la hora de construir métricas de mimetización
-
-%   \begin{itemize}
-%     \item ¿Cómo comparamos los diferentes turnos de una conversación?
-%     \item Comparar uno a uno es un enfoque simplista y no representativo de la realidad
-%   \end{itemize}
-% \end{frame}
 
 
 
 \begin{frame}
   \frametitle{Método TAMA}
   \framesubtitle{Time Aligned Moving Average}
-  \begin{itemize}
-    \item Introducido en Kousidis et al (2008) \footnote{Spyros Kousidis, David Dorran, Ciaran McDonnell, and Eugene Coyle. Times series analysis of acoustic feature convergence in human dialogues. In
-Proceedings of Interspeech, 2008.}
-    \item Construímos en primer lugar series de tiempo para cada uno de los hablantes, dada una variable acústico/prosódica.
-    \item Mimetización se define como una función de estas dos series.
-  \end{itemize}
-\end{frame}
-
-
-\begin{frame}
-  \frametitle{Series de Tiempo}
-  \framesubtitle{¿Qué es una serie de tiempo?}
 
   \begin{figure}[t]
-    \includegraphics[scale=0.35]{images/oil_price.jpg}
+    \includegraphics[scale=0.30]{images/oil_price.jpg}
   \end{figure}
 
   \begin{itemize}
-     \item En términos coloquiales, una serie de tiempo es una colección de datos temporales.
-     \item El tipo de análisis que vamos a efectuar es propio de Economía y Ciencias de la Atmósfera.
-     \item ¡Mucho más manejables que una sucesión de turnos!
-   \end{itemize}
+    \item Introducido en Kousidis et al (2008) \footnote{\tiny{Spyros Kousidis, David Dorran, Ciaran McDonnell, and Eugene Coyle. Times series analysis of acoustic feature convergence in human dialogues}}
+    \item Construímos en primer lugar series de tiempo para cada uno de los hablantes, dada una variable acústico/prosódica.
+    \item Mimetización se define como una función de estas dos series.
+  \end{itemize}
 \end{frame}
 
 
