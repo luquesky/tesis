@@ -25,8 +25,12 @@ def init_logging():
 
 ROOT_DIR = project_dir()
 DATA_DIR = os.path.join(ROOT_DIR, "data")
+CORPUS_DIR = os.path.join(DATA_DIR, "games-corpus")
 LOG_DIR = os.path.join(ROOT_DIR, "log")
 TABLES_DIR = os.path.join(ROOT_DIR, "tables")
+
+SESSION_INFO_PATH = os.path.join(CORPUS_DIR, "session-info.csv")
+
 
 TASK_LENGTH_THRESHOLD = 40
 SERIES_FRAME_STEP = 8

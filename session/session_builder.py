@@ -1,4 +1,5 @@
 #! coding:utf-8
+"""Session Builder class."""
 import os
 import csv
 import re
@@ -9,17 +10,39 @@ from speech import SpeechBuilder
 
 
 class SessionBuilder(object):
+    """Builder of sessions.
+
+    Given the parameters of the session (number, path to tasks, and others)
+    it builds the Session object with its tasks and so on
+
+    Parameters
+    ----------
+
+    path_to_tasks :
+        Path to task directory
+    number : integer
+        Number of the session (between 1 and 12)
+    options : dict
+        Optional arguments, such as name
+    """
+
     def __init__(self, path_to_tasks, number, **options):
+        """Constructor."""
         self.name = options.get('name') or path_to_tasks
         self.number = int(number)
         self.path_to_tasks = os.path.abspath(path_to_tasks)
 
     @property
     def session(self):
-        #speechA, speechB = self.__build_speechs()
+        """Return the built session."""
         tasks = self.__build_tasks()
 
-        return Session(tasks=tasks, path_to_tasks=self.path_to_tasks, name=self.name, number=self.number)
+        return Session(
+            tasks=tasks,
+            path_to_tasks=self.path_to_tasks,
+            name=self.name,
+            number=self.number
+        )
 
     def __build_tasks(self):
         tasks = []
@@ -35,7 +58,8 @@ class SessionBuilder(object):
 
                 if re.match(r'Images.*', description):
                     index += 1
-                    task = self.__build_task(index, description=description, interval=interval)
+                    task = self.__build_task(
+                        index, description=description, interval=interval)
                     tasks.append(task)
         return tasks
 

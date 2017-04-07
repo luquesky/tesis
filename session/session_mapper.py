@@ -9,8 +9,8 @@ logger = logging.getLogger('main')
 
 
 class SessionMapper(object):
-    def __init__(self):
-        pass
+    def __init__(self, session_info):
+        self.session_info = session_info
 
     def fetch(self, path_to_tasks, **opts):
         try:

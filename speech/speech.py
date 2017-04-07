@@ -3,7 +3,10 @@ import numpy as np
 from bisect import bisect_left
 from helpers import build_utterances
 
+
 class Speech(object):
+    """This object represents the speech of one of the participants at a session."""
+
     def __init__(self, path_to_wav, interval, word_intervals, feature_extractor=None):
         self.path_to_wav = path_to_wav
         self.utterances = build_utterances(word_intervals)
