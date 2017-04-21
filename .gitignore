@@ -32,3 +32,5 @@ latex/src/llncs2e/*
 *.blg
 .RData
 .Rhistory
+
+.python-version

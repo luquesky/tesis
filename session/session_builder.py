@@ -20,16 +20,23 @@ class SessionBuilder(object):
 
     path_to_tasks :
         Path to task directory
+    session_info: dataframe
+        Information of each session: id and gender of speakers
     number : integer
         Number of the session (between 1 and 12)
     options : dict
         Optional arguments, such as name
     """
 
-    def __init__(self, path_to_tasks, number, **options):
+    def __init__(self, path_to_tasks, number, idA, genderA, idB, genderB, **options):
         """Constructor."""
         self.name = options.get('name') or path_to_tasks
         self.number = int(number)
+        self.idA = idA
+        self.idB = idB
+        self.genderA = genderA
+        self.genderB = genderB
+
         self.path_to_tasks = os.path.abspath(path_to_tasks)
 
     @property
