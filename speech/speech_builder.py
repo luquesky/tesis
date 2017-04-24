@@ -9,10 +9,12 @@ from speech import Speech
 
 
 class SpeechBuilder(object):
-    def __init__(self, path_to_file, interval, feature_extractor=None):
+    def __init__(self, path_to_file, interval, speaker_id, gender, feature_extractor=None):
         self.path_to_wav = os.path.abspath(path_to_file)
         self.interval = interval
         self.feature_extractor = feature_extractor
+        self.speaker_id = speaker_id
+        self.gender = gender
 
         filename, extension = os.path.splitext(self.path_to_wav)
         self.path_to_words = "%s.words" % filename

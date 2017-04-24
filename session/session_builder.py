@@ -36,7 +36,6 @@ class SessionBuilder(object):
         self.idB = idB
         self.genderA = genderA
         self.genderB = genderB
-
         self.path_to_tasks = os.path.abspath(path_to_tasks)
 
     @property
@@ -86,4 +85,7 @@ class SessionBuilder(object):
         path_to_A = "%s.A.wav" % filename
         path_to_B = "%s.B.wav" % filename
 
-        return SpeechBuilder(path_to_A, interval).speech, SpeechBuilder(path_to_B, interval).speech
+        speechA = SpeechBuilder(path_to_A, interval, self.idA, self.genderA).speech
+        speechB = SpeechBuilder(path_to_B, interval, self.idB, self.genderB).speech
+
+        return speechA, speechB
