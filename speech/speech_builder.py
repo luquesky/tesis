@@ -39,9 +39,8 @@ class SpeechBuilder(object):
 
     # This is quite ad hoc
     def build_feature_extractor(self):
-        extractor1 = StandardAcousticsExtractor(self.path_to_wav)
-        extractor2 = VoiceAnalysisExtractor(self.path_to_wav)
-
+        extractor1 = StandardAcousticsExtractor(self.path_to_wav, self.gender)
+        extractor2 = VoiceAnalysisExtractor(self.path_to_wav, self.gender)
 
         syllabe_extractor = self.build_syllabe_extractor()
         phoneme_extractor = self.build_phoneme_extractor()

@@ -79,19 +79,33 @@ class ScriptExtractor(object):
     def __get_command_to_execute(self, interval):
         return (self.path_to_praat, self.path_to_script, self.path_to_wav, str(interval.inf), str(interval.sup), str(self.min_pitch), str(self.max_pitch))
 
-def StandardAcousticsExtractor(path_to_wav):
+
+def StandardAcousticsExtractor(path_to_wav, gender):
+    """Extractor using extractStandardAcoustics.praat."""
     path_to_script = os.path.join(config.ROOT_DIR, "scripts/extractStandardAcoustics.praat")
+
+    if gender == 'm':
+        min_pitch, max_pitch = 50, 300
+    elif gender == 'f':
+        min_pitch, max_pitch = 75, 500
+    else:
+        raise ValueError("{} is not a valid gender".format(gender))
+
     return ScriptExtractor(
-        path_to_script = path_to_script,
-        path_to_praat = find_executable("praat"),
-        path_to_wav=path_to_wav
+        path_to_script=path_to_script,
+        path_to_praat=find_executable("praat"),
+        path_to_wav=path_to_wav,
+        min_pitch=min_pitch,
+        max_pitch=max_pitch,
     )
 
-def VoiceAnalysisExtractor(path_to_wav):
+
+def VoiceAnalysisExtractor(path_to_wav, gender):
+    """Extractor using voice-analysis.praat."""
     path_to_script = os.path.join(config.ROOT_DIR, "scripts/voice-analysis.praat")
 
     return ScriptExtractor(
-        path_to_script = path_to_script,
-        path_to_praat = find_executable("praat"),
+        path_to_script=path_to_script,
+        path_to_praat=find_executable("praat"),
         path_to_wav=path_to_wav
     )
