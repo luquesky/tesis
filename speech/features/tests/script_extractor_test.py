@@ -27,3 +27,16 @@ class ScriptExtractorTest(TestCase):
 
         ret = extractor.extract_features(Interval(0, 10))
         self.assertItemsEqual(ret.keys(), ["SECONDS", "F0_MAX", "F0_MIN"])
+
+    @patch('speech.features.script_extractor.subprocess')
+    def test_feature_extractor_calls_script_with_correct_pitch(self, subprocess_mock):
+        extractor = ScriptExtractor(
+            path_to_praat="/bin/praat",
+            path_to_script="foo.praat",
+            path_to_wav="test.wav",
+            min_pitch=100,
+            max_pitch=200)
+
+        extractor.extract_features(Interval(0, 10))
+
+        subprocess_mock.check_output.assert_called_with(("/bin/praat", "foo.praat", "test.wav", "0", "10", "100", "200"))
