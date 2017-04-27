@@ -61,9 +61,9 @@ class Analyzer(object):
         nA = normalize(A, meanA)
         nB = normalize(B, meanB)
 
-        rA, rB = autoregressive_prewhitening(nA, nB)
+        #rA, rB = autoregressive_prewhitening(nA, nB)
 
-        return self.__generate_task_series(rA, rB, meanA=meanA, meanB=meanB, session=session, task=task)
+        return self.__generate_task_series(nA, nB, meanA=meanA, meanB=meanB, session=session, task=task)
 
     def __columns__(self):
         return ["task",
