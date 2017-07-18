@@ -34,3 +34,4 @@ latex/src/llncs2e/*
 .Rhistory
 
 .python-version
+tables/*.csv

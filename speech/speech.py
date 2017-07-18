@@ -1,23 +1,44 @@
 #! coding:utf-8
+"""Speech class."""
 import numpy as np
 from bisect import bisect_left
 from helpers import build_utterances
 
 
 class Speech(object):
-    """This object represents the speech of one of the participants at a session."""
+    """Represent the speech of one of the participants at a session."""
 
-    def __init__(self, path_to_wav, interval, word_intervals, feature_extractor=None):
+    def __init__(self, path_to_wav, interval, word_intervals, gender, feature_extractor=None):
+        """Constructor.
+
+        Parameters:
+        -----------
+
+        path_to_wav: string
+            path to wav file.
+        interval: sympy.Interval
+            Interval in seconds of the given wav.
+        word_intervals: list of WordInterval
+            Intervals of words
+        feature_extractor: FeatureExtractor
+            Something to extract features from
+        """
         self.path_to_wav = path_to_wav
         self.utterances = build_utterances(word_intervals)
         # TODO: Try to refactor this
         self.supremes = [utt.sup for utt in self.utterances]
         self.interval = interval
+        self.gender = gender
         self.feature_extractor = feature_extractor
 
     @property
     def length(self):
+        """Return length of given speech."""
         return self.interval.measure
+
+    def __repr__(self):
+        """String representation."""
+        return u"{} - Length: {}".format(self.path_to_wav, self.length)
 
     def get_features(self, interval):
         return self.feature_extractor.extract_features(interval)

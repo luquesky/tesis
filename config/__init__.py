@@ -32,6 +32,8 @@ TABLES_DIR = os.path.join(ROOT_DIR, "tables")
 SESSION_INFO_PATH = os.path.join(CORPUS_DIR, "session-info.csv")
 
 
+OUTPUT_PATH = os.path.join(TABLES_DIR, "output.csv")
+
 TASK_LENGTH_THRESHOLD = 40
 SERIES_FRAME_STEP = 8
 SERIES_FRAME_LENGTH = 16
@@ -39,4 +41,7 @@ SERIES_FRAME_LENGTH = 16
 SERIES_LENGTH_THRESHOLD = 5
 CORRELATION_LENGTH_THRESHOLD = 4
 
+
 init_logging()
+
+
