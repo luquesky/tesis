@@ -3,6 +3,7 @@
 from __future__ import division, print_function
 import fire
 import csv
+import os
 import sympy
 import config
 import logging
@@ -47,14 +48,6 @@ def build_extractor(speech_row):
 
 def create_speech(speech_row):
     """Create Speech object out of a CSV Row."""
-    logger.info(
-        "Session {} Task {} Speaker {}".format(
-            speech_row.session,
-            speech_row.task,
-            speech_row.speaker,
-        )
-    )
-
     interval = sympy.Interval(speech_row.time_start, speech_row.time_end)
     extractor = build_extractor(speech_row)
     word_intervals = get_word_intervals(speech_row.words_path, interval)
@@ -78,31 +71,59 @@ def create_tama(speech, feature):
     return normalized
 
 
-class CalculateEntrainments(object):
+def add_tamas(df, feature):
+    """Add tamas to DataFrame."""
+    logger.info("Building TAMAS for {}".format(feature))
+    column_name = "{}_tama".format(feature)
+    # I do this in such a horrible way because if I use df.apply
+    # pandas tries to convert into Series of the same length
+    df[column_name] = None
+
+    for index, speech_row in df.iterrows():
+        logger.info(
+            "Calculating TAMA for Session {} Task {} Speaker {}".format(
+                speech_row.session,
+                speech_row.task,
+                speech_row.speaker,
+            )
+        )
+        try:
+            normalized_tama = create_tama(speech_row.speech, feature)
+            df.set_value(index, column_name, normalized_tama)
+        except TaskTooShort:
+            continue
+
+
+class CalculateTama(object):
     """Calculate entrainments for AP variables."""
 
-    def run(self, csv_path=config.OUTPUT_PATH):
-        """Run the command."""
+    def run(self, csv_path=config.OUTPUT_PATH, output_path=None, features=None):
+        """Run the command.
+
+        Parameters:
+        -----------
+
+        csv_path: string
+            Path to input csv. Defaults to config.OUTPUT_PATH
+        output_path: string
+            Path to pickle output. Defaults to csv_path with its extension changed to .pickle
+        features: list of strings
+            List of features.
+        """
         logger.info("Reading speeches from {}".format(csv_path))
         df = pd.read_csv(csv_path)
 
         df["speech"] = df.apply(create_speech, axis=1)
 
-        features = ["F0_MEAN"]
+        features = features or ["F0_MEAN"]
+
+        base, ext = os.path.splitext(csv_path)
+        output_path = output_path or "{}.pickle".format(base)
 
         for feature in features:
-            logger.info("Building TAMAS for {}".format(feature))
+            add_tamas(df, feature)
 
-            column_name = "{}_tama".format(feature)
-            # I do this in such a horrible way because if I use df.apply
-            # pandas tries to convert into Series of the same length
-            df[column_name] = None
-
-            for index, speech_row in df.iterrows():
-                try:
-                    df.set_value(index, column_name, create_tama(speech_row.speech, feature))
-                except TaskTooShort:
-                    continue
+        df.to_pickle(output_path)
 
 if __name__ == '__main__':
-    fire.Fire(CalculateEntrainments)
+    fire.Fire(CalculateTama)
