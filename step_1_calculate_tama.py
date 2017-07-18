@@ -10,7 +10,7 @@ import logging
 import pandas as pd
 from tama import tama, normalize
 from speech import Speech, WordInterval
-from speech.features import StandardAcousticsExtractor
+from speech.features import StandardAcousticsExtractor, VoiceAnalysisExtractor, CompositeExtractor, CachedExtractor
 
 logger = logging.getLogger('main')
 
@@ -41,9 +41,10 @@ def get_word_intervals(path_to_words, task_interval):
 
 def build_extractor(speech_row):
     """Build acoustic extractor for given speech."""
-    extractor = StandardAcousticsExtractor(speech_row.wav_path, speech_row.gender)
+    extractor1 = StandardAcousticsExtractor(speech_row.wav_path, speech_row.gender)
+    extractor2 = VoiceAnalysisExtractor(speech_row.wav_path, speech_row.gender)
 
-    return extractor
+    return CachedExtractor(CompositeExtractor(extractor1, extractor2))
 
 
 def create_speech(speech_row):
@@ -115,7 +116,17 @@ class CalculateTama(object):
 
         df["speech"] = df.apply(create_speech, axis=1)
 
-        features = features or ["F0_MEAN"]
+        features = features or [
+            "F0_MEAN",
+            "F0_MAX",
+            "ENG_MAX",
+            "ENG_MEAN",
+            'NOISE_TO_HARMONICS_RATIO',
+            'SOUND_ALL_LOCAL_JITTER',
+            'SOUND_ALL_LOCAL_SHIMMER',
+            'SOUND_VOICED_LOCAL_JITTER',
+            'SOUND_VOICED_LOCAL_SHIMMER'
+        ]
 
         base, ext = os.path.splitext(csv_path)
         output_path = output_path or "{}.pickle".format(base)
@@ -124,6 +135,8 @@ class CalculateTama(object):
             add_tamas(df, feature)
 
         df.to_pickle(output_path)
+
+        logger.info("Pickle saved to {}".format(output_path))
 
 if __name__ == '__main__':
     fire.Fire(CalculateTama)
