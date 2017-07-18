@@ -33,7 +33,12 @@ class Speech(object):
 
     @property
     def length(self):
+        """Return length of given speech."""
         return self.interval.measure
+
+    def __repr__(self):
+        """String representation."""
+        return u"{} - Length: {}".format(self.path_to_wav, self.length)
 
     def get_features(self, interval):
         return self.feature_extractor.extract_features(interval)
