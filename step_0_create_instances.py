@@ -27,13 +27,14 @@ def extract_features(speech, task, session):
         "wav_path": speech.path_to_wav,
         "words_path": path_to_words,
         "speaker": speaker_num,
+        "gender": speech.gender,
         "time_start": speech.interval.inf,
         "time_end": speech.interval.sup,
     }
 
 
 class CreateInstances(object):
-    """Bazofia."""
+    """Create instances of tasks."""
 
     def run(self, output_path=""):
         """Foo."""

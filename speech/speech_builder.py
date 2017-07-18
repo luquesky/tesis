@@ -55,6 +55,7 @@ class SpeechBuilder(object):
             path_to_wav=self.path_to_wav,
             interval=self.interval,
             word_intervals=self.word_intervals,
+            gender=self.gender,
             feature_extractor=feature_extractor)
 
 
