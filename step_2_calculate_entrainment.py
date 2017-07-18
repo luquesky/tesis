@@ -15,8 +15,8 @@ def calculate_entrainments(df, feature):
     """Calculate entrainments."""
     a_speaker_rows = df[df.speaker == 0]
     tama_column = "{}_tama".format(feature)
-    entrainment_column = "{}_entrainment".format(entrainment)
-    best_lag_column = "{}_best_lag".format(entrainment)
+    entrainment_column = "{}_entrainment".format(feature)
+    best_lag_column = "{}_best_lag".format(feature)
 
     df[entrainment_column] = None
     df[best_lag_column] = None
@@ -49,11 +49,15 @@ class CalculateEntrainments(object):
         pickle: string
             Path to input pickle
         """
+        logger.info("Reading pickle from {}".format(pickle_path))
         df = pd.read_pickle(pickle_path)
-        features = features or ["F0_MEAN"]
+        features = features or config.FEATURES
 
         for feature in features:
             calculate_entrainments(df, feature)
+
+        df.to_pickle(pickle_path)
+        logger.info("Pickle saved to {}".format(pickle_path))
 
 
 if __name__ == '__main__':

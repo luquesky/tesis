@@ -116,17 +116,7 @@ class CalculateTama(object):
 
         df["speech"] = df.apply(create_speech, axis=1)
 
-        features = features or [
-            "F0_MEAN",
-            "F0_MAX",
-            "ENG_MAX",
-            "ENG_MEAN",
-            'NOISE_TO_HARMONICS_RATIO',
-            'SOUND_ALL_LOCAL_JITTER',
-            'SOUND_ALL_LOCAL_SHIMMER',
-            'SOUND_VOICED_LOCAL_JITTER',
-            'SOUND_VOICED_LOCAL_SHIMMER'
-        ]
+        features = features or config.FEATURES
 
         base, ext = os.path.splitext(csv_path)
         output_path = output_path or "{}.pickle".format(base)
