@@ -5,10 +5,18 @@ import fire
 import config
 import glob
 import os
+import wave
 import logging
 import pandas as pd
 
 logger = logging.getLogger('main')
+
+
+def get_wav_duration(wav_path):
+    """Return duration in seconds of wav file."""
+    wav = wave.open(wav_path)
+
+    return wav.getnframes() / wav.getframerate()
 
 
 def create_instance(wav_path, phrases_dir, session_info):
@@ -33,7 +41,7 @@ def create_instance(wav_path, phrases_dir, session_info):
         "speaker": speaker,
         "gender": session_info.loc[session, gender_column],
         "time_start": 0.0,
-        "time_end": float("+inf")
+        "time_end": get_wav_duration(wav_path),
     }
 
 
