@@ -51,7 +51,7 @@ class CreateInstances(object):
     def run(self, output_path,
             wav_dir="data/games-eeg/wavs/",
             phrases_dir="data/games-eeg/annotations/phrases",
-            session_info_path="data/games-eeg/session-info.csv"):
+            session_info_path="data/spanish-session-info.csv"):
         """Run this command.
 
         Parameters
