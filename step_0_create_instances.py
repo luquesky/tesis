@@ -36,7 +36,7 @@ def extract_features(speech, task, session):
 class CreateInstances(object):
     """Create instances of tasks."""
 
-    def run(self, output_path=""):
+    def run(self, output_path=config.OUTPUT_PATH):
         """Foo."""
         features = []
 
@@ -49,7 +49,7 @@ class CreateInstances(object):
 
         df = pd.DataFrame(features)
         df.set_index(["session", "task", "speaker"], inplace=True)
-        df.to_csv(config.OUTPUT_PATH)
+        df.to_csv(output_path)
 
         logger.info("Output saved to {}".format(config.OUTPUT_PATH))
 
