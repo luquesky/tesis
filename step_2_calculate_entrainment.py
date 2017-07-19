@@ -27,14 +27,17 @@ def calculate_entrainments(df, feature):
         b_speech_row = df.iloc[b_index]
 
         A, B = a_speech_row[tama_column], b_speech_row[tama_column]
+
+        if A is None or B is None:
+            logger.info("Skipping session {} task {}".format(a_speech_row.session, a_speech_row.task))
+            continue
+
         l_AB, E_AB, l_BA, E_BA = entrainment(A, B, lags=range(-6, 6))
 
         df.loc[a_index, entrainment_column] = E_AB
         df.loc[a_index, best_lag_column] = l_AB
         df.loc[b_index, entrainment_column] = E_BA
         df.loc[b_index, best_lag_column] = l_BA
-
-
 
 
 class CalculateEntrainments(object):
