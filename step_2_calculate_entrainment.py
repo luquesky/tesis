@@ -43,14 +43,17 @@ def calculate_entrainments(df, feature):
 class CalculateEntrainments(object):
     """Calculate entrainments for AP variables."""
 
-    def run(self, pickle_path, features=None):
+    def run(self, pickle_path, output_path, features=None):
         """Run the command.
 
         Parameters:
         -----------
 
-        pickle: string
-            Path to input pickle
+        pickle_path: string
+            Path to input pickle. Will be updated with calculated entrainments
+
+        output_path: path to csv
+            Where to output the resulting csv
         """
         logger.info("Reading pickle from {}".format(pickle_path))
         df = pd.read_pickle(pickle_path)
@@ -60,8 +63,11 @@ class CalculateEntrainments(object):
             calculate_entrainments(df, feature)
 
         df.to_pickle(pickle_path)
+        # Remove tama
+        columns_to_output = df.columns.difference([c for c in df.columns if 'tama' in c])
         logger.info("Pickle saved to {}".format(pickle_path))
 
+        df[columns_to_output].to_csv(output_path)
 
 if __name__ == '__main__':
     fire.Fire(CalculateEntrainments)

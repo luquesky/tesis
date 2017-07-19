@@ -102,14 +102,14 @@ def add_tamas(df, feature):
 class CalculateTama(object):
     """Calculate entrainments for AP variables."""
 
-    def run(self, csv_path=config.OUTPUT_PATH, output_path=None, features=None):
+    def run(self, csv_path, output_path=None, features=None):
         """Run the command.
 
         Parameters:
         -----------
 
         csv_path: string
-            Path to input csv. Defaults to config.OUTPUT_PATH
+            Path to input csv.
         output_path: string
             Path to pickle output. Defaults to csv_path with its extension changed to .pickle
         features: list of strings
