@@ -25,7 +25,11 @@ def get_word_intervals(path_to_words, task_interval):
     """Get word intervals for a task."""
     word_intervals = []
     with open(path_to_words) as test_words:
-        rows = csv.reader(test_words, delimiter=" ")
+        # Get dialect
+        dialect = csv.Sniffer().sniff(test_words.read(1024))
+        test_words.seek(0)
+        rows = csv.reader(test_words, dialect)
+
         for row in rows:
             """Search for intervals in current task."""
             wint = WordInterval(float(row[0]), float(row[1]), row[2])
