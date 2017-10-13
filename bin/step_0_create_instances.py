@@ -2,8 +2,10 @@
 """Step 0 de mi tesis."""
 from __future__ import division, print_function
 import fire
-from games_entrainment import config
+import sys
 import os
+sys.path.insert(0, os.path.abspath("."))
+from games_entrainment import config
 import logging
 import pandas as pd
 from games_entrainment.session import load_session

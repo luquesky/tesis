@@ -31,6 +31,8 @@ CORPUS_DIR = os.path.join(DATA_DIR, "games-corpus")
 LOG_DIR = os.path.join(ROOT_DIR, "log")
 TABLES_DIR = os.path.join(ROOT_DIR, "tables")
 
+PRAAT_SCRIPTS_PATH = os.path.join(ROOT_DIR, "praat_scripts")
+
 SESSION_INFO_PATH = os.path.join(CORPUS_DIR, "session-info.csv")
 
 

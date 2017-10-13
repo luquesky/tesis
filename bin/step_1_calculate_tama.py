@@ -4,7 +4,9 @@ from __future__ import division, print_function
 import fire
 import csv
 import os
+import sys
 import sympy
+sys.path.insert(0, os.path.abspath("."))
 from games_entrainment import config
 import logging
 import pandas as pd

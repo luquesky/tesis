@@ -21,9 +21,9 @@ pip install -r requirements.txt
 3. Run these commands
 
 ```
-python step_0_create_instances.py run
-python step_1_calculate_tama.py run tables/output.csv
-python step_2_calculate_entrainment.py run tables/output.pickle tables/output.csv
+python bin/step_0_create_instances.py run
+python bin/step_1_calculate_tama.py run tables/output.csv
+python bin/step_2_calculate_entrainment.py run tables/output.pickle tables/output.csv
 ```
 
 4. Generated csv will be at `tables/output.csv`

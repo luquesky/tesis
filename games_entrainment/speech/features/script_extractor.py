@@ -11,9 +11,11 @@ logger = logging.getLogger('main')
 
 class ScriptExtractor(object):
     """
-    An object of this class has the responsibility of extracting the features (f_0, ) out of a wav file.
+    An object of this class has the responsibility of extracting the features
+    (f_0, ) out of a wav file.
 
-    It should be created with both a path to the wav file, and to a praat script which returns the features (in the project, they are at scripts/)
+    It should be created with both a path to the wav file, and to a praat
+    script which returns the features (in the project, they are at scripts/)
     """
 
     def __init__(
@@ -61,7 +63,9 @@ class ScriptExtractor(object):
 
             return features
         except:
-            logger.error("There was an error calling %s with interval %s" % (self.path_to_script, interval))
+            logger.error(
+                "There was an error calling %s with interval %s" %
+                (self.path_to_script, interval))
             return {}
 
     def __convert_to_dict(self, command_output):
@@ -77,12 +81,16 @@ class ScriptExtractor(object):
 
     # FIXME: Change min & max pitch
     def __get_command_to_execute(self, interval):
-        return (self.path_to_praat, self.path_to_script, self.path_to_wav, str(interval.inf), str(interval.sup), str(self.min_pitch), str(self.max_pitch))
+        return (self.path_to_praat, self.path_to_script,
+                self.path_to_wav, str(interval.inf), str(interval.sup),
+                str(self.min_pitch), str(self.max_pitch))
 
 
 def StandardAcousticsExtractor(path_to_wav, gender):
     """Extractor using extractStandardAcoustics.praat."""
-    path_to_script = os.path.join(config.ROOT_DIR, "scripts/extractStandardAcoustics.praat")
+    path_to_script = os.path.join(
+        config.PRAAT_SCRIPTS_PATH,
+        "extractStandardAcoustics.praat")
 
     if gender == 'm':
         min_pitch, max_pitch = 50, 300
@@ -102,7 +110,10 @@ def StandardAcousticsExtractor(path_to_wav, gender):
 
 def VoiceAnalysisExtractor(path_to_wav, gender):
     """Extractor using voice-analysis.praat."""
-    path_to_script = os.path.join(config.ROOT_DIR, "scripts/voice-analysis.praat")
+    path_to_script = os.path.join(
+        config.PRAAT_SCRIPTS_PATH,
+        "voice-analysis.praat"
+    )
 
     return ScriptExtractor(
         path_to_script=path_to_script,

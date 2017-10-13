@@ -2,11 +2,13 @@
 """Step 0 de mi tesis."""
 from __future__ import division, print_function
 import pandas as pd
-import config
+import sys
+import os
+sys.path.insert(0, os.path.abspath("."))
+from games_entrainment import config
 import logging
 import fire
-from tsa import entrainment
-
+from games_entrainment.tsa import entrainment
 
 logger = logging.getLogger('main')
 
