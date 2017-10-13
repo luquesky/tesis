@@ -4,7 +4,7 @@ import os
 from distutils.spawn import find_executable
 import logging
 import subprocess
-import config
+from games_entrainment import config
 
 logger = logging.getLogger('main')
 

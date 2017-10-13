@@ -1,7 +1,7 @@
 #! coding: utf-8
 import os
 import csv
-import config
+import games_entrainment.config
 from distutils.spawn import find_executable
 from word_interval import WordInterval
 from features import StandardAcousticsExtractor, VoiceAnalysisExtractor, CachedExtractor, CompositeExtractor, SyllabeExtractor, PhonemeExtractor
@@ -85,4 +85,3 @@ class SpeechBuilder(object):
                     mapping[key] = value
 
             return PhonemeExtractor(self.get_word_intervals(), mapping)
-

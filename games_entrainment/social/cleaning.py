@@ -2,7 +2,7 @@
 import re
 import os
 import social
-import config
+from games_entrainment import config
 import pandas as pd
 
 

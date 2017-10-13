@@ -1,5 +1,5 @@
 #! coding: utf-8
-import config
+from games_entrainment import config
 import pandas as pd
 from tama import tama, normalize
 from tsa import entrainment, autoregressive_prewhitening

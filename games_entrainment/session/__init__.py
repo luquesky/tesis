@@ -2,7 +2,7 @@
 """Entry point for session module."""
 import os
 import csv
-import config
+from games_entrainment import config
 import pandas as pd
 from session import Session
 from session_builder import SessionBuilder
@@ -12,10 +12,7 @@ from task import Task
 
 
 def task_directory(num):
-    current_dir = os.path.dirname(__file__)
-    parent_dir = os.path.abspath(os.path.join(current_dir, os.path.pardir))
-
-    return os.path.join(parent_dir, "data/games-corpus/session_%s/s%s.objects.1.tasks" % (num, num))
+    return os.path.join(config.DATA_DIR, "games-corpus/session_%s/s%s.objects.1.tasks" % (num, num))
 
 
 def load_session_info():

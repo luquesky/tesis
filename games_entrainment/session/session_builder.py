@@ -6,7 +6,7 @@ import re
 from sympy import Interval
 from . import Session
 from task import Task
-from speech import SpeechBuilder
+from ..speech import SpeechBuilder
 
 
 class SessionBuilder(object):

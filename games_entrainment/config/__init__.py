@@ -5,7 +5,9 @@ import os
 # Perhaps this could be improved...
 def project_dir():
     current_dir = os.path.dirname(os.path.abspath(__file__))
-    return os.path.abspath(os.path.join(current_dir, os.path.pardir))
+    return os.path.abspath(os.path.join(current_dir,
+                                        os.path.pardir,
+                                        os.path.pardir))
 
 
 def init_logging():
@@ -54,5 +56,3 @@ FEATURES = [
 ]
 
 init_logging()
-
-
