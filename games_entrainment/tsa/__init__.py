@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 from math import sqrt
 from scipy.stats.stats import ss
-import config
+from games_entrainment import config
 
 
 

@@ -1,6 +1,6 @@
 #! coding: utf-8
 from __future__ import division
-import config
+from games_entrainment import config
 import pandas as pd
 from calculator import Calculator
 from helpers import intersecting_utterances, hybrid_intersecting_utterances

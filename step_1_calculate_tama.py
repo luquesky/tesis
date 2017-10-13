@@ -5,12 +5,12 @@ import fire
 import csv
 import os
 import sympy
-import config
+from games_entrainment import config
 import logging
 import pandas as pd
-from tama import tama, normalize
-from speech import Speech, WordInterval
-from speech.features import StandardAcousticsExtractor, VoiceAnalysisExtractor, CompositeExtractor, CachedExtractor
+from games_entrainment.tama import tama, normalize
+from games_entrainment.speech import Speech, WordInterval
+from games_entrainment.speech.features import StandardAcousticsExtractor, VoiceAnalysisExtractor, CompositeExtractor, CachedExtractor
 
 logger = logging.getLogger('main')
 
