@@ -22,7 +22,6 @@ log/*.log
 *.fls
 *.log
 *latexmk
-misc/
 papers
 
 latex/tmp/*
