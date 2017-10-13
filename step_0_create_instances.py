@@ -2,11 +2,11 @@
 """Step 0 de mi tesis."""
 from __future__ import division, print_function
 import fire
-import config
+from games_entrainment import config
 import os
 import logging
 import pandas as pd
-from session import load_session
+from games_entrainment.session import load_session
 
 logger = logging.getLogger('main')
 

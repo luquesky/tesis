@@ -1,7 +1,7 @@
 #! coding: utf-8
 import os
 import csv
-import games_entrainment.config
+from games_entrainment import config
 from distutils.spawn import find_executable
 from word_interval import WordInterval
 from features import StandardAcousticsExtractor, VoiceAnalysisExtractor, CachedExtractor, CompositeExtractor, SyllabeExtractor, PhonemeExtractor
