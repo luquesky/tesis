@@ -11,9 +11,7 @@ from games_entrainment import config
 import logging
 import pandas as pd
 from games_entrainment.tama import tama, normalize
-from games_entrainment.speech import Speech, WordInterval
-from games_entrainment.helpers import create_speech as create_speech_helper
-from games_entrainment.speech.features import StandardAcousticsExtractor, VoiceAnalysisExtractor, CompositeExtractor, CachedExtractor
+from games_entrainment import helpers
 
 logger = logging.getLogger('main')
 
@@ -24,33 +22,16 @@ class TaskTooShort(Exception):
     pass
 
 
-def get_word_intervals(path_to_words, task_interval):
-    """Get word intervals for a task."""
-    word_intervals = []
-    with open(path_to_words) as test_words:
-        # Get dialect
-        dialect = csv.Sniffer().sniff(test_words.read(1024))
-        test_words.seek(0)
-        rows = csv.reader(test_words, dialect)
-
-        for row in rows:
-            """Search for intervals in current task."""
-            wint = WordInterval(float(row[0]), float(row[1]), row[2])
-            if wint.inf > task_interval.sup:
-                break
-
-            intersection = task_interval.intersect(wint.interval)
-            if intersection.measure > 0:
-                word_intervals.append(wint)
-
-    return word_intervals
-
 def create_speech(speech_row):
     """Create Speech object out of a CSV Row."""
     interval = sympy.Interval(speech_row.time_start, speech_row.time_end)
-    word_intervals = get_word_intervals(speech_row.words_path, interval)
 
-    return create_speech_helper(
+    word_intervals = helpers.get_word_intervals(
+        speech_row.words_path,
+        interval
+    )
+
+    return helpers.create_speech(
         wav_path=speech_row.wav_path,
         time_start=speech_row.time_start,
         time_end=speech_row.time_end,

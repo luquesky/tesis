@@ -2,10 +2,15 @@
 import numpy as np
 import pandas as pd
 from ..tsa import entrainment, cross_correlogram, autocorrelogram
-from .speech import create_speech
+from .speech import create_speech, get_word_intervals, get_ctm_word_intervals
+
 
 def plot_tamas(A, B, feature, ax=None):
-    sp = pd.DataFrame({'A': A, 'B': B}).plot(color=['r', 'b'], style='-o', ax=ax)
+    sp = pd.DataFrame({'A': A, 'B': B}).plot(
+        color=['r', 'b'],
+        style='-o',
+        ax=ax
+    )
     sp.set_xlabel("Time")
     sp.set_ylabel("Average %s" % feature)
     sp.set_title("Time plot")
@@ -50,7 +55,11 @@ def plot_autocorrelations(A, B=None, ax=None):
     if B is not None:
         autocorrB = autocorrelogram(B, lags)
 
-    sp = pd.DataFrame({'A': autocorrA, 'B': autocorrB}).plot(color=['r', 'b'], style='-o', ax=ax)
+    sp = pd.DataFrame({'A': autocorrA, 'B': autocorrB}).plot(
+        color=['r', 'b'],
+        style='-o',
+        ax=ax
+    )
     sp.set_xlabel("Lag")
     sp.set_ylabel("Autocorrelation")
     sp.set_title("Autocorrelogram")
