@@ -9,7 +9,8 @@ import logging
 logger = logging.getLogger('main')
 
 
-def tama(speech, feature, frame_step=None, frame_length=None, interpolate=False, interval=None):
+def tama(speech, feature, frame_step=None, frame_length=None,
+         interpolate=False, interval=None):
     """
     Given a speech, it returns the time aligned moving average (tama) for the feature.
 
@@ -29,7 +30,8 @@ def tama(speech, feature, frame_step=None, frame_length=None, interpolate=False,
     Consisting on the time where the intervals where taken
 
     averages: Array
-    The result of applying TAMA on the selected feature for the current interval
+    The result of applying TAMA on the selected feature for the current
+    interval
 
     """
 

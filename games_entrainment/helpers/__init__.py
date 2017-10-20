@@ -2,7 +2,14 @@
 import numpy as np
 import pandas as pd
 from ..tsa import entrainment, cross_correlogram, autocorrelogram
-from .speech import create_speech, get_word_intervals, get_ctm_word_intervals
+
+from .speech import (
+    create_speech,
+    get_word_intervals,
+    get_ctm_word_intervals,
+    create_tama,
+    TaskTooShort,
+)
 
 
 def plot_tamas(A, B, feature, ax=None):

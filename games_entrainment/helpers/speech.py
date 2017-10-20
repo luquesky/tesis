@@ -1,13 +1,16 @@
 #! coding: utf-8
-from ..speech import Speech, WordInterval
-from sympy import Interval
 import csv
+from ..speech import Speech, WordInterval
+from .. import config
+from sympy import Interval
+from pydub import AudioSegment
 from ..speech import (
     StandardAcousticsExtractor,
     VoiceAnalysisExtractor,
     CompositeExtractor,
     CachedExtractor
 )
+from ..tama import normalized_tama
 
 
 def create_games_corpus_interval(row):
@@ -104,7 +107,7 @@ def create_speech(wav_path, gender, word_intervals,
     ----------
     wav_path: String
         Absolute or relative path to wav
-    gender: 'M' or 'F'
+    gender: 'm' or 'f'
         Male or Female
     time_start, time_end: float
         Time interval to consider from the wav.
@@ -113,13 +116,32 @@ def create_speech(wav_path, gender, word_intervals,
         Example:
 
     """
+
     extractor = build_extractor(wav_path, gender)
+    time_start = time_start or 0
+    time_end = time_end or AudioSegment.from_wav(wav_path).duration_seconds
+
     interval = Interval(time_start, time_end)
 
     return Speech(
         path_to_wav=wav_path,
         interval=interval,
         word_intervals=word_intervals,
-        gender=gender,
+        gender=gender.lower(),
         feature_extractor=extractor,
     )
+
+
+class TaskTooShort(Exception):
+    u"""Exception for short task."""
+
+    pass
+
+
+def create_tama(speech, feature):
+    """Create tama for speech and feature."""
+    A = normalized_tama(speech, feature)
+
+    if (A.count() < config.SERIES_LENGTH_THRESHOLD):
+        raise TaskTooShort("Series too short")
+    return A

@@ -15,13 +15,6 @@ from games_entrainment import helpers
 
 logger = logging.getLogger('main')
 
-
-class TaskTooShort(Exception):
-    u"""Exception for short task."""
-
-    pass
-
-
 def create_speech(speech_row):
     """Create Speech object out of a CSV Row."""
     interval = sympy.Interval(speech_row.time_start, speech_row.time_end)
@@ -39,15 +32,6 @@ def create_speech(speech_row):
         gender=speech_row.gender,
     )
 
-
-def create_tama(speech, feature):
-    """Create tama for speech and feature."""
-    A, meanA = tama(speech, feature)
-    normalized = normalize(A, meanA)
-
-    if (A.count() < config.SERIES_LENGTH_THRESHOLD):
-        raise TaskTooShort("Series too short")
-    return normalized
 
 
 def add_tamas(df, feature):
@@ -67,9 +51,9 @@ def add_tamas(df, feature):
             )
         )
         try:
-            normalized_tama = create_tama(speech_row.speech, feature)
+            normalized_tama = helpers.create_tama(speech_row.speech, feature)
             df.set_value(index, column_name, normalized_tama)
-        except TaskTooShort:
+        except helpers.TaskTooShort:
             continue
 
 
