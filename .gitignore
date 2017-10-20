@@ -34,3 +34,4 @@ latex/src/llncs2e/*
 
 .python-version
 tables/*.csv
+*.egg-info/*
