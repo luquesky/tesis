@@ -12,6 +12,7 @@ import logging
 import pandas as pd
 from games_entrainment.tama import tama, normalize
 from games_entrainment.speech import Speech, WordInterval
+from games_entrainment.helpers import create_speech as create_speech_helper
 from games_entrainment.speech.features import StandardAcousticsExtractor, VoiceAnalysisExtractor, CompositeExtractor, CachedExtractor
 
 logger = logging.getLogger('main')
@@ -44,27 +45,17 @@ def get_word_intervals(path_to_words, task_interval):
 
     return word_intervals
 
-
-def build_extractor(speech_row):
-    """Build acoustic extractor for given speech."""
-    extractor1 = StandardAcousticsExtractor(speech_row.wav_path, speech_row.gender)
-    extractor2 = VoiceAnalysisExtractor(speech_row.wav_path, speech_row.gender)
-
-    return CachedExtractor(CompositeExtractor(extractor1, extractor2))
-
-
 def create_speech(speech_row):
     """Create Speech object out of a CSV Row."""
     interval = sympy.Interval(speech_row.time_start, speech_row.time_end)
-    extractor = build_extractor(speech_row)
     word_intervals = get_word_intervals(speech_row.words_path, interval)
 
-    return Speech(
-        path_to_wav=speech_row.wav_path,
-        interval=interval,
+    return create_speech_helper(
+        wav_path=speech_row.wav_path,
+        time_start=speech_row.time_start,
+        time_end=speech_row.time_end,
         word_intervals=word_intervals,
         gender=speech_row.gender,
-        feature_extractor=extractor,
     )
 
 

@@ -1,8 +1,8 @@
 #! coding:utf-8
 import numpy as np
 import pandas as pd
-from tsa import entrainment, cross_correlogram, autocorrelogram
-
+from ..tsa import entrainment, cross_correlogram, autocorrelogram
+from .speech import create_speech
 
 def plot_tamas(A, B, feature, ax=None):
     sp = pd.DataFrame({'A': A, 'B': B}).plot(color=['r', 'b'], style='-o', ax=ax)
