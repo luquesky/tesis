@@ -62,10 +62,10 @@ class ScriptExtractor(object):
             features = self.__convert_to_dict(output)
 
             return features
-        except:
+        except Exception as e:
             logger.error(
-                "There was an error calling %s with interval %s" %
-                (self.path_to_script, interval))
+                "There was an error calling %s with interval %s -> %s" %
+                (self.path_to_script, interval, e))
             return {}
 
     def __convert_to_dict(self, command_output):
