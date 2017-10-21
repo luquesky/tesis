@@ -7,7 +7,7 @@ setup(
     author="Juan Manuel Pérez",
     author_email="jmperez.85@gmail.com",
     url="https://github.com/geekazoid/tesis",
-    packages=['games_entrainment'],
+    packages=find_packages('games_entrainment'),
     install_requires=[
         "configparser == 3.5.0",
         "dill == 0.2.2",
