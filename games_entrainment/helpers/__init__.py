@@ -23,8 +23,8 @@ def plot_tamas(A, B, feature, ax=None):
     sp.set_title("Time plot")
 
     l_AB, E_AB, l_BA, E_BA = entrainment(A, B, lags=range(-6, 6))
-    print "A -> B = %.5f (lag = %s)" % (E_AB, l_AB)
-    print "B -> A = %.5f (lag = %s)" % (E_BA, l_BA)
+    #print "A -> B = %.5f (lag = %s)" % (E_AB, l_AB)
+    #print "B -> A = %.5f (lag = %s)" % (E_BA, l_BA)
 
 
 def plot_cross_correlogram(A, B, feature, ax=None, max_lag=6):

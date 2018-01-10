@@ -2,8 +2,8 @@
 from __future__ import division
 from games_entrainment import config
 import pandas as pd
-from calculator import Calculator
-from helpers import intersecting_utterances, hybrid_intersecting_utterances
+from .calculator import Calculator
+from .helpers import intersecting_utterances, hybrid_intersecting_utterances
 import logging
 
 logger = logging.getLogger('main')

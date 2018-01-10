@@ -5,7 +5,7 @@ import math
 import numpy as np
 import pandas as pd
 from sympy import Interval
-from helpers import interpolate, hybrid_intersecting_utterances
+from .helpers import interpolate, hybrid_intersecting_utterances
 
 logger = logging.getLogger('main')
 

@@ -29,7 +29,7 @@ def create_ctm_interval(row):
     return WordInterval(start, start+length, transcription)
 
 
-def get_ctm_word_intervals(path_to_words):
+def get_ctm_word_intervals(path_to_words,chan=''):
     """Get word intervals for a task from a csv or similar
 
     Parameters:
@@ -40,13 +40,13 @@ def get_ctm_word_intervals(path_to_words):
     """
     return get_word_intervals(
         path_to_words,
-        create_interval_function=create_ctm_interval,
+        create_interval_function=create_ctm_interval,chan=chan
     )
 
 
 
 def get_word_intervals(path_to_words, task_interval=None,
-                       create_interval_function=create_games_corpus_interval):
+                       create_interval_function=create_games_corpus_interval, chan=''):
     """Get word intervals for a task from a csv or similar
 
     Parameters:
@@ -70,23 +70,42 @@ def get_word_intervals(path_to_words, task_interval=None,
 
     with open(path_to_words) as test_words:
         # Get dialect
-        dialect = csv.Sniffer().sniff(test_words.read(1024))
+        #dialect = csv.Sniffer().sniff(test_words.read(1024))
+        dialect = csv.Sniffer().sniff(test_words.readline())
         test_words.seek(0)
         rows = csv.reader(test_words, dialect)
 
         for row in rows:
-            """Search for intervals in current task."""
-            wint = create_interval_function(row)
+            if chan != '':
+                if row[0].count(chan) > 0:
+                    #print (row)
+                    """Search for intervals in current task."""
+                    wint = create_interval_function(row)
 
-            if task_interval:
-                if wint.inf > task_interval.sup:
-                    break
+                    if task_interval:
+                        if wint.inf > task_interval.sup:
+                            break
 
-                intersection = task_interval.intersect(wint.interval)
-                if intersection.measure > 0:
-                    word_intervals.append(wint)
+                        intersection = task_interval.intersect(wint.interval)
+                        if intersection.measure > 0:
+                            word_intervals.append(wint)
+                    else:
+                        word_intervals.append(wint)
             else:
-                word_intervals.append(wint)
+                #print (row)
+                """Search for intervals in current task."""
+                wint = create_interval_function(row)
+
+                if task_interval:
+                    if wint.inf > task_interval.sup:
+                        break
+
+                    intersection = task_interval.intersect(wint.interval)
+                    if intersection.measure > 0:
+                        word_intervals.append(wint)
+                else:
+                    word_intervals.append(wint)
+
 
     return word_intervals
 
@@ -100,7 +119,7 @@ def build_extractor(wav_path, gender):
 
 
 def create_speech(wav_path, gender, word_intervals,
-                  time_start=None, time_end=None):
+                  time_start=None, time_end=None, chan=''):
     """Create Speech object out of a CSV Row.
 
     Parameters
@@ -143,5 +162,6 @@ def create_tama(speech, feature):
     A = normalized_tama(speech, feature)
 
     if (A.count() < config.SERIES_LENGTH_THRESHOLD):
-        raise TaskTooShort("Series too short")
+        #raise TaskTooShort("Series too short")
+        print('Series too short')
     return A

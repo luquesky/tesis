@@ -2,7 +2,7 @@
 """Speech class."""
 import numpy as np
 from bisect import bisect_left
-from helpers import build_utterances
+from .helpers import build_utterances
 
 
 class Speech(object):

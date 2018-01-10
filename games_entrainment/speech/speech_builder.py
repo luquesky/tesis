@@ -3,9 +3,9 @@ import os
 import csv
 from games_entrainment import config
 from distutils.spawn import find_executable
-from word_interval import WordInterval
-from features import StandardAcousticsExtractor, VoiceAnalysisExtractor, CachedExtractor, CompositeExtractor, SyllabeExtractor, PhonemeExtractor
-from speech import Speech
+from .word_interval import WordInterval
+from .features import StandardAcousticsExtractor, VoiceAnalysisExtractor, CachedExtractor, CompositeExtractor, SyllabeExtractor, PhonemeExtractor
+from .speech import Speech
 
 
 class SpeechBuilder(object):
